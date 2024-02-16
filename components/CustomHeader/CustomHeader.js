@@ -1,14 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {useSelector} from 'react-redux';
 
 import {SCREEN_WIDTH, convert} from '../../assets/dimensions/dimensions';
 import DateCircle from './DateCircle';
 
+import {getArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
+
 const CustomHeader = () => {
+  const [date, setDate] = useState('');
+  const day = useSelector(getArabicDate);
+
+  useEffect(() => {
+    setDate(day);
+  }, []);
+
   return (
     <View style={styles.root}>
       {/* ramadan date circle component */}
-      <DateCircle />
+      <DateCircle date={date} />
 
       <View style={styles.topBoxContainer}>
         {/* sahri ends component */}

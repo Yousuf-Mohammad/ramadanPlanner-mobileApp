@@ -1,27 +1,20 @@
-import {Button, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const onPress = navigation => {
-  navigation.navigate('Login');
-};
+import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 
 const Register = ({navigation}) => {
+  const onSubmit = () => {
+    // registration logic!
+    navigation.navigate('Login');
+  };
+
   return (
-    <View style={styles.root}>
-      <Text style={styles.txt}>Register</Text>
-      <Button title="go to login" onPress={() => onPress(navigation)} />
-    </View>
+    <AuthenticationForm
+      title={'Register'}
+      btnTitle={'Register'}
+      onSubmit={onSubmit}
+    />
   );
 };
 
 export default Register;
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-  },
-  txt: {color: 'black'},
-});

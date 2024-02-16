@@ -3,11 +3,11 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import {convert} from '../../assets/dimensions/dimensions';
 
-const DateCircle = () => {
+const DateCircle = date => {
   return (
     <View style={styles.circle}>
-      <Text style={styles.dateTxt}>{1}</Text>
-      <Text style={styles.text}>Ramadan</Text>
+      <Text style={styles.dateTxt}>{date.date.day}</Text>
+      <Text style={styles.text}>{date.date.month}</Text>
     </View>
   );
 };
