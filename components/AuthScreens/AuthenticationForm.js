@@ -1,3 +1,4 @@
+import React, {useRef, useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -5,16 +6,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Input, Button} from 'react-native-elements';
+import {convert} from '../../assets/dimensions/dimensions';
 
 const AuthenticationForm = ({
   errorMessage,
   title,
   btnTitle,
   onSubmit,
-  // navHandler,
+  navHandler,
   err,
 }) => {
   const nameRef = useRef(null);
@@ -49,25 +50,25 @@ const AuthenticationForm = ({
       <Text style={styles.titleTop}>{title}</Text>
 
       <View style={styles.form}>
-        <Input
-          ref={nameRef}
-          onChangeText={e => (nameRef.current.value = e)}
-          placeholder="Name (3-20 characters, alphanumeric)"
-          errorStyle={styles.error}
-          errorMessage={errorMessage ? errorMessage : ''}
-        />
-
         {title === 'Register' ? (
           <Input
-            ref={emailRef}
-            onChangeText={e => (emailRef.current.value = e)}
-            placeholder="Email"
+            ref={nameRef}
+            onChangeText={e => (nameRef.current.value = e)}
+            placeholder="Name"
             errorStyle={styles.error}
             errorMessage={errorMessage ? errorMessage : ''}
           />
         ) : (
           <></>
         )}
+
+        <Input
+          ref={emailRef}
+          onChangeText={e => (emailRef.current.value = e)}
+          placeholder="Email"
+          errorStyle={styles.error}
+          errorMessage={errorMessage ? errorMessage : ''}
+        />
 
         <Input
           ref={passwordRef}
@@ -84,7 +85,7 @@ const AuthenticationForm = ({
               </TouchableOpacity>
             )
           }
-          placeholder="Password (8-32 characters, atleast 1 digit)"
+          placeholder="Password"
           errorStyle={styles.error}
           errorMessage={errorMessage ? errorMessage : ''}
         />
@@ -113,6 +114,12 @@ const AuthenticationForm = ({
           <></>
         )}
 
+        <View style={styles.infoContainer}>
+          <Text style={styles.info}>
+            (Password must contain 8-32 characters & atleast 1 digit)
+          </Text>
+        </View>
+
         {err !== '' ? <Text style={styles.err}>{err}</Text> : <Text />}
 
         <Button
@@ -135,7 +142,13 @@ const AuthenticationForm = ({
           <Text style={styles.titleBottom}> here!</Text>
         </View>
       ) : (
-        <></>
+        <View style={styles.bottom}>
+          <Text style={styles.titleBottom}>Don't have an account?</Text>
+          <TouchableOpacity onPress={navHandler}>
+            <Text style={styles.touchtitleBottom}> Register</Text>
+          </TouchableOpacity>
+          <Text style={styles.titleBottom}> here!</Text>
+        </View>
       )}
     </ScrollView>
   );
@@ -192,4 +205,11 @@ const styles = StyleSheet.create({
     },
   },
   err: {color: 'red'},
+  info: {color: 'green', fontSize: convert(25)},
+  infoContainer: {
+    width: convert(1000),
+    paddingLeft: convert(25),
+    // borderWidth: 1,
+    // borderColor: 'black',
+  },
 });

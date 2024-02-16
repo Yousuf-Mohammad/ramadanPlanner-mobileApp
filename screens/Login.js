@@ -2,32 +2,44 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 
+// rtk-slices
 import {useGetArabicDateQuery} from '../redux-toolkit/features/arabic-date/arabic-date-slice';
 import {setArabicDate} from '../redux-toolkit/features/arabic-date/arabicDate';
 
+// components
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 
-import {CURRENT_DATE} from '../components/InternationalDate/InternationalDate';
+import {CURRENT_DATE} from '../functions/InternationalDate/InternationalDate';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
 
-  const {data, isError, error, isLoading} = useGetArabicDateQuery(CURRENT_DATE);
+  //* getting arabic date
+  const {
+    data: outerData = {},
+    isError,
+    error,
+    isLoading,
+  } = useGetArabicDateQuery(CURRENT_DATE);
+  const {hijri = ''} = outerData?.data ?? {};
 
   useEffect(() => {
     if (isError) {
-      // handle error
+      // todo: handle error
       console.log('SCREEN:LOGIN: error fetching arabic date: ', error);
-    } else if (isLoading) {
-      // handle loading
-      console.log('still loading');
     }
-  }, [data, isError, isLoading]);
+  }, [outerData, isError, isLoading]);
 
   const onSubmit = () => {
-    // auth logic!
-    dispatch(setArabicDate(data.data.hijri));
+    // console.log('SCREEN:LOGIN: the date is called here: ', hijri);
+    dispatch(setArabicDate(hijri));
+
+    // todo: auth logic!
     navigation.navigate('Home');
+  };
+
+  const navHandler = () => {
+    navigation.navigate('Register');
   };
 
   return (
@@ -35,6 +47,7 @@ const Login = ({navigation}) => {
       title={'Login'}
       btnTitle={'Log in'}
       onSubmit={onSubmit}
+      navHandler={navHandler}
     />
   );
 };

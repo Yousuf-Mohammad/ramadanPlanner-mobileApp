@@ -12,15 +12,19 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Provider} from 'react-redux';
 
+// screens
 import Register from './screens/Register';
 import Login from './screens/Login';
 import Home from './screens/Home';
+
+// components
 import CustomHeader from './components/CustomHeader/CustomHeader';
 
 import {store} from './redux-toolkit/store/store';
 
 const Stack = createNativeStackNavigator();
 
+// todo: change order. login first
 const App = () => {
   return (
     <NavigationContainer>

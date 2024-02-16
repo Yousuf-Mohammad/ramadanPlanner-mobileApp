@@ -3,10 +3,13 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {useSelector} from 'react-redux';
 
-import {SCREEN_WIDTH, convert} from '../../assets/dimensions/dimensions';
-import DateCircle from './DateCircle';
+import {convert} from '../../assets/dimensions/dimensions';
 
+// rtk-slices
 import {getArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
+
+// components
+import DateCircle from './DateCircle';
 
 const CustomHeader = () => {
   const [date, setDate] = useState('');
@@ -16,9 +19,9 @@ const CustomHeader = () => {
     setDate(day);
   }, []);
 
+  // todo: seheri, iftar time integrate & logic, err handling
   return (
     <View style={styles.root}>
-      {/* ramadan date circle component */}
       <DateCircle date={date} />
 
       <View style={styles.topBoxContainer}>
@@ -40,8 +43,8 @@ export default CustomHeader;
 
 const styles = StyleSheet.create({
   root: {
-    height: SCREEN_WIDTH / 4,
-    width: SCREEN_WIDTH,
+    height: convert(250),
+    width: convert(1000),
     paddingVertical: convert(25),
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -61,8 +64,6 @@ const styles = StyleSheet.create({
     borderColor: 'blue',
     width: convert(500),
     height: convert(200),
-    // paddingVertical: convert(10),
-    // alignItems: 'center',
     justifyContent: 'space-between',
   },
   topbox: {

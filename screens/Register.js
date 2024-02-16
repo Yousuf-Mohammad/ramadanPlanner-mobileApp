@@ -4,7 +4,7 @@ import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 
 const Register = ({navigation}) => {
   const onSubmit = () => {
-    // registration logic!
+    // todo: registration logic!
     navigation.navigate('Login');
   };
 
