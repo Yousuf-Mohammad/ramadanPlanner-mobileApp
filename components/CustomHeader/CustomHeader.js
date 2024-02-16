@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {convert} from '../../assets/dimensions/dimensions';
@@ -10,6 +10,8 @@ import {getArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate
 
 // components
 import DateCircle from './DateCircle';
+import {colors} from '../../assets/colors/colors';
+import TopRightContainer from './TopRightContainer';
 
 const CustomHeader = () => {
   const [date, setDate] = useState('');
@@ -24,17 +26,7 @@ const CustomHeader = () => {
     <View style={styles.root}>
       <DateCircle date={date} />
 
-      <View style={styles.topBoxContainer}>
-        {/* sahri ends component */}
-        <View style={styles.topbox}>
-          <Text style={styles.text}>seheri ends:</Text>
-          <Text style={styles.text}>Iftar:</Text>
-        </View>
-        {/* todays task component */}
-        <View style={styles.topbox}>
-          <Text style={styles.text}>Today's task</Text>
-        </View>
-      </View>
+      <TopRightContainer />
     </View>
   );
 };
@@ -48,28 +40,6 @@ const styles = StyleSheet.create({
     paddingVertical: convert(25),
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: 'white',
+    backgroundColor: colors.light.WHITE,
   },
-  circle: {
-    height: convert(150),
-    width: convert(150),
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: convert(75),
-    borderWidth: 1,
-    borderColor: 'red',
-  },
-  topBoxContainer: {
-    borderWidth: 1,
-    borderColor: 'blue',
-    width: convert(500),
-    height: convert(200),
-    justifyContent: 'space-between',
-  },
-  topbox: {
-    borderWidth: 1,
-    borderColor: 'red',
-    height: convert(92.5),
-  },
-  text: {color: 'black'},
 });

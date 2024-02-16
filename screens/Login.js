@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 
 // rtk-slices
@@ -10,8 +10,14 @@ import {setArabicDate} from '../redux-toolkit/features/arabic-date/arabicDate';
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 
 import {CURRENT_DATE} from '../functions/InternationalDate/InternationalDate';
+import {
+  emailValidation,
+  nameValidation,
+  passwordValidation,
+} from '../functions/validation';
 
 const Login = ({navigation}) => {
+  const [err, setErr] = useState('');
   const dispatch = useDispatch();
 
   //* getting arabic date
@@ -30,12 +36,33 @@ const Login = ({navigation}) => {
     }
   }, [outerData, isError, isLoading]);
 
-  const onSubmit = () => {
-    // console.log('SCREEN:LOGIN: the date is called here: ', hijri);
-    dispatch(setArabicDate(hijri));
+  const validation = input => {
+    // password validation
+    if (!passwordValidation(input.password)) {
+      console.log('here');
+      setErr('Please enter valid email and password');
+      return false;
+    }
 
-    // todo: auth logic!
-    navigation.navigate('Home');
+    // email validation
+    if (!emailValidation(input.email)) {
+      console.log('over here');
+      setErr('Please enter a valid email address');
+      return false;
+    }
+
+    return true;
+  };
+
+  const onSubmit = input => {
+    // console.log('screen: login: input ->', input);
+
+    if (validation(input)) {
+      dispatch(setArabicDate(hijri));
+
+      // todo: auth logic!
+      navigation.navigate('Home');
+    }
   };
 
   const navHandler = () => {
@@ -48,6 +75,7 @@ const Login = ({navigation}) => {
       btnTitle={'Log in'}
       onSubmit={onSubmit}
       navHandler={navHandler}
+      err={err}
     />
   );
 };

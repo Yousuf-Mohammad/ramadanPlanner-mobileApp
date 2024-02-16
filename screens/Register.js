@@ -1,11 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 
+import {
+  emailValidation,
+  nameValidation,
+  passwordValidation,
+} from '../functions/validation';
+
 const Register = ({navigation}) => {
-  const onSubmit = () => {
-    // todo: registration logic!
-    navigation.navigate('Login');
+  const [err, setErr] = useState('');
+
+  const validation = input => {
+    // user name validation
+    if (!nameValidation(input.name)) {
+      setErr('Please enter valid name and password');
+      return false;
+    }
+
+    // password validation
+    if (!passwordValidation(input.password)) {
+      setErr('Please enter valid name and password');
+      return false;
+    }
+
+    // email validation
+    if (!emailValidation(input.email)) {
+      setErr('Please enter a valid email address');
+      return false;
+    }
+
+    return true;
+  };
+
+  const onSubmit = input => {
+    // console.log('screen: register: input ->', input);
+
+    if (validation(input)) {
+      // todo: registration logic!
+      navigation.navigate('Login');
+    }
   };
 
   return (
@@ -13,6 +47,7 @@ const Register = ({navigation}) => {
       title={'Register'}
       btnTitle={'Register'}
       onSubmit={onSubmit}
+      err={err}
     />
   );
 };

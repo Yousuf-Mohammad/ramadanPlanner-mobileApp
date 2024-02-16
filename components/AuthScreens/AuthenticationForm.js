@@ -8,7 +8,9 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Input, Button} from 'react-native-elements';
+
 import {convert} from '../../assets/dimensions/dimensions';
+import {colors} from '../../assets/colors/colors';
 
 const AuthenticationForm = ({
   errorMessage,
@@ -32,15 +34,29 @@ const AuthenticationForm = ({
   };
 
   const handleSubmit = () => {
-    //   const name = nameRef.current.value;
-    //   const password = passwordRef.current.value;
-    //   const data = {
-    //     name: name,
-    //     password: password,
-    //   };
-    //   onSubmit(data);
+    const name = nameRef?.current?.value;
+    const password = passwordRef.current.value;
+    const email = emailRef.current.value;
+
+    const newUserData = {
+      name: name,
+      email: email,
+      password: password,
+    };
+
+    const validationData = {
+      email: email,
+      password: password,
+    };
+
+    if (title === 'Register') {
+      onSubmit(newUserData);
+    } else {
+      onSubmit(validationData);
+    }
+
     // navigate on success
-    onSubmit();
+    // onSubmit();
   };
 
   return (
@@ -125,7 +141,7 @@ const AuthenticationForm = ({
         <Button
           title={btnTitle}
           loading={false}
-          loadingProps={{size: 'small', color: 'white'}}
+          loadingProps={{size: 'small', color: colors.light.WHITE}}
           buttonStyle={styles.btn.buttonStyle}
           titleStyle={styles.btn.titleStyle}
           containerStyle={styles.btn.containerStyle}
@@ -178,7 +194,7 @@ const styles = StyleSheet.create({
   titleTop: {
     marginVertical: 100,
     fontSize: 50,
-    color: 'green',
+    color: colors.light.PRIMARY,
     // backgroundColor: 'green',
   },
   bottom: {
@@ -190,11 +206,15 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'blue',
   },
-  titleBottom: {color: 'black'},
-  touchtitleBottom: {fontSize: 15, fontWeight: 'bold', color: 'green'},
-  error: {color: 'red'},
+  titleBottom: {color: colors.light.BLACK},
+  touchtitleBottom: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: colors.light.PRIMARY,
+  },
+  error: {color: colors.light.ERROR},
   btn: {
-    buttonStyle: {backgroundColor: 'green'},
+    buttonStyle: {backgroundColor: colors.light.PRIMARY},
     titleStyle: {fontWeight: 'bold', fontSize: 23},
     containerStyle: {
       marginHorizontal: 50,
@@ -204,8 +224,8 @@ const styles = StyleSheet.create({
       marginTop: 80,
     },
   },
-  err: {color: 'red'},
-  info: {color: 'green', fontSize: convert(25)},
+  err: {color: colors.light.ERROR},
+  info: {color: colors.light.PRIMARY, fontSize: convert(25)},
   infoContainer: {
     width: convert(1000),
     paddingLeft: convert(25),
