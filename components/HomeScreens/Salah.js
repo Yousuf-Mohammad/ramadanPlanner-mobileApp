@@ -1,14 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const Tracker = () => {
+const Salah = () => {
   return (
     <View>
-      <Text>Tracker</Text>
+      <Text>Salah</Text>
     </View>
   );
 };
 
-export default Tracker;
+export default Salah;
 
 const styles = StyleSheet.create({});

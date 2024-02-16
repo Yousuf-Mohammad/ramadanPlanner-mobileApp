@@ -1,14 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const Todolist = () => {
+const Dailytarget = () => {
   return (
     <View>
-      <Text>Todolist</Text>
+      <Text>Dailytarget</Text>
     </View>
   );
 };
 
-export default Todolist;
+export default Dailytarget;
 
 const styles = StyleSheet.create({});
