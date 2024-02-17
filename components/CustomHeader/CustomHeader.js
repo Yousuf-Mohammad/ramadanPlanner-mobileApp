@@ -2,18 +2,25 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
-
+// asstes
 import {convert} from '../../assets/dimensions/dimensions';
-
+import {colors} from '../../assets/colors/colors';
+// functions
+import {getSuntimings} from '../../functions/Astronomicaltime/astronomicaltime';
 // rtk-slices
 import {getArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
-
 // components
 import DateCircle from './DateCircle';
-import {colors} from '../../assets/colors/colors';
 import TopRightContainer from './TopRightContainer';
 
 const CustomHeader = () => {
+  const [time, setTime] = useState({sunrise: '', sunset: ''});
+  useEffect(() => {
+    (async () => {
+      getSuntimings(setTime);
+    })();
+  }, [time]);
+
   const [date, setDate] = useState('');
   const day = useSelector(getArabicDate);
 
@@ -26,7 +33,7 @@ const CustomHeader = () => {
     <View style={styles.root}>
       <DateCircle date={date} />
 
-      <TopRightContainer />
+      <TopRightContainer sunrise={time.sunrise} sunset={time.sunset} />
     </View>
   );
 };

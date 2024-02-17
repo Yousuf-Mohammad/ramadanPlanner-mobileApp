@@ -1,10 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, Button} from 'react-native';
 
 const Salah = () => {
   return (
-    <View>
-      <Text>Salah</Text>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text style={{color: 'black'}}>Salah</Text>
+      {/* <Button title={'get location'} onPress={onPress} /> */}
     </View>
   );
 };

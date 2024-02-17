@@ -12,8 +12,8 @@ export const arabicDateSlice = createSlice({
   initialState: initialState,
   reducers: {
     setArabicDate: (state, action) => {
-      state.value.day = action.payload.day;
-      state.value.month = action.payload.month.en;
+      state.value.day = action.payload?.day;
+      state.value.month = action.payload?.month?.en;
     },
   },
 });
