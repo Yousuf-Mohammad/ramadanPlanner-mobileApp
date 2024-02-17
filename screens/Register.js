@@ -38,8 +38,11 @@ const Register = ({navigation}) => {
 
     // handle wrong input
     if (!validation(input)) {
+      //! todo: uncomment!
       // return;
     }
+
+    // todo: cache to asyncStorage -> clear on logout!
 
     // todo: registration logic!
     navigation.navigate('Login');
