@@ -36,10 +36,13 @@ const Register = ({navigation}) => {
   const onSubmit = input => {
     // console.log('screen: register: input ->', input);
 
-    if (validation(input)) {
-      // todo: registration logic!
-      navigation.navigate('Login');
+    // handle wrong input
+    if (!validation(input)) {
+      // return;
     }
+
+    // todo: registration logic!
+    navigation.navigate('Login');
   };
 
   return (

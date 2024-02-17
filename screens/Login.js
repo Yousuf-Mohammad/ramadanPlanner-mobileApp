@@ -57,12 +57,15 @@ const Login = ({navigation}) => {
   const onSubmit = input => {
     // console.log('screen: login: input ->', input);
 
-    if (validation(input)) {
-      dispatch(setArabicDate(hijri));
-
-      // todo: auth logic!
-      navigation.navigate('Home');
+    // handle wrong input
+    if (!validation(input)) {
+      // return;
     }
+
+    // todo: auth logic!
+    dispatch(setArabicDate(hijri));
+
+    navigation.navigate('Home');
   };
 
   const navHandler = () => {

@@ -11,6 +11,7 @@ import {Input, Button} from 'react-native-elements';
 
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
+import {FontSize} from '../../assets/dimensions/fonts';
 
 const AuthenticationForm = ({
   errorMessage,
@@ -59,10 +60,9 @@ const AuthenticationForm = ({
     // onSubmit();
   };
 
+  // todo: error disappear on reattempt and after 5 sec!
   return (
-    <ScrollView
-      style={styles.root.style}
-      contentContainerStyle={styles.root.containerStyle}>
+    <ScrollView contentContainerStyle={styles.root.containerStyle}>
       <Text style={styles.titleTop}>{title}</Text>
 
       <View style={styles.form}>
@@ -136,7 +136,13 @@ const AuthenticationForm = ({
           </Text>
         </View>
 
-        {err !== '' ? <Text style={styles.err}>{err}</Text> : <Text />}
+        {err !== '' ? (
+          <View style={styles.err.errContainer}>
+            <Text style={styles.err.msg}>{err}</Text>
+          </View>
+        ) : (
+          <Text />
+        )}
 
         <Button
           title={btnTitle}
@@ -174,9 +180,8 @@ export default AuthenticationForm;
 
 const styles = StyleSheet.create({
   root: {
-    style: {width: '100%'},
     containerStyle: {
-      width: '100%',
+      width: convert(1000),
       alignItems: 'center',
       justifyContent: 'center',
       // borderWidth: 1,
@@ -185,7 +190,7 @@ const styles = StyleSheet.create({
   },
   form: {
     flex: 1,
-    width: '100%',
+    width: convert(1000),
     alignItems: 'center',
     justifyContent: 'center',
     // borderWidth: 1,
@@ -193,7 +198,7 @@ const styles = StyleSheet.create({
   },
   titleTop: {
     marginVertical: 100,
-    fontSize: 50,
+    fontSize: FontSize.title,
     color: colors.light.PRIMARY,
     // backgroundColor: 'green',
   },
@@ -208,14 +213,14 @@ const styles = StyleSheet.create({
   },
   titleBottom: {color: colors.light.BLACK},
   touchtitleBottom: {
-    fontSize: 15,
+    fontSize: FontSize.mgsBottom,
     fontWeight: 'bold',
     color: colors.light.PRIMARY,
   },
   error: {color: colors.light.ERROR},
   btn: {
     buttonStyle: {backgroundColor: colors.light.PRIMARY},
-    titleStyle: {fontWeight: 'bold', fontSize: 23},
+    titleStyle: {fontWeight: 'bold', fontSize: FontSize.btnTitle},
     containerStyle: {
       marginHorizontal: 50,
       height: 50,
@@ -224,8 +229,19 @@ const styles = StyleSheet.create({
       marginTop: 80,
     },
   },
-  err: {color: colors.light.ERROR},
-  info: {color: colors.light.PRIMARY, fontSize: convert(25)},
+  err: {
+    msg: {
+      color: colors.light.ERROR,
+    },
+    errContainer: {
+      width: convert(1000),
+      alignItems: 'center',
+      marginTop: convert(25),
+      // borderWidth: 1,
+      // borderColor: 'black',
+    },
+  },
+  info: {color: colors.light.PRIMARY, fontSize: FontSize.hint},
   infoContainer: {
     width: convert(1000),
     paddingLeft: convert(25),

@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
+import {FontSize} from '../../assets/dimensions/fonts';
 
 const DateCircle = ({date}) => {
   return (
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   text: {color: colors.light.BLACK},
   dateTxt: {
     color: colors.light.BLACK,
-    fontSize: convert(80),
+    fontSize: FontSize.dateTxt,
     fontWeight: 'bold',
   },
 });
