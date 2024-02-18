@@ -45,6 +45,7 @@ const TopRightContainer = ({sunrise, sunset}) => {
         <Text style={styles.text}>
           Iftar:
           <Text style={styles.time}>
+            {' '}
             {sunsetTime.hours}:{sunsetTime.minutes}:{sunsetTime.seconds}
           </Text>
         </Text>

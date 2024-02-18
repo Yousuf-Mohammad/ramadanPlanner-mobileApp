@@ -8,4 +8,5 @@ export const FontSize = {
   btnTitle: convert(50),
   hint: convert(25),
   dateTxt: convert(70),
+  secondaryTitle: convert(50),
 };
