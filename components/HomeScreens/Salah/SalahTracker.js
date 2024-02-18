@@ -7,97 +7,126 @@ import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/dimensions/fonts';
 
 const SalahTracker = () => {
-  const [checked, setChecked] = useState({
-    fajr: false,
-    fajrSunnah: false,
-    johr: false,
-    johrSunnah: false,
-    asr: false,
-    asrSunnah: false,
-    magrib: false,
-    magribSunnah: false,
-    esha: false,
-    eshaSunnah: false,
-    taraweeh: false,
-    tahajjut: false,
-    salatud_duha: false,
-  });
+  const [fajr, setFajr] = useState(false);
+  const [fajrSunnah, setFajrSunnah] = useState(false);
+  const [johr, setJohr] = useState(false);
+  const [johrSunnah, setJohrSunnah] = useState(false);
+  const [asr, setAsr] = useState(false);
+  const [asrSunnah, setAsrSunnah] = useState(false);
+  const [magrib, setMagrib] = useState(false);
+  const [magribSunnah, setMagribSunnah] = useState(false);
+  const [esha, setEsha] = useState(false);
+  const [eshaSunnah, setEshaSunnah] = useState(false);
+  const [taraweeh, setTaraweeh] = useState(false);
+  const [tahajjut, setTahajjut] = useState(false);
+  const [salahDuha, setSalahDuha] = useState(false);
+
+  const checkFajr = () => {
+    setFajr(prev => !prev);
+  };
+  const checkFajrSunnah = () => {
+    setFajrSunnah(prev => !prev);
+  };
+  const checkJohr = () => {
+    setJohr(prev => !prev);
+  };
+  const checkJohrSunnah = () => {
+    setJohrSunnah(prev => !prev);
+  };
+  const checkAsr = () => {
+    setAsr(prev => !prev);
+  };
+  const checkAsrSunnah = () => {
+    setAsrSunnah(prev => !prev);
+  };
+  const checkMagrib = () => {
+    setMagrib(prev => !prev);
+  };
+  const checkMagribSunnah = () => {
+    setMagribSunnah(prev => !prev);
+  };
+  const checkEsha = () => {
+    setEsha(prev => !prev);
+  };
+  const checkEshaSunnah = () => {
+    setEshaSunnah(prev => !prev);
+  };
+  const checkTaraweeh = () => {
+    setTaraweeh(prev => !prev);
+  };
+  const checkTahajjut = () => {
+    setTahajjut(prev => !prev);
+  };
+  const checkSalahDuha = () => {
+    setSalahDuha(prev => !prev);
+  };
 
   const salah = [
     {
       salahName: 'fajr',
       farj: true,
-      checked: checked.fajr,
-      checkedSunnah: checked.fajrSunnah,
-      farjName: 'fajr',
-      sunnahName: 'fajrSunnah',
+      checked: fajr,
+      checkedSunnah: fajrSunnah,
+      farjCheck: checkFajr,
+      sunnahCheck: checkFajrSunnah,
     },
     {
       salahName: 'johr',
       farj: true,
-      checked: checked.johr,
-      checkedSunnah: checked.johrSunnah,
-      farjName: 'johr',
-      sunnahName: 'johrSunnah',
+      checked: johr,
+      checkedSunnah: johrSunnah,
+      farjCheck: checkJohr,
+      sunnahCheck: checkJohrSunnah,
     },
     {
       salahName: 'asr',
       farj: true,
-      checked: checked.asr,
-      checkedSunnah: checked.asrSunnah,
-      farjName: 'asr',
-      sunnahName: 'asrSunnah',
+      checked: asr,
+      checkedSunnah: asrSunnah,
+      farjCheck: checkAsr,
+      sunnahCheck: checkAsrSunnah,
     },
     {
       salahName: 'magrib',
       farj: true,
-      checked: checked.magrib,
-      checkedSunnah: checked.magribSunnah,
-      farjName: 'magrib',
-      sunnahName: 'magribSunnah',
+      checked: magrib,
+      checkedSunnah: magribSunnah,
+      farjCheck: checkMagrib,
+      sunnahCheck: checkMagribSunnah,
     },
     {
       salahName: 'esha',
       farj: true,
-      checked: checked.esha,
-      checkedSunnah: checked.eshaSunnah,
-      farjName: 'esha',
-      sunnahName: 'eshaSunnah',
+      checked: esha,
+      checkedSunnah: eshaSunnah,
+      farjCheck: checkEsha,
+      sunnahCheck: checkEshaSunnah,
     },
     {
       salahName: 'taraweeh',
       farj: false,
       checked: '',
-      checkedSunnah: checked.taraweeh,
-      farjName: '',
-      sunnahName: 'taraweeh',
+      checkedSunnah: taraweeh,
+      farjCheck: null,
+      sunnahCheck: checkTaraweeh,
     },
     {
       salahName: 'tahajjut',
       farj: false,
       checked: '',
-      checkedSunnah: checked.tahajjut,
-      farjName: '',
-      sunnahName: 'tahajjut',
+      checkedSunnah: tahajjut,
+      farjCheck: null,
+      sunnahCheck: checkTahajjut,
     },
     {
       salahName: 'salatuh duha',
       farj: false,
       checked: '',
-      checkedSunnah: checked.salatud_duha,
-      farjName: '',
-      sunnahName: 'salatud_duha',
+      checkedSunnah: salahDuha,
+      farjCheck: null,
+      sunnahCheck: checkSalahDuha,
     },
   ];
-
-  const toggleCheckbox = checkboxName => {
-    setChecked(prevState => {
-      return {
-        ...prevState,
-        [checkboxName]: !prevState[checkboxName],
-      };
-    });
-  };
 
   return (
     <View style={styles.trackerContainer}>
@@ -117,7 +146,7 @@ const SalahTracker = () => {
       {/* ROWS */}
       {salah.map((i, idx) => {
         return (
-          <View style={styles.rowContainer}>
+          <View key={idx} style={styles.rowContainer}>
             <View style={styles.smallBox}>
               <Text style={styles.title}>{i.salahName}</Text>
             </View>
@@ -126,7 +155,8 @@ const SalahTracker = () => {
               {i.farj ? (
                 <CheckBox
                   checked={i.checked}
-                  onPress={() => toggleCheckbox(i.farjName)}
+                  onPress={() => i.farjCheck()}
+                  checkedColor={colors.light.PRIMARY}
                 />
               ) : (
                 <></>
@@ -135,7 +165,8 @@ const SalahTracker = () => {
             <View style={styles.smallBox}>
               <CheckBox
                 checked={i.checkedSunnah}
-                onPress={() => toggleCheckbox(i.sunnahName)}
+                onPress={() => i.sunnahCheck()}
+                checkedColor={colors.light.PRIMARY}
               />
             </View>
           </View>
