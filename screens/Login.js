@@ -25,6 +25,7 @@ const Login = ({navigation}) => {
     error,
     isLoading,
   } = useGetArabicDateQuery(CURRENT_DATE);
+  // todo: handle data not fetched err: maybe call the api elsewhere?
   const {hijri = ''} = outerData?.data ?? {};
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import {convert} from '../../assets/dimensions/dimensions';
 import SalahTracker from './Salah/SalahTracker';
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/dimensions/fonts';
+import BottomSlider from '../BottomSlider/BottomSlider';
 
 const Salah = () => {
   // todo: optimize the checkboxes
@@ -11,9 +12,7 @@ const Salah = () => {
     <View style={styles.root}>
       <SalahTracker />
 
-      <View style={styles.bottom}>
-        <Text style={styles.dua}>TODAY'S DUA</Text>
-      </View>
+      <BottomSlider />
     </View>
   );
 };
@@ -28,14 +27,4 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'red',
   },
-  bottom: {
-    width: convert(1000),
-    height: convert(400),
-    borderRadius: convert(75),
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 5,
-    borderColor: colors.light.PRIMARY,
-  },
-  dua: {color: colors.light.BLACK, fontSize: convert(100)},
 });
