@@ -1,38 +1,22 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {Input} from 'react-native-elements';
 // components
 import DropDownPicker from '../../DropDownPicker/DropDownPicker';
 // assets
 import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/dimensions/fonts';
-import {Input} from 'react-native-elements';
 
-const RegularTarget = ({placeholder}) => {
+const CompletedToday = ({placeholder}) => {
   const data = [
-    {label: 'Ayat', value: 'Ayat'},
-    {label: 'Page', value: 'Page'},
-    {label: 'Para', value: 'Para'},
+    {label: 'Ayat', value: '1'},
+    {label: 'Page', value: '2'},
+    {label: 'Para', value: '3'},
   ];
-  const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState(null);
   const lastReadRef = useRef(null);
-
-  // const [target, setTarget] = useState(0);
-
-  // const increment = () => {
-  //   // lastReadRef.current.value += 1;
-  //   setTarget(prev => prev + 1);
-  // };
-  // const decrement = () => {
-  //   setTarget(prev => prev - 1);
-  //   // lastReadRef.current.value -= 1;
-  // };
-
-  // todo: validate input like , .
-  const onChangeText = e => {
-    lastReadRef.current.value = e;
-  };
+  const [isFocus, setIsFocus] = useState(false);
+  const [value, setValue] = useState(false);
 
   return (
     <View style={styles.root}>
@@ -46,46 +30,35 @@ const RegularTarget = ({placeholder}) => {
         placeholder={placeholder}
       />
 
-      <View style={styles.targetInputContainer}>
-        {/* <TouchableOpacity style={styles.btn} onPress={decrement}>
-          <Text style={styles.btn.symbol}>-</Text>
-        </TouchableOpacity> */}
-
-        <View style={styles.targetInput}>
-          <Input
-            keyboardType="number-pad"
-            inputMode="numeric"
-            maxLength={value === 'Para' ? 2 : 3}
-            ref={lastReadRef}
-            onChangeText={e => onChangeText(e)}
-            placeholder={'0'}
-            placeholderStyle={{color: colors.light.BLACK}}
-            inputContainerStyle={{
-              width: convert(350),
-              backgroundColor: colors.light.WHITE,
-              // borderWidth: 1,
-              // borderColor: 'yellow',
-            }}
-            // errorStyle={styles.error}
-            // errorMessage={errorMessage ? errorMessage : ''}
-          />
-        </View>
-
-        {/* <TouchableOpacity style={styles.btn} onPress={increment}>
-          <Text style={styles.btn.symbol}>+</Text>
-        </TouchableOpacity> */}
+      <View style={styles.btnContainer}>
+        <Input
+          maxLength={value === 'Para' ? 2 : 3}
+          inputMode="numeric"
+          ref={lastReadRef}
+          onChangeText={e => (lastReadRef.current.value = e)}
+          placeholder="Last Read Ayat"
+          inputContainerStyle={{
+            width: convert(350),
+            backgroundColor: colors.light.WHITE,
+            // borderWidth: 1,
+            // borderColor: 'yellow',
+          }}
+          // errorStyle={styles.error}
+          // errorMessage={errorMessage ? errorMessage : ''}
+        />
       </View>
     </View>
   );
 };
 
-export default RegularTarget;
+export default CompletedToday;
 
 const styles = StyleSheet.create({
   root: {
     flexDirection: 'row',
     width: convert(900),
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    // alignItems: 'center',
     marginLeft: convert(35),
     // borderWidth: 1,
     // borderColor: 'black',
@@ -154,10 +127,9 @@ const styles = StyleSheet.create({
     borderRadius: convert(50),
     backgroundColor: colors.light.WHITE,
   },
-  targetInputContainer: {
-    marginHorizontal: convert(50),
-    alignItems: 'center',
-    flexDirection: 'row',
+  btnContainer: {
+    marginTop: convert(35),
+    marginHorizontal: convert(30),
     // borderWidth: 1,
     // borderColor: 'red',
   },
@@ -169,11 +141,5 @@ const styles = StyleSheet.create({
   targetVal: {
     fontSize: FontSize.secondaryTitle,
     color: colors.light.WHITE,
-  },
-  targetInput: {
-    // width: convert(350),
-    paddingTop: convert(50),
-    // borderWidth: 1,
-    // borderColor: 'red',
   },
 });

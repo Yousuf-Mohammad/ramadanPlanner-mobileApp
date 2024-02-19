@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     height: 20,
   },
   inputSearchStyle: {
+    color: colors.light.BLACK,
     height: 40,
     fontSize: 16,
   },
