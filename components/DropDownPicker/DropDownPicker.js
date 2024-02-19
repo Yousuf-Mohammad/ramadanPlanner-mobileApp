@@ -12,6 +12,7 @@ const DropDownPicker = ({
   search,
   setIsFocus,
   setValue,
+  placeholder,
 }) => {
   return (
     <View style={styles.container}>
@@ -33,7 +34,7 @@ const DropDownPicker = ({
         search={search}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
-        placeholder={'ayat/page/para'}
+        placeholder={placeholder}
         searchPlaceholder="Search..."
         maxHeight={300}
         onChange={item => {

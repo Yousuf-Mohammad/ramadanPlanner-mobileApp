@@ -62,8 +62,8 @@ const Login = ({navigation}) => {
       // return;
     }
 
-    // todo: auth logic!
-    dispatch(setArabicDate(hijri));
+    // todo: auth logic!, uncomment
+    // dispatch(setArabicDate(hijri));
 
     // todo: set to asyncStorage -> clear cache logic on login/out, appstate change
 

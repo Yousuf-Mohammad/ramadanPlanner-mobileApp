@@ -5,44 +5,27 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
+import React from 'react';
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/dimensions/fonts';
 import {convert} from '../../assets/dimensions/dimensions';
 import BottomSlider from '../BottomSlider/BottomSlider';
 import BgBox from './Quran/BgBox';
-import {Dropdown} from 'react-native-element-dropdown';
-import DropDownPicker from '../DropDownPicker/DropDownPicker';
-import {Input} from 'react-native-elements';
 import RegularTarget from './Quran/RegularTarget';
+import LastRead from './Quran/LastRead';
 
 const Quran = () => {
-  const [target, setTarget] = useState(0);
-  const data = [
-    {label: 'Ayat', value: '1'},
-    {label: 'Page', value: '2'},
-    {label: 'Para', value: '3'},
-  ];
-  const [value, setValue] = useState(null);
-  const [isFocus, setIsFocus] = useState(false);
-
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <View>
-        <BgBox title={'Regular Target'}>
-          <RegularTarget
-            isFocus={isFocus}
-            data={data}
-            value={value}
-            setIsFocus={setIsFocus}
-            setValue={setValue}
-            target={target}
-          />
-        </BgBox>
+      <BgBox title={'Regular Target'}>
+        <RegularTarget placeholder={'ayat/page/para'} />
+      </BgBox>
 
-        <BgBox title={'Last Read: '}></BgBox>
-        <BgBox title={'Completed today: '}></BgBox>
-      </View>
+      <BgBox title={'Last Read'}>
+        <LastRead placeholder={'Surah'} />
+      </BgBox>
+
+      <BgBox title={'Completed today'}></BgBox>
 
       <BottomSlider inputStyles={styles.bottomSlider} />
     </View>
