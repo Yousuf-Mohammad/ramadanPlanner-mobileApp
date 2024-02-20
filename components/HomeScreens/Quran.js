@@ -23,7 +23,7 @@ const Quran = () => {
         <CompletedToday placeholder={'ayat/page/para'} />
       </BgBox>
 
-      <BottomSlider inputStyles={styles.bottomSlider} />
+      <BottomSlider title={"Today's dua"} />
     </View>
   );
 };
@@ -31,9 +31,8 @@ const Quran = () => {
 export default Quran;
 
 const styles = StyleSheet.create({
-  root: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+  root: {flex: 1, alignItems: 'center', justifyContent: 'space-around'},
   bottomSlider: {
-    position: 'absolute',
-    bottom: 0,
+    // position: 'absolute', bottom: 0,
   },
 });

@@ -6,6 +6,7 @@ import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/dimensions/fonts';
 
+// todo: optimize the checkboxes, try a different appraoch to this useState solution, try a different appraoch to this useState solution, try a different appraoch to this useState solution, try a different appraoch to this useState solution
 const SalahTracker = () => {
   const [fajr, setFajr] = useState(false);
   const [fajrSunnah, setFajrSunnah] = useState(false);
@@ -131,7 +132,7 @@ const SalahTracker = () => {
   return (
     <View style={styles.trackerContainer}>
       {/* ROW TITLE */}
-      <View style={styles.rowContainer}>
+      <View style={styles.salahRowContainer}>
         <View style={styles.smallBox} />
 
         <View style={styles.smallBox}>
@@ -146,7 +147,7 @@ const SalahTracker = () => {
       {/* ROWS */}
       {salah.map((i, idx) => {
         return (
-          <View key={idx} style={styles.rowContainer}>
+          <View key={idx} style={styles.salahRowContainer}>
             <View style={styles.smallBox}>
               <Text style={styles.title}>{i.salahName}</Text>
             </View>
@@ -194,9 +195,9 @@ const styles = StyleSheet.create({
     // borderColor: 'blue',
   },
   title: {color: colors.light.BLACK, fontSize: FontSize.secondaryTitle},
-  rowContainer: {
+  salahRowContainer: {
     flexDirection: 'row',
-    height: convert(135),
+    height: convert(130),
     borderWidth: 1,
     borderLeftColor: colors.light.WHITE,
     borderRightColor: colors.light.WHITE,
