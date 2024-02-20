@@ -25,13 +25,12 @@ const Login = ({navigation}) => {
     error,
     isLoading,
   } = useGetArabicDateQuery(CURRENT_DATE);
-  // todo: handle data not fetched err: maybe call the api elsewhere?
   const {hijri = ''} = outerData?.data ?? {};
 
   useEffect(() => {
     if (isError) {
       // todo: handle error
-      console.log('SCREEN:LOGIN: error fetching arabic date: ', error);
+      console.error('SCREEN:LOGIN: error fetching arabic date: ', error);
     }
   }, [outerData, isError, isLoading]);
 
@@ -53,7 +52,7 @@ const Login = ({navigation}) => {
     return true;
   };
 
-  const onSubmit = input => {
+  const onSubmit = async input => {
     // console.log('screen: login: input ->', input);
 
     // handle wrong input
@@ -62,10 +61,8 @@ const Login = ({navigation}) => {
       // return;
     }
 
-    // todo: auth logic!, uncomment
-    // dispatch(setArabicDate(hijri));
-
     // todo: set to asyncStorage -> clear cache logic on login/out, appstate change
+    await dispatch(setArabicDate(hijri));
 
     navigation.navigate('Home');
   };

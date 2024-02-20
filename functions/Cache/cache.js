@@ -18,7 +18,7 @@ export const getLocalCache = async () => {
     );
   } catch (e) {
     // read error
-    console.log('error fetching data: ', e);
+    console.error('error fetching data: ', e);
   }
 
   console.log('Done fetching cache.');

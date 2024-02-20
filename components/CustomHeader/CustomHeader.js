@@ -17,12 +17,13 @@ const CustomHeader = () => {
   const [time, setTime] = useState({sunrise: '', sunset: ''});
   useEffect(() => {
     (async () => {
-      getSuntimings(setTime);
+      await getSuntimings(setTime);
     })();
-  }, [time]);
+  }, []);
 
   const [date, setDate] = useState('');
   const day = useSelector(getArabicDate);
+  // console.log('SCREEN:CUSTOM HEADER: TIME: ', time);
 
   useEffect(() => {
     setDate(day);
