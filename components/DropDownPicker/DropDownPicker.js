@@ -50,9 +50,10 @@ export default DropDownPicker;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.light.PRIMARY,
+    // backgroundColor: colors.light.PRIMARY,
+    height: convert(150),
     width: convert(425),
-    // backgroundColor: 'white',
+    backgroundColor: 'transparent',
     padding: 16,
   },
   containerStyle: {

@@ -25,6 +25,7 @@ const Login = ({navigation}) => {
     error,
     isLoading,
   } = useGetArabicDateQuery(CURRENT_DATE);
+  // todo: call once and calculate whole month -> dates and timings
   const {hijri = ''} = outerData?.data ?? {};
 
   useEffect(() => {
@@ -59,6 +60,8 @@ const Login = ({navigation}) => {
     if (!validation(input)) {
       //! todo: uncomment!
       // return;
+    } else {
+      setErr('');
     }
 
     // todo: set to asyncStorage -> clear cache logic on login/out, appstate change

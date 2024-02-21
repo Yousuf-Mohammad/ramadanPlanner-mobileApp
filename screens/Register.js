@@ -40,6 +40,8 @@ const Register = ({navigation}) => {
     if (!validation(input)) {
       //! todo: uncomment!
       // return;
+    } else {
+      setErr('');
     }
 
     // todo: cache to asyncStorage -> clear on logout!

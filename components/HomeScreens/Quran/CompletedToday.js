@@ -1,4 +1,5 @@
-import React, {useRef, useState} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Input} from 'react-native-elements';
 // components
@@ -8,15 +9,31 @@ import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/dimensions/fonts';
 
-const CompletedToday = ({placeholder}) => {
+const CompletedToday = ({placeholder, setter}) => {
   const data = [
-    {label: 'Ayat', value: '1'},
-    {label: 'Page', value: '2'},
-    {label: 'Para', value: '3'},
+    {label: 'Ayat', value: 'Ayat'},
+    {label: 'Page', value: 'Page'},
+    {label: 'Para', value: 'Para'},
   ];
   const lastReadRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState(false);
+
+  useEffect(() => {
+    setter(prev => ({
+      ...prev,
+      unit: value,
+    }));
+  }, [value]);
+
+  // todo: validate input like , .
+  const onChangeText = e => {
+    lastReadRef.current.value = e;
+    setter(prev => ({
+      ...prev,
+      value: lastReadRef.current.value,
+    }));
+  };
 
   return (
     <View style={styles.root}>
@@ -35,7 +52,7 @@ const CompletedToday = ({placeholder}) => {
           maxLength={value === 'Para' ? 2 : 3}
           inputMode="numeric"
           ref={lastReadRef}
-          onChangeText={e => (lastReadRef.current.value = e)}
+          onChangeText={e => onChangeText(e)}
           placeholder="Last Read Ayat"
           inputContainerStyle={{
             width: convert(350),

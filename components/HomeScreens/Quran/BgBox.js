@@ -18,13 +18,11 @@ export default BgBox;
 
 const styles = StyleSheet.create({
   root: {
-    // flexDirection: 'row',
-    alignItems: 'center',
-    // height: convert(200),
+    height: convert(300),
     width: convert(900),
-    padding: convert(25),
     borderRadius: convert(75),
-    // alignItems: 'center',
+    paddingTop: convert(35),
+    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.light.PRIMARY,
     // borderWidth: 1,

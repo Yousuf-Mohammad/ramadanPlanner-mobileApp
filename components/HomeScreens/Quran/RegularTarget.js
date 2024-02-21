@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 // components
@@ -8,30 +9,31 @@ import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/dimensions/fonts';
 import {Input} from 'react-native-elements';
 
-const RegularTarget = ({placeholder}) => {
+const RegularTarget = ({placeholder, setter}) => {
   const data = [
     {label: 'Ayat', value: 'Ayat'},
     {label: 'Page', value: 'Page'},
     {label: 'Para', value: 'Para'},
   ];
+  const lastReadRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState(null);
-  const lastReadRef = useRef(null);
 
-  // const [target, setTarget] = useState(0);
-
-  // const increment = () => {
-  //   // lastReadRef.current.value += 1;
-  //   setTarget(prev => prev + 1);
-  // };
-  // const decrement = () => {
-  //   setTarget(prev => prev - 1);
-  //   // lastReadRef.current.value -= 1;
-  // };
+  useEffect(() => {
+    setter(prev => ({
+      ...prev,
+      unit: value,
+    }));
+  }, [value]);
 
   // todo: validate input like , .
   const onChangeText = e => {
     lastReadRef.current.value = e;
+
+    setter(prev => ({
+      ...prev,
+      value: lastReadRef.current.value,
+    }));
   };
 
   return (
@@ -47,10 +49,6 @@ const RegularTarget = ({placeholder}) => {
       />
 
       <View style={styles.targetInputContainer}>
-        {/* <TouchableOpacity style={styles.btn} onPress={decrement}>
-          <Text style={styles.btn.symbol}>-</Text>
-        </TouchableOpacity> */}
-
         <View style={styles.targetInput}>
           <Input
             keyboardType="number-pad"
@@ -63,17 +61,11 @@ const RegularTarget = ({placeholder}) => {
             inputContainerStyle={{
               width: convert(350),
               backgroundColor: colors.light.WHITE,
-              // borderWidth: 1,
-              // borderColor: 'yellow',
             }}
             // errorStyle={styles.error}
             // errorMessage={errorMessage ? errorMessage : ''}
           />
         </View>
-
-        {/* <TouchableOpacity style={styles.btn} onPress={increment}>
-          <Text style={styles.btn.symbol}>+</Text>
-        </TouchableOpacity> */}
       </View>
     </View>
   );
