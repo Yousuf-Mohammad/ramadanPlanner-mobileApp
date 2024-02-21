@@ -6,7 +6,7 @@ import DropDownPicker from '../../DropDownPicker/DropDownPicker';
 // assets
 import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
-import {FontSize} from '../../../assets/dimensions/fonts';
+import {FontSize} from '../../../assets/fonts/fonts';
 import {Input} from 'react-native-elements';
 
 const RegularTarget = ({placeholder, setter}) => {

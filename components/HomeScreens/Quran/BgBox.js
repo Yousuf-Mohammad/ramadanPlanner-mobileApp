@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {FontSize} from '../../../assets/dimensions/fonts';
+import {FontSize} from '../../../assets/fonts/fonts';
 
 import {colors} from '../../../assets/colors/colors';
 import {convert} from '../../../assets/dimensions/dimensions';

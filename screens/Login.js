@@ -65,6 +65,8 @@ const Login = ({navigation}) => {
     }
 
     // todo: set to asyncStorage -> clear cache logic on login/out, appstate change
+    // todo: useEffect -> arabic date/time value ? undefinded : not
+    // refetch if undefined
     await dispatch(setArabicDate(hijri));
 
     navigation.navigate('Home');

@@ -4,7 +4,7 @@ import {CheckBox} from 'react-native-elements';
 // assets
 import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
-import {FontSize} from '../../../assets/dimensions/fonts';
+import {FontSize} from '../../../assets/fonts/fonts';
 
 // todo: optimize the checkboxes, try a different appraoch to this useState solution, try a different appraoch to this useState solution, try a different appraoch to this useState solution, try a different appraoch to this useState solution
 const SalahTracker = () => {

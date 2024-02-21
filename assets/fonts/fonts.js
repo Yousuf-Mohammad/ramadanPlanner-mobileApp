@@ -1,4 +1,4 @@
-import {convert} from './dimensions';
+import {convert} from '../dimensions/dimensions';
 
 // todo: covert all fonts to MUST use fontsize
 // incase device is set to differet fontsize

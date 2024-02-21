@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
-import {FontSize} from '../../assets/dimensions/fonts';
+import {FontSize} from '../../assets/fonts/fonts';
 
 const DateCircle = ({date}) => {
   return (

@@ -5,7 +5,7 @@ import {Button} from 'react-native-elements';
 // assets
 import {SCREEN_HEIGHT, convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
-import {FontSize} from '../../assets/dimensions/fonts';
+import {FontSize} from '../../assets/fonts/fonts';
 import {surahInfo} from '../../assets/constants/surahInfo';
 // components
 import BottomSlider from '../BottomSlider/BottomSlider';

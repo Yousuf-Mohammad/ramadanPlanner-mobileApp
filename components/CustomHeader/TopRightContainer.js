@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 // assets
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
-import {FontSize} from '../../assets/dimensions/fonts';
+import {FontSize} from '../../assets/fonts/fonts';
 
 const TopRightContainer = ({sunrise, sunset}) => {
   const sunriseTime = sunrise
