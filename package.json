@@ -9,6 +9,7 @@
     "start": "react-native start",
     "test": "jest",
     "cache-reset": "npx react-native start --reset-cache"
+    "build-android-release": "npx react-native build-android --mode=release"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.22.0",
