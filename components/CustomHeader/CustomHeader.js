@@ -17,7 +17,7 @@ const CustomHeader = () => {
   const [time, setTime] = useState({sunrise: '', sunset: ''});
   useEffect(() => {
     (async () => {
-      // todo: handle error
+      // todo1: handle error
       await getSuntimings(setTime);
     })();
   }, []);

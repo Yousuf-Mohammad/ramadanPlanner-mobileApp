@@ -21,6 +21,7 @@ import Home from './screens/Home';
 import CustomHeader from './components/CustomHeader/CustomHeader';
 
 import {store} from './redux-toolkit/store/store';
+import EditTaskInput from './components/HomeScreens/DailyTarget/EditTaskInput';
 
 const Stack = createNativeStackNavigator();
 

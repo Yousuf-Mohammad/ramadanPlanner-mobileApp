@@ -1,34 +1,36 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 // components
 import {CheckBox} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
 // assets
-import {FontSize} from '../../../assets/fonts/fonts';
 import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
+import TaskInput from './TaskInput';
+import EditTaskInput from './EditTaskInput';
 
 const Tasks = ({
   idx,
   name,
   complete,
+  lastItem,
   handleTaskCompletion,
   handleTaskDeletion,
   handleTaskEdit,
 }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const handleEditPress = () => {
+    setIsEditing(prev => !prev);
+  };
+
   const styles = StyleSheet.create({
-    taskinner: {
+    root: {
       height: convert(150),
       flexDirection: 'row',
       alignItems: 'center',
-      //   borderWidth: 1,
-      //   borderColor: 'blue',
-    },
-    txtContainer: {flex: 1},
-    text: {
-      textDecorationLine: complete ? 'line-through' : null,
-      color: 'black',
-      fontSize: FontSize.btnTitle,
+      //   todo: last item bottom not visible properly
+      // paddingBottom: lastItem ? convert(150) : 0,
+      // borderWidth: 1,
+      // borderColor: 'blue',
     },
     smallBox: {
       width: convert(150),
@@ -37,56 +39,35 @@ const Tasks = ({
       //   borderWidth: 1,
       //   borderColor: 'blue',
     },
-    taskBox: {
-      flex: 1,
-      flexDirection: 'row',
-      //   borderWidth: 1,
-      //   borderColor: 'red',
-    },
-    delete: {
-      // alignSelf: 'flex-end',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: convert(150),
-      //   borderWidth: 1,
-      //   borderColor: 'blue',
-    },
   });
 
   return (
-    <View style={styles.taskinner}>
-      <View style={styles.smallBox}>
-        <CheckBox
-          checked={complete}
-          onPress={() => handleTaskCompletion(idx)}
-          checkedColor={colors.light.PRIMARY}
+    <View style={styles.root}>
+      {isEditing ? (
+        <EditTaskInput
+          taskIdx={idx}
+          name={name}
+          handleTaskEdit={handleTaskEdit}
+          handleEditPress={handleEditPress}
         />
-      </View>
-
-      <View style={styles.taskBox}>
-        <View style={styles.txtContainer}>
-          <Text style={styles.text}>
-            {idx + 1} {name}
-          </Text>
-        </View>
-
-        <TouchableOpacity
-          style={styles.delete}
-          onPress={() => {
-            // handleTaskDeletion(idx);
-            // handleTaskEdit(idx,)
-          }}>
-          <Icon name="pencil" size={30} color="blue" />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.delete}
-          onPress={() => {
-            handleTaskDeletion(idx);
-          }}>
-          <Icon name="trash" size={30} color="red" />
-        </TouchableOpacity>
-      </View>
+      ) : (
+        <>
+          <View style={styles.smallBox}>
+            <CheckBox
+              checked={complete}
+              onPress={() => handleTaskCompletion(idx)}
+              checkedColor={colors.light.PRIMARY}
+            />
+          </View>
+          <TaskInput
+            idx={idx}
+            name={name}
+            complete={complete}
+            handleTaskDeletion={handleTaskDeletion}
+            handleEditPress={handleEditPress}
+          />
+        </>
+      )}
     </View>
   );
 };

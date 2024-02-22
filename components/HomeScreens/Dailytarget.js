@@ -1,12 +1,12 @@
 import React, {useRef, useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 // assets
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
 import {convert} from '../../assets/dimensions/dimensions';
 // components
-import Tasks from './DailyTarget/Tasks';
+import TasksContainer from './DailyTarget/TasksContainer';
 
 const Dailytarget = () => {
   const taskRef = useRef(null);
@@ -58,32 +58,16 @@ const Dailytarget = () => {
   return (
     <View style={styles.root}>
       <View style={styles.taskContainer}>
-        <ScrollView contentContainerStyle={styles.tasklist}>
-          {typeof task === 'undefined' || task.length === 0 ? (
-            <View style={{padding: convert(30)}}>
-              <Text style={{fontSize: FontSize.btnTitle, color: 'black'}}>
-                No tasks :(
-              </Text>
-            </View>
-          ) : (
-            task.map((i, idx) => {
-              return (
-                <Tasks
-                  key={idx}
-                  name={i.name}
-                  idx={idx}
-                  complete={i.complete}
-                  handleTaskCompletion={handleTaskCompletion}
-                  handleTaskDeletion={handleTaskDeletion}
-                  handleTaskEdit={handleTaskEdit}
-                />
-              );
-            })
-          )}
-        </ScrollView>
+        <TasksContainer
+          task={task}
+          handleTaskCompletion={handleTaskCompletion}
+          handleTaskDeletion={handleTaskDeletion}
+          handleTaskEdit={handleTaskEdit}
+        />
 
         <Input
           ref={taskRef}
+          maxLength={40}
           onChangeText={e => (taskRef.current.value = e)}
           placeholder="Add a task"
           // errorStyle={styles.error}
@@ -108,18 +92,19 @@ export default Dailytarget;
 const styles = StyleSheet.create({
   root: {flex: 1, alignItems: 'center', justifyContent: 'center'},
   tasklist: {
-    height: convert(1000),
+    height: convert(1200),
     width: convert(1000),
-    // borderWidth: 1,
-    // borderColor: 'red',
+    borderWidth: 1,
+    borderColor: 'red',
   },
+  empty: {fontSize: FontSize.btnTitle, color: 'black'},
   taskContainer: {
     flex: 1,
     width: convert(1000),
     alignItems: 'center',
     // justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: 'black',
+    // borderWidth: 1,
+    // borderColor: 'black',
   },
   taskinner: {
     borderWidth: 1,
