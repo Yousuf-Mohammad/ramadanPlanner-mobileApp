@@ -5,39 +5,85 @@ import {Button, Input} from 'react-native-elements';
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
 import {convert} from '../../assets/dimensions/dimensions';
+// components
+import Tasks from './DailyTarget/Tasks';
 
 const Dailytarget = () => {
   const taskRef = useRef(null);
   const [task, setTask] = useState([]);
   const handleSubmit = () => {
     const newTask = taskRef.current.value;
-    console.log(!(newTask === ''));
+
     if (!(newTask === '')) {
-      setTask(prevTask => [...prevTask, {name: newTask}]);
+      setTask(prevTask => [...prevTask, {name: newTask, complete: false}]);
+      // reset value
       taskRef.current.value = '';
+      // reset input field
       taskRef.current.clear();
     }
+  };
+
+  const handleTaskCompletion = idx => {
+    setTask(prevTask => {
+      const updatedTask = {...prevTask[idx], complete: !prevTask[idx].complete};
+
+      return [
+        ...prevTask.slice(0, idx),
+        updatedTask,
+        ...prevTask.slice(idx + 1),
+      ];
+    });
+  };
+
+  const handleTaskEdit = (idx, updatedName) => {
+    // todo: popup!
+    setTask(prevTask => {
+      const updatedTask = {...prevTask[idx], name: updatedName};
+
+      return [
+        ...prevTask.slice(0, idx),
+        updatedTask,
+        ...prevTask.slice(idx + 1),
+      ];
+    });
+  };
+
+  const handleTaskDeletion = idx => {
+    // todo: popup!
+    setTask(prevTask => {
+      return [...prevTask.slice(0, idx), ...prevTask.slice(idx + 1)];
+    });
   };
 
   return (
     <View style={styles.root}>
       <View style={styles.taskContainer}>
         <ScrollView contentContainerStyle={styles.tasklist}>
-          {task.map((i, idx) => {
-            console.log('tasks:', i);
-            return (
-              <View key={idx} style={styles.taskinner}>
-                <Text style={styles.task}>
-                  {idx} {i.name}
-                </Text>
-              </View>
-            );
-          })}
+          {typeof task === 'undefined' || task.length === 0 ? (
+            <View style={{padding: convert(30)}}>
+              <Text style={{fontSize: FontSize.btnTitle, color: 'black'}}>
+                No tasks :(
+              </Text>
+            </View>
+          ) : (
+            task.map((i, idx) => {
+              return (
+                <Tasks
+                  key={idx}
+                  name={i.name}
+                  idx={idx}
+                  complete={i.complete}
+                  handleTaskCompletion={handleTaskCompletion}
+                  handleTaskDeletion={handleTaskDeletion}
+                  handleTaskEdit={handleTaskEdit}
+                />
+              );
+            })
+          )}
         </ScrollView>
 
         <Input
           ref={taskRef}
-          // value={''}
           onChangeText={e => (taskRef.current.value = e)}
           placeholder="Add a task"
           // errorStyle={styles.error}
@@ -64,8 +110,8 @@ const styles = StyleSheet.create({
   tasklist: {
     height: convert(1000),
     width: convert(1000),
-    borderWidth: 1,
-    borderColor: 'red',
+    // borderWidth: 1,
+    // borderColor: 'red',
   },
   taskContainer: {
     flex: 1,
