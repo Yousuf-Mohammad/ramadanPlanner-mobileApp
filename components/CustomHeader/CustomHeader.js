@@ -1,39 +1,61 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 // asstes
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 // functions
+import {CURRENT_DATE} from '../../functions/InternationalDate/InternationalDate';
 import {getSuntimings} from '../../functions/Astronomicaltime/astronomicaltime';
 // rtk-slices
-import {getArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
+import {
+  getArabicDate,
+  setArabicDate,
+} from '../../redux-toolkit/features/arabic-date/arabicDate';
+import {useGetArabicDateQuery} from '../../redux-toolkit/features/arabic-date/arabic-date-slice';
 // components
 import DateCircle from './DateCircle';
 import TopRightContainer from './TopRightContainer';
 
 const CustomHeader = () => {
   const [time, setTime] = useState({sunrise: '', sunset: ''});
-  useEffect(() => {
-    (async () => {
-      // todo1: handle error
-      await getSuntimings(setTime);
-    })();
-  }, []);
-
-  const [date, setDate] = useState('');
+  // todo: date coming directly, check if this is okay
+  // const [date, setDate] = useState('');
   const day = useSelector(getArabicDate);
-  // console.log('SCREEN:CUSTOM HEADER: TIME: ', time);
+  const dispatch = useDispatch();
+
+  //* getting arabic date
+  const {
+    data: outerData = {},
+    isError,
+    error,
+    isLoading,
+  } = useGetArabicDateQuery(CURRENT_DATE);
+  // todo: call once and calculate whole month -> dates and timings
+  const {hijri = ''} = outerData?.data ?? {};
 
   useEffect(() => {
-    setDate(day);
-  }, []);
+    if (isError) {
+      // todo: handle error
+      console.error('SCREEN:LOGIN: error fetching arabic date: ', error);
+      // return;
+    }
+
+    // setting the date -> redux
+    dispatch(setArabicDate(hijri));
+
+    // setting the date -> header
+    // setDate(day);
+
+    // setting time -> iftar, seheri
+    getSuntimings(setTime);
+  }, [isLoading, outerData]);
 
   // todo: seheri, iftar time integrate & logic, err handling
   return (
     <View style={styles.root}>
-      <DateCircle date={date} />
+      <DateCircle date={day} />
 
       <TopRightContainer sunrise={time.sunrise} sunset={time.sunset} />
     </View>

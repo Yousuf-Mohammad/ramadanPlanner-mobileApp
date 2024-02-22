@@ -24,7 +24,7 @@ const Tasks = ({
 
   const styles = StyleSheet.create({
     root: {
-      height: convert(150),
+      height: convert(200),
       flexDirection: 'row',
       alignItems: 'center',
       //   todo: last item bottom not visible properly

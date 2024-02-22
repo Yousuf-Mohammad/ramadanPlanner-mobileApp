@@ -1,39 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-// rtk-slices
-import {useGetArabicDateQuery} from '../redux-toolkit/features/arabic-date/arabic-date-slice';
-import {setArabicDate} from '../redux-toolkit/features/arabic-date/arabicDate';
-
 // components
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
-
 // assets, functions
-import {CURRENT_DATE} from '../functions/InternationalDate/InternationalDate';
 import {emailValidation, passwordValidation} from '../functions/validation';
 
 const Login = ({navigation}) => {
   const [err, setErr] = useState('');
-  const dispatch = useDispatch();
-
-  //* getting arabic date
-  const {
-    data: outerData = {},
-    isError,
-    error,
-    isLoading,
-  } = useGetArabicDateQuery(CURRENT_DATE);
-  // todo: call once and calculate whole month -> dates and timings
-  const {hijri = ''} = outerData?.data ?? {};
-
-  useEffect(() => {
-    if (isError) {
-      // todo: handle error
-      console.error('SCREEN:LOGIN: error fetching arabic date: ', error);
-    }
-  }, [outerData, isError, isLoading]);
 
   const validation = input => {
     // password validation
@@ -53,21 +27,18 @@ const Login = ({navigation}) => {
     return true;
   };
 
-  const onSubmit = async input => {
+  const onSubmit = input => {
     // console.log('screen: login: input ->', input);
 
     // handle wrong input
     if (!validation(input)) {
       //! todo: uncomment!
-      // return;
+      return;
     } else {
       setErr('');
     }
 
     // todo: set to asyncStorage -> clear cache logic on login/out, appstate change
-    // todo2: useEffect -> arabic date/time value ? undefinded : not
-    // refetch if undefined
-    await dispatch(setArabicDate(hijri));
 
     navigation.navigate('Home');
   };
