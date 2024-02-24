@@ -33,7 +33,7 @@ const Login = ({navigation}) => {
     // handle wrong input
     if (!validation(input)) {
       //! todo: uncomment!
-      return;
+      // return;
     } else {
       setErr('');
     }

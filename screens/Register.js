@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-
+// components
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
-
+// rtk-slices
+import {useRegistrationMutation} from '../redux-toolkit/features/authentication/auth-register-slice';
+// functions
 import {
   emailValidation,
   nameValidation,
@@ -10,16 +12,27 @@ import {
 
 const Register = ({navigation}) => {
   const [err, setErr] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [registration] = useRegistrationMutation();
 
+  const loadingHandler = () => {
+    setLoading(prev => !prev);
+  };
+
+  // todo1: pass match validation
+  // todo: pref: 1. useMemo, useCallback, lazy loading
+  // remove console.logs -> use lib
+  // lazy load images -> rn-fast-image
+  // profiling -> flipper, rn-debugger
+  // check if using hermes
   const validation = input => {
     // user name validation
-    if (!nameValidation(input.name)) {
+    if (!nameValidation(input.first_name)) {
       setErr('Please enter valid name and password');
       return false;
     }
 
-    // password validation
-    if (!passwordValidation(input.password)) {
+    if (!nameValidation(input.last_name)) {
       setErr('Please enter valid name and password');
       return false;
     }
@@ -30,11 +43,27 @@ const Register = ({navigation}) => {
       return false;
     }
 
+    // password validation
+    if (input.password1 !== input.password2) {
+      setErr("Passwords don't match!");
+      return;
+    }
+
+    if (!passwordValidation(input.password1)) {
+      setErr('Please enter valid name and password');
+      return false;
+    }
+
+    if (!passwordValidation(input.password2)) {
+      setErr('Please enter valid name and password');
+      return false;
+    }
+
     return true;
   };
 
-  const onSubmit = input => {
-    // console.log('screen: register: input ->', input);
+  const onSubmit = async input => {
+    console.log('screen: register: input ->', input);
 
     // handle wrong input
     if (!validation(input)) {
@@ -46,8 +75,29 @@ const Register = ({navigation}) => {
 
     // todo: cache to asyncStorage -> clear on logout!
 
-    // todo: registration logic!
-    navigation.navigate('Login');
+    try {
+      loadingHandler();
+      const response = await registration(input);
+      loadingHandler();
+
+      if (response?.error) {
+        const error = response.error.data.detail;
+        setErr(error);
+        return;
+      }
+
+      if (response?.data) {
+        if (
+          response.data.message === 'Registration successful. Please login.'
+        ) {
+          navigation.navigate('Login');
+        }
+      }
+
+      console.log('SCREEN:REGISTER: REGISTER API OUTPUT: ', response);
+    } catch (error) {
+      console.error('SCREEN:REGISTER: REGISTER API ERR: ', error);
+    }
   };
 
   return (
@@ -56,6 +106,7 @@ const Register = ({navigation}) => {
       btnTitle={'Register'}
       onSubmit={onSubmit}
       err={err}
+      loading={loading}
     />
   );
 };

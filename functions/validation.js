@@ -1,4 +1,8 @@
 export const nameValidation = name => {
+  //* allowed char -> not start with . or, _
+  //*               -> 3 to 20 chars
+  //*               -> upper/lower case and all digits allowed
+
   const namePattern = /^(?=[a-zA-Z0-9._]{3,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
 
   if (typeof name !== 'undefined' && namePattern.test(name)) {
@@ -12,6 +16,10 @@ export const nameValidation = name => {
 };
 
 export const passwordValidation = password => {
+  //* allowed char  -> at least one digit and 1 letter
+  //*               -> 8 to 32 chars
+  //*               -> upper/lower case and all digits allowed
+
   const passPattern = /^(?=.*?[0-9])(?=.*?[A-Za-z]).{8,32}$/;
 
   if (typeof password !== 'undefined' && passPattern.test(password)) {
@@ -31,7 +39,7 @@ export const emailValidation = email => {
     // console.log('valid user');
     return true;
   } else {
-    console.log('invalid email');
+    console.log('validation func: invalid email');
     return false;
   }
 };

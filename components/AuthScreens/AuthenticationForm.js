@@ -19,10 +19,13 @@ const AuthenticationForm = ({
   btnTitle,
   onSubmit,
   navHandler,
+  loading,
   err,
 }) => {
-  const nameRef = useRef(null);
+  const firstNameRef = useRef(null);
+  const lastNameRef = useRef(null);
   const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
   const emailRef = useRef(null);
 
   const [hidden, setHidden] = useState(true);
@@ -35,14 +38,18 @@ const AuthenticationForm = ({
   };
 
   const handleSubmit = () => {
-    const name = nameRef?.current?.value;
-    const password = passwordRef.current.value;
-    const email = emailRef.current.value;
+    const firstName = firstNameRef.current?.value;
+    const lastName = lastNameRef.current?.value;
+    const password = passwordRef.current?.value;
+    const confirmPassword = confirmPasswordRef.current?.value;
+    const email = emailRef.current?.value;
 
     const newUserData = {
-      name: name,
       email: email,
-      password: password,
+      password1: password,
+      password2: confirmPassword,
+      first_name: firstName,
+      last_name: lastName,
     };
 
     const validationData = {
@@ -67,13 +74,24 @@ const AuthenticationForm = ({
 
       <View style={styles.form}>
         {title === 'Register' ? (
-          <Input
-            ref={nameRef}
-            onChangeText={e => (nameRef.current.value = e)}
-            placeholder="Name"
-            errorStyle={styles.error}
-            errorMessage={errorMessage ? errorMessage : ''}
-          />
+          <>
+            <Input
+              ref={firstNameRef}
+              onChangeText={e => (firstNameRef.current.value = e)}
+              placeholder="First Name"
+              maxLength={20}
+              errorStyle={styles.error}
+              errorMessage={errorMessage ? errorMessage : ''}
+            />
+            <Input
+              ref={lastNameRef}
+              onChangeText={e => (lastNameRef.current.value = e)}
+              placeholder="Last Name"
+              maxLength={20}
+              errorStyle={styles.error}
+              errorMessage={errorMessage ? errorMessage : ''}
+            />
+          </>
         ) : (
           <></>
         )}
@@ -102,14 +120,15 @@ const AuthenticationForm = ({
             )
           }
           placeholder="Password"
+          maxLength={32}
           errorStyle={styles.error}
           errorMessage={errorMessage ? errorMessage : ''}
         />
 
         {title === 'Register' ? (
           <Input
-            ref={passwordRef}
-            onChangeText={e => (passwordRef.current.value = e)}
+            ref={confirmPasswordRef}
+            onChangeText={e => (confirmPasswordRef.current.value = e)}
             secureTextEntry={hidden2}
             rightIcon={
               hidden2 ? (
@@ -123,6 +142,7 @@ const AuthenticationForm = ({
               )
             }
             placeholder="Confirm Password"
+            maxLength={32}
             errorStyle={styles.error}
             errorMessage={errorMessage ? errorMessage : ''}
           />
@@ -132,7 +152,7 @@ const AuthenticationForm = ({
 
         <View style={styles.infoContainer}>
           <Text style={styles.info}>
-            (Password must contain 8-32 characters & atleast 1 digit)
+            (8-32 characters | atleast 1 digit | atleast 1 letter)
           </Text>
         </View>
 
@@ -146,7 +166,7 @@ const AuthenticationForm = ({
 
         <Button
           title={btnTitle}
-          loading={false}
+          loading={loading}
           loadingProps={{size: 'small', color: colors.light.WHITE}}
           buttonStyle={styles.btn.buttonStyle}
           titleStyle={styles.btn.titleStyle}
