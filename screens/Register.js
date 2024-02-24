@@ -63,7 +63,7 @@ const Register = ({navigation}) => {
   };
 
   const onSubmit = async input => {
-    console.log('screen: register: input ->', input);
+    // console.log('screen: register: input ->', input);
 
     // handle wrong input
     if (!validation(input)) {
@@ -94,7 +94,7 @@ const Register = ({navigation}) => {
         }
       }
 
-      console.log('SCREEN:REGISTER: REGISTER API OUTPUT: ', response);
+      // console.log('SCREEN:REGISTER: REGISTER API OUTPUT: ', response);
     } catch (error) {
       console.error('SCREEN:REGISTER: REGISTER API ERR: ', error);
     }
