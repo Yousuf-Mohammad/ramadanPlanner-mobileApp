@@ -22,6 +22,7 @@ const AuthenticationForm = ({
   handleLoginNav,
   loading,
   err,
+  navigation,
 }) => {
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -37,6 +38,10 @@ const AuthenticationForm = ({
   const eyePressHandler2 = () => {
     setHidden2(prev => !prev);
   };
+
+  function handleForgotPass() {
+    navigation.navigate('ReqPassChange');
+  }
 
   const handleSubmit = () => {
     const firstName = firstNameRef.current?.value;
@@ -159,6 +164,16 @@ const AuthenticationForm = ({
           </Text>
         </View>
 
+        {title === 'Login' ? (
+          <TouchableOpacity
+            style={styles.forgotPass.container}
+            onPress={handleForgotPass}>
+            <Text style={styles.forgotPass.txt}>Forgot Password</Text>
+          </TouchableOpacity>
+        ) : (
+          <></>
+        )}
+
         {err !== '' ? (
           <View style={styles.err.errContainer}>
             <Text style={styles.err.msg}>{err}</Text>
@@ -270,5 +285,17 @@ const styles = StyleSheet.create({
     paddingLeft: convert(25),
     // borderWidth: 1,
     // borderColor: 'black',
+  },
+  forgotPass: {
+    container: {
+      width: convert(1000),
+      paddingLeft: convert(25),
+      marginTop: convert(50),
+    },
+    txt: {
+      color: colors.light.PRIMARY,
+      fontSize: FontSize.hint,
+      fontWeight: 'bold',
+    },
   },
 });

@@ -88,6 +88,7 @@ const Login = ({navigation}) => {
       handleRegistrationNav={handleRegistrationNav}
       err={err}
       loading={loading}
+      navigation={navigation}
     />
   );
 };
