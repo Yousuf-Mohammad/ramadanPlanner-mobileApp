@@ -68,39 +68,39 @@ const Register = ({navigation}) => {
     // handle wrong input
     if (!validation(input)) {
       //! todo: uncomment
-      return;
+      // return;
     } else {
       setErr('');
     }
 
     // todo: cache to asyncStorage -> clear on logout!
     //! todo: uncomment
-    try {
-      loadingHandler();
-      const response = await registration(input);
-      loadingHandler();
+    // try {
+    //   loadingHandler();
+    //   const response = await registration(input);
+    //   loadingHandler();
 
-      if (response?.error) {
-        const error = response.error.data.detail;
-        setErr(error);
-        return;
-      }
+    //   if (response?.error) {
+    //     const error = response.error.data.detail;
+    //     setErr(error);
+    //     return;
+    //   }
 
-      if (response?.data) {
-        if (
-          response.data.message === 'Registration successful. Please login.'
-        ) {
-          navigation.navigate('Login');
-        }
-      }
+    //   if (response?.data) {
+    //     if (
+    //       response.data.message === 'Registration successful. Please login.'
+    //     ) {
+    //       navigation.navigate('Login');
+    //     }
+    //   }
 
-      // console.log('SCREEN:REGISTER: REGISTER API OUTPUT: ', response);
-    } catch (error) {
-      console.error('SCREEN:REGISTER: REGISTER API ERR: ', error);
-    }
+    //   // console.log('SCREEN:REGISTER: REGISTER API OUTPUT: ', response);
+    // } catch (error) {
+    //   console.error('SCREEN:REGISTER: REGISTER API ERR: ', error);
+    // }
 
     //! todo: uncomment
-    // navigation.navigate('Login');
+    navigation.navigate('Login');
   };
 
   function handleLoginNav() {

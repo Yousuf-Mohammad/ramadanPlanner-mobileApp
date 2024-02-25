@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Text} from 'react-native';
+import {useSelector} from 'react-redux';
 import {Button} from 'react-native-elements';
 // assets
 import {SCREEN_HEIGHT, convert} from '../../assets/dimensions/dimensions';
@@ -13,9 +14,11 @@ import BgBox from './Quran/BgBox';
 import RegularTarget from './Quran/RegularTarget';
 import LastRead from './Quran/LastRead';
 import CompletedToday from './Quran/CompletedToday';
+// reducers
+import {getAuthToken} from '../../redux-toolkit/features/authentication/authToken';
 
-// todo: input validation
 const Quran = () => {
+  // const authToken = useSelector(getAuthToken);
   //* REGULAR TARGET
   const [regularTarget, setRegularTarget] = useState({
     unit: '',
@@ -97,6 +100,7 @@ const Quran = () => {
   };
 
   const handleSubmit = () => {
+    // console.log('SCREEN:QURAN: AUTH_TOKEN: ', authToken);
     //* inputError -> true; error exists
     if (inputError()) {
       return;

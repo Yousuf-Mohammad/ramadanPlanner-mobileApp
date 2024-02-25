@@ -3,11 +3,14 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 // components
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
+// rtk-slices
+import {setAuthToken} from '../redux-toolkit/features/authentication/authToken';
 // assets, functions
 import {emailValidation, passwordValidation} from '../functions/validation';
 import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-slice';
 
 const Login = ({navigation}) => {
+  const disptach = useDispatch();
   const [err, setErr] = useState('');
   const [loading, setLoading] = useState(false);
   const [login] = useLoginMutation();
@@ -35,7 +38,7 @@ const Login = ({navigation}) => {
   };
 
   const onSubmit = async input => {
-    console.log('screen: login: input ->', input);
+    // console.log('screen: login: input ->', input);
 
     // handle wrong input
     if (!validation(input)) {
@@ -62,7 +65,7 @@ const Login = ({navigation}) => {
 
       if (response.data) {
         if (response.data.access_token) {
-          //todo: set to state
+          disptach(setAuthToken(response.data.access_token));
           navigation.navigate('Home');
         }
       }
