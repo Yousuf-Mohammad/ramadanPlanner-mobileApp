@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 // components
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 // rtk-slices
-import {useRegistrationMutation} from '../redux-toolkit/features/authentication/auth-register-slice';
+import {useRegistrationMutation} from '../redux-toolkit/features/authentication/auth-slice';
 // functions
 import {
   emailValidation,
@@ -67,14 +67,14 @@ const Register = ({navigation}) => {
 
     // handle wrong input
     if (!validation(input)) {
-      //! todo: uncomment!
+      //! todo: uncomment
       return;
     } else {
       setErr('');
     }
 
     // todo: cache to asyncStorage -> clear on logout!
-
+    //! todo: uncomment
     try {
       loadingHandler();
       const response = await registration(input);
@@ -98,13 +98,21 @@ const Register = ({navigation}) => {
     } catch (error) {
       console.error('SCREEN:REGISTER: REGISTER API ERR: ', error);
     }
+
+    //! todo: uncomment
+    // navigation.navigate('Login');
   };
+
+  function handleLoginNav() {
+    navigation.navigate('Login');
+  }
 
   return (
     <AuthenticationForm
       title={'Register'}
       btnTitle={'Register'}
       onSubmit={onSubmit}
+      handleLoginNav={handleLoginNav}
       err={err}
       loading={loading}
     />

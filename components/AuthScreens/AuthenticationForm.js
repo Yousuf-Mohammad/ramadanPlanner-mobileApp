@@ -18,7 +18,8 @@ const AuthenticationForm = ({
   title,
   btnTitle,
   onSubmit,
-  navHandler,
+  handleRegistrationNav,
+  handleLoginNav,
   loading,
   err,
 }) => {
@@ -62,9 +63,6 @@ const AuthenticationForm = ({
     } else {
       onSubmit(validationData);
     }
-
-    // navigate on success
-    // onSubmit();
   };
 
   // todo: error disappear on reattempt and after 5 sec!
@@ -103,6 +101,10 @@ const AuthenticationForm = ({
           errorStyle={styles.error}
           errorMessage={errorMessage ? errorMessage : ''}
         />
+
+        <View style={styles.infoContainer}>
+          <Text style={styles.info}>*case sensitive</Text>
+        </View>
 
         <Input
           ref={passwordRef}
@@ -152,7 +154,8 @@ const AuthenticationForm = ({
 
         <View style={styles.infoContainer}>
           <Text style={styles.info}>
-            (8-32 characters | atleast 1 digit | atleast 1 letter)
+            *case sensitive | 8-32 characters | atleast 1 digit | atleast 1
+            letter
           </Text>
         </View>
 
@@ -178,7 +181,7 @@ const AuthenticationForm = ({
       {title === 'Register' ? (
         <View style={styles.bottom}>
           <Text style={styles.titleBottom}>Already registered?</Text>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={handleLoginNav}>
             <Text style={styles.touchtitleBottom}> Login</Text>
           </TouchableOpacity>
           <Text style={styles.titleBottom}> here!</Text>
@@ -186,7 +189,7 @@ const AuthenticationForm = ({
       ) : (
         <View style={styles.bottom}>
           <Text style={styles.titleBottom}>Don't have an account?</Text>
-          <TouchableOpacity onPress={navHandler}>
+          <TouchableOpacity onPress={handleRegistrationNav}>
             <Text style={styles.touchtitleBottom}> Register</Text>
           </TouchableOpacity>
           <Text style={styles.titleBottom}> here!</Text>

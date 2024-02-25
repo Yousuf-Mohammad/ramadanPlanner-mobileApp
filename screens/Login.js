@@ -5,9 +5,16 @@ import {useDispatch} from 'react-redux';
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 // assets, functions
 import {emailValidation, passwordValidation} from '../functions/validation';
+import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-slice';
 
 const Login = ({navigation}) => {
   const [err, setErr] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [login] = useLoginMutation();
+
+  const loadingHandler = () => {
+    setLoading(prev => !prev);
+  };
 
   const validation = input => {
     // password validation
@@ -27,33 +34,57 @@ const Login = ({navigation}) => {
     return true;
   };
 
-  const onSubmit = input => {
-    // console.log('screen: login: input ->', input);
+  const onSubmit = async input => {
+    console.log('screen: login: input ->', input);
 
     // handle wrong input
     if (!validation(input)) {
       //! todo: uncomment!
-      // return;
+      return;
     } else {
       setErr('');
     }
 
     // todo: set to asyncStorage -> clear cache logic on login/out, appstate change
+    try {
+      loadingHandler();
+      const response = await login(input);
+      loadingHandler();
 
-    navigation.navigate('Home');
+      if (response.error) {
+        const error =
+          response.error.data.detail === 'Invalid credentials'
+            ? 'Invalid credentials'
+            : 'Error logging in!';
+
+        setErr(error);
+      }
+
+      if (response.data) {
+        if (response.data.access_token) {
+          //todo: set to state
+          navigation.navigate('Home');
+        }
+      }
+
+      // console.log('LOGIN: RESPONSE: ', response);
+    } catch (error) {
+      console.error('LOGIN: ERROR: ', error);
+    }
   };
 
-  const navHandler = () => {
+  function handleRegistrationNav() {
     navigation.navigate('Register');
-  };
+  }
 
   return (
     <AuthenticationForm
       title={'Login'}
       btnTitle={'Log in'}
       onSubmit={onSubmit}
-      navHandler={navHandler}
+      handleRegistrationNav={handleRegistrationNav}
       err={err}
+      loading={loading}
     />
   );
 };
