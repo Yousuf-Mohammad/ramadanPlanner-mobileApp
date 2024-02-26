@@ -39,7 +39,7 @@ export const emailValidation = email => {
     // console.log('valid user');
     return true;
   } else {
-    console.log('validation func: invalid email');
+    // console.log('validation func: invalid email');
     return false;
   }
 };

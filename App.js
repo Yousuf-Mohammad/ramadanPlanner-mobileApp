@@ -46,11 +46,11 @@ const App = () => {
             name="ReqPassChange"
             component={RequestNewPassword}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             options={{headerShown: false}}
             name="ChangePass"
             component={ChangePassword}
-          />
+          /> */}
           <Stack.Screen
             name="Home"
             component={Home}
