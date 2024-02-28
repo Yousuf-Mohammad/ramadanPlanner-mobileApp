@@ -7,9 +7,13 @@ export const recitationInfoSlice = createApi({
     baseUrl: API_URL,
     prepareHeaders: (headers, {getState}) => {
       const authToken = getState().authToken.value;
-      headers.set('Authorization', 'Bearer ' + authToken);
 
-      // console.log('RECITATION INFO SLICE: headers: ', headers);
+      //* EXPECTED FORMAT
+      //* {"authorization": `Bearer ${authToken}`}
+
+      headers.set('authorization', `Bearer ${authToken}`);
+
+      console.log('RECITATION INFO SLICE: headers: ', headers);
 
       return headers;
     },

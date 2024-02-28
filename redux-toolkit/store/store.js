@@ -15,7 +15,6 @@ export const store = configureStore({
     // data
     arabicDate: arabicDate,
     [arabicDateSlice.reducerPath]: arabicDateSlice.reducer,
-
     // recitation-info
     [recitationInfoSlice.reducerPath]: recitationInfoSlice.reducer,
   },

@@ -178,35 +178,31 @@ const Quran = () => {
       handleError('');
     }
 
-    // todo: submit form data
-    // const input = {
-    //   unit: regularTarget.unit,
-    //   last_read_surah: parseInt(lastread.unit, 10),
-    //   last_read_value: parseInt(lastread.value, 10),
-    //   target_value: parseInt(regularTarget.value, 10),
-    //   completed_value: parseInt(today.value, 10),
-    // };
-
     const input = {
-      unit: 'Ayat',
-      last_read_surah: 1,
-      last_read_value: 1,
-      target_value: 1,
-      completed_value: 1,
+      unit: regularTarget.unit,
+      last_read_surah: parseInt(lastread.unit, 10),
+      last_read_value: parseInt(lastread.value, 10),
+      target_value: parseInt(regularTarget.value, 10),
+      completed_value: parseInt(today.value, 10),
     };
 
     try {
-      console.log('SCREEN: QURAN: info: ', input);
+      // console.log('SCREEN: QURAN: info: ', input);
       loadingHandler();
       const response = await setRecitationInfo(input);
-      console.log(
-        'SCREEN:QURAN: set recitation info: ',
-        // JSON.stringify(response),
-        response,
-      );
       loadingHandler();
+      console.log('SCREEN:QURAN: set recitation info: ', response);
+
+      if (response.error) {
+        handleError('Error updating data');
+        return;
+      }
+
+      if (response.data.message === 'Checklist updated') {
+        handleError('Recitation tracker updated!');
+      }
     } catch (error) {
-      console.log('SCREEN: QURAN: ERROR: ', error);
+      console.error('SCREEN: QURAN: ERROR: ', error);
     }
   };
 
