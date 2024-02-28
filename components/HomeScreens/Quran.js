@@ -20,7 +20,6 @@ import {
   useGetRecitationInfoQuery,
   useSetRecitationInfoMutation,
 } from '../../redux-toolkit/features/recitationInfo/recitation-info-slice';
-// reducers
 // import {getAuthToken} from '../../redux-toolkit/features/authentication/authToken';
 
 const Quran = () => {
@@ -56,29 +55,23 @@ const Quran = () => {
     setLoading(prev => !prev);
   }
 
-  // const {data = {}, error, isError, isLoading} = useGetRecitationInfoQuery();
-  // const [getRecitationInfo] = useGetRecitationInfoMutation();
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       console.log('SCREEN: QURAN');
-  //       // if (isError) {
-  //       //   console.error('SCREEN:QURAN: get recitation error: ', error);
-  //       //   setErr(error);
-  //       // }
+  const {data = {}, error, isError, isLoading} = useGetRecitationInfoQuery();
+  useEffect(() => {
+    (async () => {
+      try {
+        if (isError) {
+          console.error('SCREEN:QURAN: get recitation error: ', error);
+          setErr(error);
+        }
 
-  //       // if (!isLoading) {
-  //       console.log(
-  //         'SCREEN:QURAN: get recitation data: ',
-  //         // await getRecitationInfo(),
-  //         data,
-  //       );
-  //       // }
-  //     } catch (issue) {
-  //       console.error('SCREEN:QURAN: get recitation error: ', issue);
-  //     }
-  //   })();
-  // }, [data, isError, isLoading]);
+        if (!isLoading) {
+          console.log('SCREEN:QURAN: get recitation data: ', data);
+        }
+      } catch (issue) {
+        console.error('SCREEN:QURAN: get recitation error: ', issue);
+      }
+    })();
+  }, [data, error, isError, isLoading]);
 
   const handleRegularTargetErr = () => {
     if (regularTarget.unit === null) {
@@ -187,7 +180,7 @@ const Quran = () => {
     };
 
     try {
-      // console.log('SCREEN: QURAN: info: ', input);
+      console.log('SCREEN: QURAN: info: ', input);
       loadingHandler();
       const response = await setRecitationInfo(input);
       loadingHandler();
@@ -201,8 +194,8 @@ const Quran = () => {
       if (response.data.message === 'Checklist updated') {
         handleError('Recitation tracker updated!');
       }
-    } catch (error) {
-      console.error('SCREEN: QURAN: ERROR: ', error);
+    } catch (issue) {
+      console.error('SCREEN: QURAN: ERROR: ', issue);
     }
   };
 

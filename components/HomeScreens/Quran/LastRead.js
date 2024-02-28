@@ -15,13 +15,20 @@ const LastRead = ({placeholder, setter, data}) => {
   const [value, setValue] = useState([]);
 
   useEffect(() => {
-    setter(prev => ({
-      ...prev,
-      // unit: value,
-      unit: data.map((i, idx) => {
-        return i.value === value ? idx + 1 : null;
-      }),
-    }));
+    setter(prev => {
+      let unitVal = 0;
+
+      data.map((i, idx) => {
+        if (i.value === value) {
+          unitVal = idx + 1;
+        }
+      });
+
+      return {
+        ...prev,
+        unit: unitVal,
+      };
+    });
   }, [value]);
 
   const onChangeText = e => {
