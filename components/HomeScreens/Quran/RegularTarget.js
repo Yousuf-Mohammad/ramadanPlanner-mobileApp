@@ -9,10 +9,10 @@ import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
 import {Input} from 'react-native-elements';
 
-const RegularTarget = ({placeholder, setter}) => {
+const RegularTarget = ({placeholder, setter, initialValue}) => {
   const regularTargetRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(initialValue.unit);
 
   const data = [
     {label: 'Ayat', value: 'Ayat'},
@@ -27,7 +27,6 @@ const RegularTarget = ({placeholder, setter}) => {
     }));
   }, [value]);
 
-  // todo: validate input like , .
   const onChangeText = e => {
     regularTargetRef.current.value = e;
 
@@ -42,7 +41,7 @@ const RegularTarget = ({placeholder, setter}) => {
       <DropDownPicker
         isFocus={isFocus}
         data={data}
-        value={value}
+        value={initialValue.unit}
         search={false}
         setIsFocus={setIsFocus}
         setValue={setValue}
@@ -52,12 +51,13 @@ const RegularTarget = ({placeholder, setter}) => {
       <View style={styles.targetInputContainer}>
         <View style={styles.targetInput}>
           <Input
+            // value={`${regularTargetRef.current?.value}`}
             keyboardType="number-pad"
             inputMode="numeric"
             maxLength={value === 'Para' ? 2 : 3}
             ref={regularTargetRef}
             onChangeText={e => onChangeText(e)}
-            placeholder={'0'}
+            placeholder={`${initialValue.value}`}
             placeholderStyle={{color: colors.light.BLACK}}
             inputContainerStyle={{
               width: convert(350),

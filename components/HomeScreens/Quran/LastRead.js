@@ -9,11 +9,22 @@ import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
 
-const LastRead = ({placeholder, setter, data}) => {
+const LastRead = ({placeholder, setter, data, initialValue}) => {
+  // console.log('initial value: ', initialValue);
   const lastReadRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState([]);
 
+  //* setting last read surah name
+  useEffect(() => {
+    data.map((i, idx) => {
+      if (initialValue.unit === idx + 1) {
+        setValue(i.label);
+      }
+    });
+  }, []);
+
+  //* finding surah index
   useEffect(() => {
     setter(prev => {
       let unitVal = 0;
@@ -57,7 +68,9 @@ const LastRead = ({placeholder, setter, data}) => {
           inputMode="numeric"
           ref={lastReadRef}
           onChangeText={e => onChangeText(e)}
-          placeholder="Last Read Ayat"
+          placeholder={
+            initialValue.value ? `Ayat ${initialValue.value}` : 'Last Read'
+          }
           inputContainerStyle={{
             width: convert(350),
             backgroundColor: colors.light.WHITE,

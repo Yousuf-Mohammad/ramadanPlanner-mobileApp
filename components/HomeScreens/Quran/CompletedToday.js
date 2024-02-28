@@ -9,10 +9,10 @@ import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
 
-const CompletedToday = ({placeholder, setter}) => {
+const CompletedToday = ({placeholder, setter, initialValue}) => {
   const lastReadRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState(false);
+  const [value, setValue] = useState(initialValue.unit);
 
   const data = [
     {label: 'Ayat', value: 'Ayat'},

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Text} from 'react-native';
@@ -55,6 +56,9 @@ const Quran = () => {
     setLoading(prev => !prev);
   }
 
+  // todo: START HERE!
+  // when updating the recitation info
+  // data that's fetched here should also be update accordingly!
   const {data = {}, error, isError, isLoading} = useGetRecitationInfoQuery();
   useEffect(() => {
     (async () => {
@@ -71,7 +75,7 @@ const Quran = () => {
         console.error('SCREEN:QURAN: get recitation error: ', issue);
       }
     })();
-  }, [data, error, isError, isLoading]);
+  }, [isLoading, isError]);
 
   const handleRegularTargetErr = () => {
     if (regularTarget.unit === null) {
@@ -180,7 +184,7 @@ const Quran = () => {
     };
 
     try {
-      console.log('SCREEN: QURAN: info: ', input);
+      // console.log('SCREEN: QURAN: info: ', input);
       loadingHandler();
       const response = await setRecitationInfo(input);
       loadingHandler();
@@ -205,15 +209,28 @@ const Quran = () => {
         <RegularTarget
           placeholder={'ayat/page/para'}
           setter={setRegularTarget}
+          initialValue={{unit: data.unit, value: data.target_value}}
         />
       </BgBox>
 
       <BgBox title={'Last Read'}>
-        <LastRead placeholder={'Surah'} setter={setLastread} data={surahInfo} />
+        <LastRead
+          placeholder={'Surah'}
+          setter={setLastread}
+          data={surahInfo}
+          initialValue={{
+            unit: data.last_read_surah,
+            value: data.last_read_value,
+          }}
+        />
       </BgBox>
 
       <BgBox title={'Completed today'}>
-        <CompletedToday placeholder={'ayat/page/para'} setter={setToday} />
+        <CompletedToday
+          placeholder={'ayat/page/para'}
+          setter={setToday}
+          initialValue={{unit: data.unit}}
+        />
       </BgBox>
 
       {err !== '' ? (
