@@ -48,6 +48,7 @@ const Login = ({navigation}) => {
       setErr('');
     }
 
+    //! todo: uncomment!
     // todo: set to asyncStorage -> clear cache logic on login/out, appstate change
     try {
       loadingHandler();

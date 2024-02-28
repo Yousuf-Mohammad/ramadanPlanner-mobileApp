@@ -100,6 +100,8 @@ const AuthenticationForm = ({
         )}
 
         <Input
+          // todo:remove
+          defaultValue="fardinshuvro96@gmail.com"
           ref={emailRef}
           onChangeText={e => (emailRef.current.value = e)}
           placeholder="Email"
@@ -112,6 +114,8 @@ const AuthenticationForm = ({
         </View>
 
         <Input
+          // todo:remove
+          defaultValue="something1"
           ref={passwordRef}
           onChangeText={e => (passwordRef.current.value = e)}
           secureTextEntry={hidden}

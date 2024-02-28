@@ -17,11 +17,13 @@ const LastRead = ({placeholder, setter, data}) => {
   useEffect(() => {
     setter(prev => ({
       ...prev,
-      unit: value,
+      // unit: value,
+      unit: data.map((i, idx) => {
+        return i.value === value ? idx + 1 : null;
+      }),
     }));
   }, [value]);
 
-  // todo: validate input like , .
   const onChangeText = e => {
     lastReadRef.current.value = e;
     setter(prev => ({
@@ -55,7 +57,6 @@ const LastRead = ({placeholder, setter, data}) => {
             // borderWidth: 1,
             // borderColor: 'yellow',
           }}
-
           // errorStyle={styles.error}
           // errorMessage={errorMessage ? errorMessage : ''}
         />
@@ -70,8 +71,6 @@ const styles = StyleSheet.create({
   root: {
     flexDirection: 'row',
     width: convert(900),
-    // justifyContent: 'space-between',
-    // alignItems: 'center',
     marginLeft: convert(35),
     // borderWidth: 1,
     // borderColor: 'black',
@@ -92,7 +91,6 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     backgroundColor: colors.light.WHITE,
-    // width: convert(300),
     height: 50,
     borderColor: 'gray',
     borderWidth: 0.5,

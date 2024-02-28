@@ -20,7 +20,7 @@ export const authTokenSlice = createSlice({
 export const {setAuthToken, resetToken} = authTokenSlice.actions;
 
 export const getAuthToken = state => {
-  console.log('auth-token-slice: getAuthToken: ', state);
+  // console.log('auth-token-slice: getAuthToken: ', state);
   return state.authToken.value;
 };
 

@@ -10,14 +10,15 @@ import {FontSize} from '../../../assets/fonts/fonts';
 import {Input} from 'react-native-elements';
 
 const RegularTarget = ({placeholder, setter}) => {
+  const regularTargetRef = useRef(null);
+  const [isFocus, setIsFocus] = useState(false);
+  const [value, setValue] = useState(null);
+
   const data = [
     {label: 'Ayat', value: 'Ayat'},
     {label: 'Page', value: 'Page'},
     {label: 'Para', value: 'Para'},
   ];
-  const lastReadRef = useRef(null);
-  const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState(null);
 
   useEffect(() => {
     setter(prev => ({
@@ -28,11 +29,11 @@ const RegularTarget = ({placeholder, setter}) => {
 
   // todo: validate input like , .
   const onChangeText = e => {
-    lastReadRef.current.value = e;
+    regularTargetRef.current.value = e;
 
     setter(prev => ({
       ...prev,
-      value: lastReadRef.current.value,
+      value: regularTargetRef.current.value,
     }));
   };
 
@@ -54,7 +55,7 @@ const RegularTarget = ({placeholder, setter}) => {
             keyboardType="number-pad"
             inputMode="numeric"
             maxLength={value === 'Para' ? 2 : 3}
-            ref={lastReadRef}
+            ref={regularTargetRef}
             onChangeText={e => onChangeText(e)}
             placeholder={'0'}
             placeholderStyle={{color: colors.light.BLACK}}
@@ -92,7 +93,6 @@ const styles = StyleSheet.create({
     width: convert(425),
     padding: 16,
   },
-
   containerStyle: {
     color: 'black',
   },
@@ -163,7 +163,6 @@ const styles = StyleSheet.create({
     color: colors.light.WHITE,
   },
   targetInput: {
-    // width: convert(350),
     paddingTop: convert(50),
     // borderWidth: 1,
     // borderColor: 'red',

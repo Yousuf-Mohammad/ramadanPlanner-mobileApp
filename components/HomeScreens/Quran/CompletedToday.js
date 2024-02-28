@@ -10,14 +10,15 @@ import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
 
 const CompletedToday = ({placeholder, setter}) => {
+  const lastReadRef = useRef(null);
+  const [isFocus, setIsFocus] = useState(false);
+  const [value, setValue] = useState(false);
+
   const data = [
     {label: 'Ayat', value: 'Ayat'},
     {label: 'Page', value: 'Page'},
     {label: 'Para', value: 'Para'},
   ];
-  const lastReadRef = useRef(null);
-  const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState(false);
 
   useEffect(() => {
     setter(prev => ({
@@ -75,7 +76,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: convert(900),
     justifyContent: 'center',
-    // alignItems: 'center',
     marginLeft: convert(35),
     // borderWidth: 1,
     // borderColor: 'black',
@@ -90,13 +90,11 @@ const styles = StyleSheet.create({
     width: convert(425),
     padding: 16,
   },
-
   containerStyle: {
     color: 'black',
   },
   dropdown: {
     backgroundColor: colors.light.WHITE,
-    // width: convert(300),
     height: 50,
     borderColor: 'gray',
     borderWidth: 0.5,

@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Text} from 'react-native';
-import {useSelector} from 'react-redux';
 import {Button} from 'react-native-elements';
+// functions
+import {digitValidation} from '../../functions/validation';
 // assets
 import {SCREEN_HEIGHT, convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
@@ -14,11 +15,19 @@ import BgBox from './Quran/BgBox';
 import RegularTarget from './Quran/RegularTarget';
 import LastRead from './Quran/LastRead';
 import CompletedToday from './Quran/CompletedToday';
+// rtk-slices
+import {
+  useGetRecitationInfoQuery,
+  useSetRecitationInfoMutation,
+} from '../../redux-toolkit/features/recitationInfo/recitation-info-slice';
 // reducers
-import {getAuthToken} from '../../redux-toolkit/features/authentication/authToken';
+// import {getAuthToken} from '../../redux-toolkit/features/authentication/authToken';
 
 const Quran = () => {
+  // todo:perf: memoize other components, so that useState doesn't affect them all
   // const authToken = useSelector(getAuthToken);
+  const [setRecitationInfo] = useSetRecitationInfoMutation();
+
   //* REGULAR TARGET
   const [regularTarget, setRegularTarget] = useState({
     unit: '',
@@ -37,12 +46,53 @@ const Quran = () => {
     value: '',
   });
 
-  const [error, setError] = useState('');
-  const handleError = err => {
-    setError(err);
+  const [err, setErr] = useState('');
+  const handleError = info => {
+    setErr(info);
   };
 
+  const [loading, setLoading] = useState(false);
+  function loadingHandler() {
+    setLoading(prev => !prev);
+  }
+
+  // const {data = {}, error, isError, isLoading} = useGetRecitationInfoQuery();
+  // const [getRecitationInfo] = useGetRecitationInfoMutation();
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       console.log('SCREEN: QURAN');
+  //       // if (isError) {
+  //       //   console.error('SCREEN:QURAN: get recitation error: ', error);
+  //       //   setErr(error);
+  //       // }
+
+  //       // if (!isLoading) {
+  //       console.log(
+  //         'SCREEN:QURAN: get recitation data: ',
+  //         // await getRecitationInfo(),
+  //         data,
+  //       );
+  //       // }
+  //     } catch (issue) {
+  //       console.error('SCREEN:QURAN: get recitation error: ', issue);
+  //     }
+  //   })();
+  // }, [data, isError, isLoading]);
+
   const handleRegularTargetErr = () => {
+    if (regularTarget.unit === null) {
+      return false;
+    }
+
+    if (regularTarget.value === '') {
+      return false;
+    }
+
+    if (!digitValidation(regularTarget.value)) {
+      return false;
+    }
+
     if (regularTarget.unit === 'Ayat' && regularTarget.value > 286) {
       return false;
     }
@@ -54,22 +104,43 @@ const Quran = () => {
   };
 
   const handleLastReadErr = () => {
-    let numOfAyats = 0;
+    //! todo: uncomment!
+    // if (lastread.unit.length === 0) {
+    //   return false;
+    // }
 
-    surahInfo.map((i, _idx) => {
-      if (i.label === lastread.unit) {
-        numOfAyats = i.ayats;
-      }
-    });
+    // if (lastread.value === '') {
+    //   return false;
+    // }
 
-    if (parseInt(lastread.value, 10) > numOfAyats) {
-      return false;
-    }
+    // let numOfAyats = 0;
+
+    // surahInfo.map((i, _idx) => {
+    //   if (i.label === lastread.unit) {
+    //     numOfAyats = i.ayats;
+    //   }
+    // });
+
+    // if (parseInt(lastread.value, 10) > numOfAyats) {
+    //   return false;
+    // }
 
     return true;
   };
 
   const handleSetTodayErr = () => {
+    if (today.unit === false) {
+      return false;
+    }
+
+    if (today.value === '') {
+      return false;
+    }
+
+    if (!digitValidation(today.value)) {
+      return false;
+    }
+
     if (today.unit === 'Ayat' && today.value > 286) {
       return false;
     }
@@ -99,17 +170,44 @@ const Quran = () => {
     return false;
   };
 
-  const handleSubmit = () => {
-    // console.log('SCREEN:QURAN: AUTH_TOKEN: ', authToken);
+  const handleSubmit = async () => {
     //* inputError -> true; error exists
     if (inputError()) {
       return;
     } else {
       handleError('');
     }
-    // console.log('some code after validation');
 
     // todo: submit form data
+    // const input = {
+    //   unit: regularTarget.unit,
+    //   last_read_surah: parseInt(lastread.unit, 10),
+    //   last_read_value: parseInt(lastread.value, 10),
+    //   target_value: parseInt(regularTarget.value, 10),
+    //   completed_value: parseInt(today.value, 10),
+    // };
+
+    const input = {
+      unit: 'Ayat',
+      last_read_surah: 1,
+      last_read_value: 1,
+      target_value: 1,
+      completed_value: 1,
+    };
+
+    try {
+      console.log('SCREEN: QURAN: info: ', input);
+      loadingHandler();
+      const response = await setRecitationInfo(input);
+      console.log(
+        'SCREEN:QURAN: set recitation info: ',
+        // JSON.stringify(response),
+        response,
+      );
+      loadingHandler();
+    } catch (error) {
+      console.log('SCREEN: QURAN: ERROR: ', error);
+    }
   };
 
   return (
@@ -129,17 +227,17 @@ const Quran = () => {
         <CompletedToday placeholder={'ayat/page/para'} setter={setToday} />
       </BgBox>
 
-      {error !== '' ? (
-        <View style={styles.err.errContainer}>
-          <Text style={styles.err.msg}>{error}</Text>
+      {err !== '' ? (
+        <View style={styles.err.container}>
+          <Text style={styles.err.msg}>{err}</Text>
         </View>
       ) : (
-        <View style={styles.err.errContainer} />
+        <View style={styles.err.container} />
       )}
 
       <Button
         title={'+ ADD TARGET'}
-        loading={false}
+        loading={loading}
         loadingProps={{size: 'small', color: colors.light.WHITE}}
         buttonStyle={styles.btn.buttonStyle}
         titleStyle={styles.btn.titleStyle}
@@ -185,7 +283,7 @@ const styles = StyleSheet.create({
     msg: {
       color: colors.light.ERROR,
     },
-    errContainer: {
+    container: {
       width: convert(1000),
       alignItems: 'center',
       marginTop: convert(25),

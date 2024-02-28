@@ -43,3 +43,15 @@ export const emailValidation = email => {
     return false;
   }
 };
+
+export const digitValidation = input => {
+  const digitPattern = /^[0-9]+$/;
+
+  if (typeof input !== 'undefined' && digitPattern.test(input)) {
+    // console.log('valid digits', input);
+    return true;
+  } else {
+    // console.log('validation func: invalid digit', input);
+    return false;
+  }
+};
