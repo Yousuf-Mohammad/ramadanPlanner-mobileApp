@@ -9,10 +9,10 @@ import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
 
-const CompletedToday = ({placeholder, setter, initialValue}) => {
+const CompletedToday = ({dropDownPlaceholder, setter}) => {
   const lastReadRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState(initialValue.unit);
+  const [value, setValue] = useState(null);
 
   const data = [
     {label: 'Ayat', value: 'Ayat'},
@@ -27,7 +27,6 @@ const CompletedToday = ({placeholder, setter, initialValue}) => {
     }));
   }, [value]);
 
-  // todo: validate input like , .
   const onChangeText = e => {
     lastReadRef.current.value = e;
     setter(prev => ({
@@ -45,7 +44,7 @@ const CompletedToday = ({placeholder, setter, initialValue}) => {
         search={false}
         setIsFocus={setIsFocus}
         setValue={setValue}
-        placeholder={placeholder}
+        placeholder={dropDownPlaceholder}
       />
 
       <View style={styles.btnContainer}>
@@ -54,7 +53,7 @@ const CompletedToday = ({placeholder, setter, initialValue}) => {
           inputMode="numeric"
           ref={lastReadRef}
           onChangeText={e => onChangeText(e)}
-          placeholder="Last Read Ayat"
+          placeholder={`${dropDownPlaceholder} no.`}
           inputContainerStyle={{
             width: convert(350),
             backgroundColor: colors.light.WHITE,

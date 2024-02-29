@@ -9,12 +9,12 @@ import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
 import {Input} from 'react-native-elements';
 
-const RegularTarget = ({placeholder, setter, initialValue}) => {
+const RegularTarget = ({dropDownPlaceholder, inputPlaceholder, setter}) => {
   const regularTargetRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
-  const [value, setValue] = useState(initialValue.unit);
+  const [value, setValue] = useState(null);
 
-  const data = [
+  const dropdown = [
     {label: 'Ayat', value: 'Ayat'},
     {label: 'Page', value: 'Page'},
     {label: 'Para', value: 'Para'},
@@ -25,6 +25,8 @@ const RegularTarget = ({placeholder, setter, initialValue}) => {
       ...prev,
       unit: value,
     }));
+
+    console.log('rendered!');
   }, [value]);
 
   const onChangeText = e => {
@@ -40,24 +42,23 @@ const RegularTarget = ({placeholder, setter, initialValue}) => {
     <View style={styles.root}>
       <DropDownPicker
         isFocus={isFocus}
-        data={data}
-        value={initialValue.unit}
+        data={dropdown}
+        value={value}
         search={false}
         setIsFocus={setIsFocus}
         setValue={setValue}
-        placeholder={placeholder}
+        placeholder={dropDownPlaceholder}
       />
 
       <View style={styles.targetInputContainer}>
         <View style={styles.targetInput}>
           <Input
-            // value={`${regularTargetRef.current?.value}`}
             keyboardType="number-pad"
             inputMode="numeric"
             maxLength={value === 'Para' ? 2 : 3}
             ref={regularTargetRef}
             onChangeText={e => onChangeText(e)}
-            placeholder={`${initialValue.value}`}
+            placeholder={`${inputPlaceholder}`}
             placeholderStyle={{color: colors.light.BLACK}}
             inputContainerStyle={{
               width: convert(350),

@@ -9,23 +9,23 @@ import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
 
-const LastRead = ({placeholder, setter, data, initialValue}) => {
+const LastRead = ({dropDownPlaceholder, inputPlaceholder, setter, data}) => {
   // console.log('initial value: ', initialValue);
   const lastReadRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState([]);
 
   //* setting last read surah name
-  useEffect(() => {
-    data.map((i, idx) => {
-      if (initialValue.unit === idx + 1) {
-        setValue(i.label);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   data.map((i, idx) => {
+  //     if (initialValue.unit === idx + 1) {
+  //       setValue(i.label);
+  //     }
+  //   });
+  // }, []);
 
-  //* finding surah index
   useEffect(() => {
+    //* finding surah index
     setter(prev => {
       let unitVal = 0;
 
@@ -59,7 +59,7 @@ const LastRead = ({placeholder, setter, data, initialValue}) => {
         search={true}
         setIsFocus={setIsFocus}
         setValue={setValue}
-        placeholder={placeholder}
+        placeholder={dropDownPlaceholder}
       />
 
       <View style={styles.btnContainer}>
@@ -68,9 +68,7 @@ const LastRead = ({placeholder, setter, data, initialValue}) => {
           inputMode="numeric"
           ref={lastReadRef}
           onChangeText={e => onChangeText(e)}
-          placeholder={
-            initialValue.value ? `Ayat ${initialValue.value}` : 'Last Read'
-          }
+          placeholder={`${inputPlaceholder}`}
           inputContainerStyle={{
             width: convert(350),
             backgroundColor: colors.light.WHITE,

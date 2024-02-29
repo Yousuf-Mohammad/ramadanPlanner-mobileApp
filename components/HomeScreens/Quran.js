@@ -56,25 +56,20 @@ const Quran = () => {
     setLoading(prev => !prev);
   }
 
-  // todo: START HERE!
-  // when updating the recitation info
-  // data that's fetched here should also be update accordingly!
   const {data = {}, error, isError, isLoading} = useGetRecitationInfoQuery();
   useEffect(() => {
-    (async () => {
-      try {
-        if (isError) {
-          console.error('SCREEN:QURAN: get recitation error: ', error);
-          setErr(error);
-        }
-
-        if (!isLoading) {
-          console.log('SCREEN:QURAN: get recitation data: ', data);
-        }
-      } catch (issue) {
-        console.error('SCREEN:QURAN: get recitation error: ', issue);
+    try {
+      if (isError) {
+        console.error('SCREEN:QURAN: get recitation error: ', error);
+        setErr(error);
       }
-    })();
+
+      if (!isLoading) {
+        console.log('SCREEN:QURAN: get recitation data: ', data);
+      }
+    } catch (issue) {
+      console.error('SCREEN:QURAN: get recitation error: ', issue);
+    }
   }, [isLoading, isError]);
 
   const handleRegularTargetErr = () => {
@@ -101,26 +96,33 @@ const Quran = () => {
   };
 
   const handleLastReadErr = () => {
-    //! todo: uncomment!
-    // if (lastread.unit.length === 0) {
-    //   return false;
-    // }
+    if (lastread.unit.length === 0) {
+      return false;
+    }
 
-    // if (lastread.value === '') {
-    //   return false;
-    // }
+    if (lastread.value === '') {
+      return false;
+    }
 
-    // let numOfAyats = 0;
+    let numOfAyats = 0;
 
-    // surahInfo.map((i, _idx) => {
-    //   if (i.label === lastread.unit) {
-    //     numOfAyats = i.ayats;
-    //   }
-    // });
+    if (JSON.stringify(data) === '{}') {
+      surahInfo.map((i, _idx) => {
+        if (i.label === lastread.unit) {
+          numOfAyats = i.ayats;
+        }
+      });
+    } else {
+      surahInfo.map((i, idx) => {
+        if (data.last_read_surah === idx + 1) {
+          numOfAyats = i.ayats;
+        }
+      });
+    }
 
-    // if (parseInt(lastread.value, 10) > numOfAyats) {
-    //   return false;
-    // }
+    if (parseInt(lastread.value, 10) > numOfAyats) {
+      return false;
+    }
 
     return true;
   };
@@ -178,6 +180,7 @@ const Quran = () => {
     const input = {
       unit: regularTarget.unit,
       last_read_surah: parseInt(lastread.unit, 10),
+      // todo: update last_read_value according to regular target value & completed today value
       last_read_value: parseInt(lastread.value, 10),
       target_value: parseInt(regularTarget.value, 10),
       completed_value: parseInt(today.value, 10),
@@ -203,19 +206,41 @@ const Quran = () => {
     }
   };
 
+  // todo: START HERE!
+  // when last read is not updated because the placeholder is correct
+  // but other values of data are updated, update data.last_read_unit with data.last_read_unit
+  function lastReadDropDownPlaceholder() {
+    let value = 0;
+
+    surahInfo.map((i, idx) => {
+      if (data.last_read_surah === idx + 1) {
+        value = i.value;
+      }
+    });
+
+    return value;
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.root}>
       <BgBox title={'Regular Target'}>
         <RegularTarget
-          placeholder={'ayat/page/para'}
+          dropDownPlaceholder={
+            data?.unit === undefined ? 'ayat/page/para' : data.unit
+          }
+          inputPlaceholder={
+            data?.target_value === undefined
+              ? 'Regular Target'
+              : data.target_value
+          }
           setter={setRegularTarget}
-          initialValue={{unit: data.unit, value: data.target_value}}
         />
       </BgBox>
 
       <BgBox title={'Last Read'}>
         <LastRead
-          placeholder={'Surah'}
+          dropDownPlaceholder={lastReadDropDownPlaceholder()}
+          inputPlaceholder={data.last_read_value}
           setter={setLastread}
           data={surahInfo}
           initialValue={{
@@ -227,9 +252,10 @@ const Quran = () => {
 
       <BgBox title={'Completed today'}>
         <CompletedToday
-          placeholder={'ayat/page/para'}
+          dropDownPlaceholder={
+            data?.unit === undefined ? 'ayat/page/para' : data.unit
+          }
           setter={setToday}
-          initialValue={{unit: data.unit}}
         />
       </BgBox>
 
