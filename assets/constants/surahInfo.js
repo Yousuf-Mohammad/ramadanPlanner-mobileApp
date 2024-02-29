@@ -1,3 +1,4 @@
+// todo: qa by a human
 export const surahInfo = [
   {label: 'Al-Fatiha', value: 'Al-Fatiha', ayats: 7},
   {label: 'Al-Baqarah', value: 'Al-Baqarah', ayats: 286},

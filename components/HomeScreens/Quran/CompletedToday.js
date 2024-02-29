@@ -9,7 +9,7 @@ import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
 
-const CompletedToday = ({dropDownPlaceholder, setter}) => {
+const CompletedToday = ({dropDownPlaceholder, inputPlaceholder, setter}) => {
   const lastReadRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState(null);
@@ -21,9 +21,13 @@ const CompletedToday = ({dropDownPlaceholder, setter}) => {
   ];
 
   useEffect(() => {
-    setter(prev => ({
-      ...prev,
-      unit: value,
+    setter(() => ({
+      unit: value === null ? dropDownPlaceholder : value,
+      value:
+        lastReadRef.current?.value === '' ||
+        lastReadRef.current?.value === undefined
+          ? inputPlaceholder
+          : lastReadRef.current?.value,
     }));
   }, [value]);
 
@@ -53,7 +57,11 @@ const CompletedToday = ({dropDownPlaceholder, setter}) => {
           inputMode="numeric"
           ref={lastReadRef}
           onChangeText={e => onChangeText(e)}
-          placeholder={`${dropDownPlaceholder} no.`}
+          placeholder={`${
+            dropDownPlaceholder === 'ayat/page/para'
+              ? 'value'
+              : inputPlaceholder
+          }`}
           inputContainerStyle={{
             width: convert(350),
             backgroundColor: colors.light.WHITE,

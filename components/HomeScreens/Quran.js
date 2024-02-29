@@ -28,6 +28,22 @@ const Quran = () => {
   // const authToken = useSelector(getAuthToken);
   const [setRecitationInfo] = useSetRecitationInfoMutation();
 
+  const {data = {}, error, isError, isLoading} = useGetRecitationInfoQuery();
+  useEffect(() => {
+    try {
+      if (isError) {
+        console.error('SCREEN:QURAN: get recitation error: ', error);
+        setErr(error);
+      }
+
+      if (!isLoading) {
+        console.log('SCREEN:QURAN: get recitation data: ', data);
+      }
+    } catch (issue) {
+      console.error('SCREEN:QURAN: get recitation error: ', issue);
+    }
+  }, [isLoading, isError]);
+
   //* REGULAR TARGET
   const [regularTarget, setRegularTarget] = useState({
     unit: '',
@@ -56,112 +72,161 @@ const Quran = () => {
     setLoading(prev => !prev);
   }
 
-  const {data = {}, error, isError, isLoading} = useGetRecitationInfoQuery();
-  useEffect(() => {
-    try {
-      if (isError) {
-        console.error('SCREEN:QURAN: get recitation error: ', error);
-        setErr(error);
-      }
+  function regularTargetDDPlaceholer() {
+    return data.unit === '' ? 'ayat/page/para' : data.unit;
+  }
 
-      if (!isLoading) {
-        console.log('SCREEN:QURAN: get recitation data: ', data);
-      }
-    } catch (issue) {
-      console.error('SCREEN:QURAN: get recitation error: ', issue);
-    }
-  }, [isLoading, isError]);
-
-  const handleRegularTargetErr = () => {
-    if (regularTarget.unit === null) {
-      return false;
-    }
-
-    if (regularTarget.value === '') {
-      return false;
-    }
-
-    if (!digitValidation(regularTarget.value)) {
-      return false;
-    }
-
-    if (regularTarget.unit === 'Ayat' && regularTarget.value > 286) {
-      return false;
-    }
-    if (regularTarget.unit === 'Para' && regularTarget.value > 30) {
-      return false;
-    }
-
-    return true;
+  const regularTargetInputPlaceholer = () => {
+    return data.target_value === null ? 'value' : data.target_value;
   };
 
-  const handleLastReadErr = () => {
-    if (lastread.unit.length === 0) {
-      return false;
-    }
+  const lastReadDDPlaceholder = () => {
+    let value = 'Surah';
 
-    if (lastread.value === '') {
-      return false;
-    }
-
-    let numOfAyats = 0;
-
-    if (JSON.stringify(data) === '{}') {
-      surahInfo.map((i, _idx) => {
-        if (i.label === lastread.unit) {
-          numOfAyats = i.ayats;
-        }
-      });
-    } else {
+    if (!(JSON.stringify(data) === '{}')) {
       surahInfo.map((i, idx) => {
         if (data.last_read_surah === idx + 1) {
-          numOfAyats = i.ayats;
+          value = i.value;
         }
       });
     }
 
-    if (parseInt(lastread.value, 10) > numOfAyats) {
+    return value;
+  };
+
+  const lastReadInputPlaceholer = () => {
+    return data?.last_read_value === null ? 'Ayat no.' : data.last_read_value;
+  };
+
+  function completedTodayInputPlaceholder() {
+    return data.completed_value === null ? 'value' : data.completed_value;
+  }
+
+  const handleRegularTargetErr = input => {
+    // console.log('regular target: ', input);
+    // console.log();
+    // console.log();
+    if (input.unit === '') {
+      return false;
+    }
+
+    if (input.unit === null) {
+      return false;
+    }
+
+    if (input.target_value === '') {
+      return false;
+    }
+
+    if (input.target_value === null) {
+      return false;
+    }
+
+    if (!digitValidation(input.target_value)) {
+      return false;
+    }
+
+    if (input.unit === 'Ayat' && input.target_value > 286) {
+      return false;
+    }
+
+    if (input.unit === 'Para' && input.target_value > 30) {
       return false;
     }
 
     return true;
   };
 
-  const handleSetTodayErr = () => {
-    if (today.unit === false) {
+  const handleLastReadErr = input => {
+    // console.log('last read: ', input);
+    // console.log();
+    // console.log();
+    if (input.last_read_surah === '') {
       return false;
     }
 
-    if (today.value === '') {
+    if (input.last_read_surah === null) {
       return false;
     }
 
-    if (!digitValidation(today.value)) {
+    if (isNaN(input.last_read_surah)) {
       return false;
     }
 
-    if (today.unit === 'Ayat' && today.value > 286) {
+    if (input.last_read_value === '') {
       return false;
     }
-    if (today.unit === 'Para' && today.value > 30) {
+
+    if (input.last_read_value === null) {
+      return false;
+    }
+
+    if (isNaN(input.last_read_value)) {
+      return false;
+    }
+
+    let numOfAyats = null;
+
+    surahInfo.map((i, idx) => {
+      if (input.last_read_surah === idx + 1) {
+        numOfAyats = i.ayats;
+      }
+    });
+
+    if (parseInt(input.last_read_value, 10) > numOfAyats) {
+      console.log('last read surah: ', lastread.unit, ' ayat: ', numOfAyats);
       return false;
     }
 
     return true;
   };
 
-  const inputError = () => {
-    if (!handleRegularTargetErr()) {
+  const handleSetTodayErr = input => {
+    // console.log('completed today: ', input);
+    // console.log();
+    // console.log();
+    if (input.unit === '') {
+      return false;
+    }
+
+    if (input.unit === null) {
+      return false;
+    }
+
+    if (input.completed_value === '') {
+      return false;
+    }
+
+    if (input.completed_value === null) {
+      return false;
+    }
+
+    if (!digitValidation(input.completed_value)) {
+      return false;
+    }
+
+    if (input.unit === 'Ayat' && input.completed_value > 286) {
+      return false;
+    }
+    if (input.unit === 'Para' && input.completed_value > 30) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const inputError = input => {
+    if (!handleRegularTargetErr(input)) {
       handleError('Invalid input in Regular Target Module');
       return true;
     }
 
-    if (!handleLastReadErr()) {
+    if (!handleLastReadErr(input)) {
       handleError('Invalid input in Last Read Module');
       return true;
     }
 
-    if (!handleSetTodayErr()) {
+    if (!handleSetTodayErr(input)) {
       handleError('Invalid input in Comppleted Today Module');
       return true;
     }
@@ -170,28 +235,35 @@ const Quran = () => {
   };
 
   const handleSubmit = async () => {
+    const input = {
+      unit: regularTarget.unit ?? data.unit,
+      last_read_surah: parseInt(lastread.unit ?? data.last_read_surah, 10),
+      // todo: update last_read_value according to regular target value & completed today value
+      last_read_value: parseInt(lastread.value ?? data.last_read_value, 10),
+      target_value: parseInt(regularTarget.value ?? data.target_value, 10),
+      completed_value: parseInt(today.value ?? data.completed_value, 10),
+    };
+
+    console.log('input: ', input);
+
     //* inputError -> true; error exists
-    if (inputError()) {
+    if (inputError(input)) {
       return;
     } else {
       handleError('');
     }
 
-    const input = {
-      unit: regularTarget.unit,
-      last_read_surah: parseInt(lastread.unit, 10),
-      // todo: update last_read_value according to regular target value & completed today value
-      last_read_value: parseInt(lastread.value, 10),
-      target_value: parseInt(regularTarget.value, 10),
-      completed_value: parseInt(today.value, 10),
-    };
+    // console.log(
+    //   'isInputEmpty: ',
+    //   isInputEmpty(parseInt(lastread.unit, 10), 'last_read_surah'),
+    // );
 
     try {
       // console.log('SCREEN: QURAN: info: ', input);
       loadingHandler();
       const response = await setRecitationInfo(input);
       loadingHandler();
-      console.log('SCREEN:QURAN: set recitation info: ', response);
+      // console.log('SCREEN:QURAN: set recitation info: ', response);
 
       if (response.error) {
         handleError('Error updating data');
@@ -206,55 +278,29 @@ const Quran = () => {
     }
   };
 
-  // todo: START HERE!
-  // when last read is not updated because the placeholder is correct
-  // but other values of data are updated, update data.last_read_unit with data.last_read_unit
-  function lastReadDropDownPlaceholder() {
-    let value = 0;
-
-    surahInfo.map((i, idx) => {
-      if (data.last_read_surah === idx + 1) {
-        value = i.value;
-      }
-    });
-
-    return value;
-  }
-
   return (
     <ScrollView contentContainerStyle={styles.root}>
       <BgBox title={'Regular Target'}>
         <RegularTarget
-          dropDownPlaceholder={
-            data?.unit === undefined ? 'ayat/page/para' : data.unit
-          }
-          inputPlaceholder={
-            data?.target_value === undefined
-              ? 'Regular Target'
-              : data.target_value
-          }
+          dropDownPlaceholder={regularTargetDDPlaceholer()}
+          inputPlaceholder={regularTargetInputPlaceholer()}
           setter={setRegularTarget}
         />
       </BgBox>
 
       <BgBox title={'Last Read'}>
         <LastRead
-          dropDownPlaceholder={lastReadDropDownPlaceholder()}
-          inputPlaceholder={data.last_read_value}
+          dropDownPlaceholder={lastReadDDPlaceholder()}
+          inputPlaceholder={lastReadInputPlaceholer()}
           setter={setLastread}
           data={surahInfo}
-          initialValue={{
-            unit: data.last_read_surah,
-            value: data.last_read_value,
-          }}
         />
       </BgBox>
 
       <BgBox title={'Completed today'}>
         <CompletedToday
-          dropDownPlaceholder={
-            data?.unit === undefined ? 'ayat/page/para' : data.unit
-          }
+          dropDownPlaceholder={regularTargetDDPlaceholer()}
+          inputPlaceholder={completedTodayInputPlaceholder()}
           setter={setToday}
         />
       </BgBox>

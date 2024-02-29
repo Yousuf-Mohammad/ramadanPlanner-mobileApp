@@ -21,12 +21,14 @@ const RegularTarget = ({dropDownPlaceholder, inputPlaceholder, setter}) => {
   ];
 
   useEffect(() => {
-    setter(prev => ({
-      ...prev,
-      unit: value,
+    setter(() => ({
+      unit: value === null ? dropDownPlaceholder : value,
+      value:
+        regularTargetRef.current.value === '' ||
+        regularTargetRef.current.value === undefined
+          ? inputPlaceholder
+          : regularTargetRef.current.value,
     }));
-
-    console.log('rendered!');
   }, [value]);
 
   const onChangeText = e => {

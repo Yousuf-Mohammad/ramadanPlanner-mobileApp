@@ -56,6 +56,7 @@ const Login = ({navigation}) => {
       loadingHandler();
 
       if (response.error) {
+        //! todo: remove in production
         const error =
           response.error.data.detail === 'Invalid credentials'
             ? 'Invalid credentials'

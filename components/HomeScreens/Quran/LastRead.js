@@ -10,40 +10,35 @@ import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
 
 const LastRead = ({dropDownPlaceholder, inputPlaceholder, setter, data}) => {
-  // console.log('initial value: ', initialValue);
   const lastReadRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
   const [value, setValue] = useState([]);
 
-  //* setting last read surah name
-  // useEffect(() => {
-  //   data.map((i, idx) => {
-  //     if (initialValue.unit === idx + 1) {
-  //       setValue(i.label);
-  //     }
-  //   });
-  // }, []);
-
   useEffect(() => {
     //* finding surah index
-    setter(prev => {
-      let unitVal = 0;
+    setter(() => {
+      let lastReadUnit = null;
 
       data.map((i, idx) => {
         if (i.value === value) {
-          unitVal = idx + 1;
+          lastReadUnit = idx + 1;
         }
       });
 
       return {
-        ...prev,
-        unit: unitVal,
+        unit: lastReadUnit,
+        value:
+          lastReadRef.current?.value === '' ||
+          lastReadRef.current?.value === undefined
+            ? inputPlaceholder
+            : lastReadRef.current?.value,
       };
     });
   }, [value]);
 
   const onChangeText = e => {
     lastReadRef.current.value = e;
+
     setter(prev => ({
       ...prev,
       value: lastReadRef.current.value,
