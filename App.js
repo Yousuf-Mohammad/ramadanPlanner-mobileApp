@@ -20,8 +20,6 @@ import CustomHeader from './components/CustomHeader/CustomHeader';
 // redux-store
 import {store} from './redux-toolkit/store/store';
 
-import EditTaskInput from './components/HomeScreens/DailyTarget/EditTaskInput';
-import ChangePassword from './components/AuthScreens/ForgotPassScreens/ChangePassword';
 import RequestNewPassword from './components/AuthScreens/ForgotPassScreens/RequestNewPassword';
 
 const Stack = createNativeStackNavigator();

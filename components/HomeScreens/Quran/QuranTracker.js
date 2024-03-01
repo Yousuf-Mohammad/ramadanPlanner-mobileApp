@@ -2,27 +2,27 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 // rtk-slices
-import {useGetSalahCheckListQuery} from '../../../redux-toolkit/features/salah-checklist/salah-checklist-slice';
+import {useGetRecitationInfoQuery} from '../../../redux-toolkit/features/recitation-Info/recitation-info-slice';
 // assets
-import {FontSize} from '../../../assets/fonts/fonts';
 import {colors} from '../../../assets/colors/colors';
+import {FontSize} from '../../../assets/fonts/fonts';
 // components
-import SalahTrackerView from './SalahTrackerView';
+import QuranTrackerView from './QuranTrackerView';
 
-// todo: optimize the rendering, try a different appraoch to this useState solution
-const SalahTracker = () => {
-  const {data = {}, error, isError, isLoading} = useGetSalahCheckListQuery();
+const QuranTracker = () => {
+  // todo:perf: memoize other components, so that useState doesn't affect them all
+  const {data = {}, error, isError, isLoading} = useGetRecitationInfoQuery();
   useEffect(() => {
     try {
       if (isError) {
-        console.error('SCREEN:SALAH: get salah checklist error: ', error);
+        console.error('SCREEN:QURAN: get recitation error: ', error);
       }
 
       if (!isLoading) {
-        // console.log('SCREEN:SALAH: get salah checklist data: ', data);
+        // console.log('SCREEN:QURAN: get recitation data: ', data);
       }
     } catch (issue) {
-      console.error("SCREEN:SALAH: 'CATCH' salah checklist error: ", issue);
+      console.error('SCREEN:QURAN: get recitation error: ', issue);
     }
   }, [isLoading, isError]);
 
@@ -36,12 +36,12 @@ const SalahTracker = () => {
 
   return (
     <>
-      <SalahTrackerView data={data} />
+      <QuranTrackerView data={data} />
     </>
   );
 };
 
-export default SalahTracker;
+export default QuranTracker;
 
 const styles = StyleSheet.create({
   loading: {

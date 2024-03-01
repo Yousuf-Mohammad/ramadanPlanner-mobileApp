@@ -5,7 +5,7 @@ import authTokenReducer from '../features/authentication/authToken';
 // rtk-slices
 import {arabicDateSlice} from '../features/arabic-date/arabic-date-slice';
 import {authSlice} from '../features/authentication/auth-slice';
-import {recitationInfoSlice} from '../features/recitationInfo/recitation-info-slice';
+import {recitationInfoSlice} from '../features/recitation-Info/recitation-info-slice';
 import {salahChecklistSlice} from '../features/salah-checklist/salah-checklist-slice';
 
 export const store = configureStore({

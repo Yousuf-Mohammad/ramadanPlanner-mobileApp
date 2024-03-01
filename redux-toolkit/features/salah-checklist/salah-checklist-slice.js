@@ -19,13 +19,12 @@ export const salahChecklistSlice = createApi({
   }),
   endpoints: builder => {
     return {
-      //   setRecitationInfo: builder.mutation({
-      //     query: data => ({
-      //       url: '/api/checklists/quran',
-      //       method: 'PATCH',
-      //       body: data,
-      //     }),
-      //   }),
+      setSalahCheckList: builder.mutation({
+        query: ({field, value}) => ({
+          url: `/api/checklists/salah/${field}/${value}`,
+          method: 'PATCH',
+        }),
+      }),
       getSalahCheckList: builder.query({
         query: () => '/api/checklists/salah',
       }),
@@ -33,4 +32,5 @@ export const salahChecklistSlice = createApi({
   },
 });
 
-export const {useGetSalahCheckListQuery} = salahChecklistSlice;
+export const {useGetSalahCheckListQuery, useSetSalahCheckListMutation} =
+  salahChecklistSlice;
