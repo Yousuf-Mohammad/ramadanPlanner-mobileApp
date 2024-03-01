@@ -6,22 +6,26 @@ import authTokenReducer from '../features/authentication/authToken';
 import {arabicDateSlice} from '../features/arabic-date/arabic-date-slice';
 import {authSlice} from '../features/authentication/auth-slice';
 import {recitationInfoSlice} from '../features/recitationInfo/recitation-info-slice';
+import {salahChecklistSlice} from '../features/salah-checklist/salah-checklist-slice';
 
 export const store = configureStore({
   reducer: {
     // auth
     [authSlice.reducerPath]: authSlice.reducer,
     authToken: authTokenReducer,
-    // data
+    // hijri-date
     arabicDate: arabicDate,
     [arabicDateSlice.reducerPath]: arabicDateSlice.reducer,
     // recitation-info
     [recitationInfoSlice.reducerPath]: recitationInfoSlice.reducer,
+    // salah-checklist
+    [salahChecklistSlice.reducerPath]: salahChecklistSlice.reducer,
   },
   middleware: getDefaultMiddhleware => [
     ...getDefaultMiddhleware(),
     arabicDateSlice.middleware,
     authSlice.middleware,
     recitationInfoSlice.middleware,
+    salahChecklistSlice.middleware,
   ],
 });
