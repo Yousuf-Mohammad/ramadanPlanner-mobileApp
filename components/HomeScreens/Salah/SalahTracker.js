@@ -1,6 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {
+  // ActivityIndicator,
+  StyleSheet,
+  View,
+} from 'react-native';
+import {ActivityIndicator} from 'react-native-paper';
 // rtk-slices
 import {useGetSalahCheckListQuery} from '../../../redux-toolkit/features/salah-checklist/salah-checklist-slice';
 // assets
@@ -29,7 +34,11 @@ const SalahTracker = () => {
   if (isLoading) {
     return (
       <View style={styles.loading.root}>
-        <Text style={styles.loading.txt}>Loading...</Text>
+        <ActivityIndicator
+          animating={true}
+          color={colors.light.PRIMARY}
+          size={'large'}
+        />
       </View>
     );
   }

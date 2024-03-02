@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {ActivityIndicator} from 'react-native-paper';
+// import {Dialog} from '@rneui/themed';
 // rtk-slices
 import {useGetRecitationInfoQuery} from '../../../redux-toolkit/features/recitation-Info/recitation-info-slice';
 // assets
@@ -29,7 +31,11 @@ const QuranTracker = () => {
   if (isLoading) {
     return (
       <View style={styles.loading.root}>
-        <Text style={styles.loading.txt}>Loading...</Text>
+        <ActivityIndicator
+          animating={true}
+          color={colors.light.PRIMARY}
+          size={'large'}
+        />
       </View>
     );
   }
