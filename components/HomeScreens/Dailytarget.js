@@ -1,4 +1,5 @@
-import React, {useRef, useState} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 // assets
@@ -7,8 +8,25 @@ import {FontSize} from '../../assets/fonts/fonts';
 import {convert} from '../../assets/dimensions/dimensions';
 // components
 import TasksContainer from './DailyTarget/TasksContainer';
+// rtk-slices
+import {useGetTodosQuery} from '../../redux-toolkit/features/daily-todolist/daily-todolist-slice';
 
 const Dailytarget = () => {
+  const {data = {}, error, isError, isLoading} = useGetTodosQuery();
+  useEffect(() => {
+    try {
+      if (isError) {
+        console.error('SCREEN:SALAH: get salah checklist error: ', error);
+      }
+
+      if (!isLoading) {
+        console.log('SCREEN:SALAH: get salah checklist data: ', data);
+      }
+    } catch (issue) {
+      console.error("SCREEN:SALAH: 'CATCH' salah checklist error: ", issue);
+    }
+  }, [isLoading, isError]);
+
   const taskRef = useRef(null);
   const [task, setTask] = useState([]);
   const handleSubmit = () => {
