@@ -37,19 +37,23 @@ const CustomHeader = () => {
   const {hijri = ''} = outerData?.data ?? {};
 
   useEffect(() => {
-    if (isError) {
-      // todo: handle error
-      console.error('SCREEN:HEADER: error fetching arabic date: ', error);
-      // return;
+    try {
+      if (isError) {
+        // todo: handle error
+        console.error('SCREEN:HEADER: error fetching arabic date: ', error);
+        // return;
+      }
+
+      // console.log('date params: ', hijri);
+      dispatch(setArabicDate(hijri));
+
+      // console.log('hijri date type in reducer: ', typeof day.day);
+
+      //* setting time -> iftar, seheri
+      getSuntimings(setTime);
+    } catch (issue) {
+      console.log('SALAH TRACKER: CATCH error: ', issue);
     }
-
-    // console.log('date params: ', hijri);
-    dispatch(setArabicDate(hijri));
-
-    // console.log('hijri date type in reducer: ', typeof day.day);
-
-    //* setting time -> iftar, seheri
-    getSuntimings(setTime);
   }, [isLoading, outerData]);
 
   // todo: seheri, iftar time integrate & logic, err handling

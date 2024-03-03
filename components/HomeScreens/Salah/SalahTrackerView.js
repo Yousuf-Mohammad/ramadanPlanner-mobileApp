@@ -41,13 +41,13 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'fardh_fajr',
       value: `${!previous}`,
-      // year: parseInt(day.year, 10),
-      // month: parseInt(day.month, 10),
-      // day: parseInt(day.day, 10),
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
 
-      year: 1445,
-      month: 8,
-      day: 20,
+      // year: 1445,
+      // month: 8,
+      // day: 20,
     });
 
     console.log('set response: ', response.error.data);

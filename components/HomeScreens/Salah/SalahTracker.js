@@ -21,22 +21,23 @@ import {getAuthToken} from '../../../redux-toolkit/features/authentication/authT
 // todo: optimize the rendering, try a different appraoch to this useState solution
 const SalahTracker = () => {
   const day = useSelector(getArabicDate);
-  // const token = useSelector(getAuthToken);
+
   const {
     data = {},
     error,
     isError,
     isLoading,
   } = useGetSalahCheckListQuery({
-    year: day.day,
-    month: day.month,
-    day: day.year,
+    year: parseInt(day.year, 10),
+    month: parseInt(day.monthNumber, 10),
+    day: parseInt(day.day, 10),
   });
 
   useEffect(() => {
     try {
       if (isError) {
-        console.error('SCREEN:SALAH: get salah checklist error: ', error.data);
+        console.error('SCREEN:SALAH: get salah checklist error: ', error);
+        // console.error('sei error!');
       }
 
       if (!isLoading) {
@@ -55,18 +56,15 @@ const SalahTracker = () => {
           color={colors.light.PRIMARY}
           size={'large'}
         />
-        {/* <Text style={{color: 'black'}}>{token}</Text> */}
       </View>
     );
   }
 
-  if (!isError) {
-    return (
-      <>
-        <SalahTrackerView data={data} />
-      </>
-    );
-  }
+  return (
+    <>
+      <SalahTrackerView data={data} />
+    </>
+  );
 };
 
 export default SalahTracker;

@@ -20,58 +20,35 @@ export const salahChecklistSlice = createApi({
   endpoints: builder => {
     return {
       setSalahCheckList: builder.mutation({
-        // console.log('inside the fcking slice: ', typeof year);
-        // return;
         query: ({field, value, year, month, day}) => ({
-          url: `/api/checklists/salah/${field}/${value}?`,
+          url: `/api/checklists/salah/${field}/${value}`,
           method: 'PATCH',
-
-          // params: {
-          //   year: year,
-          //   month: month,
-          //   day: day,
-          // },
-
           params: {
-            year: 1445,
-            month: 8,
-            day: 20,
+            year: year,
+            month: month,
+            day: day,
           },
-
-          // params: {
-          //   year: parseInt(year, 10),
-          //   month: parseInt(month, 10),
-          //   day: parseInt(day, 10),
-          // },
         }),
       }),
       getSalahCheckList: builder.query({
         //* hijri
-        query: ({year, month, day}) => ({
-          url: '/api/checklists/salah',
-          // url: `/api/checklists/quran?year=${parseInt(
-          //   year,
-          //   10,
-          // )}&month=${parseInt(month, 10)}&day=${parseInt(day, 10)}`,
-
-          // params: {
-          //   year: parseInt(year, 10),
-          //   month: parseInt(month, 10),
-          //   day: parseInt(day, 10),
-          // },
-
-          params: {
-            year: 1445,
-            month: 8,
-            day: 20,
-          },
-
-          // params: {
-          //   year: year,
-          //   month: month,
-          //   day: day,
-          // },
-        }),
+        query: ({year, month, day}) => {
+          // console.log('salah checklist slice: year:', typeof year);
+          // console.log('salah checklist slice: month:', typeof month);
+          // console.log('salah checklist slice: day:', typeof day);
+          // console.log('---------------------------------');
+          // console.log('salah checklist slice: year:', year);
+          // console.log('salah checklist slice: month:', month);
+          // console.log('salah checklist slice: day:', day);
+          return {
+            url: '/api/checklists/salah',
+            params: {
+              year: year,
+              month: month,
+              day: day,
+            },
+          };
+        },
       }),
     };
   },
