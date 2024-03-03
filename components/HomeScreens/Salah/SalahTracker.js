@@ -35,12 +35,14 @@ const SalahTracker = () => {
 
   useEffect(() => {
     try {
-      if (isError) {
-        console.error('SCREEN:SALAH: get salah checklist error: ', error);
-        // console.error('sei error!');
-      }
-
-      if (!isLoading) {
+      if (!isLoading && !(JSON.stringify(data) === '{}')) {
+        if (isError) {
+          console.error('SCREEN:SALAH: get salah checklist error: ', error);
+          console.error(
+            'SCREEN:SALAH: get salah checklist error: ',
+            error.data,
+          );
+        }
         // console.log('SCREEN:SALAH: get salah checklist data: ', data);
       }
     } catch (issue) {

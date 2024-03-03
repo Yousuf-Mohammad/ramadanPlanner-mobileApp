@@ -30,6 +30,8 @@ const SalahTrackerView = ({data}) => {
   const [salahDuha, setSalahDuha] = useState(data.sunnah_duha);
 
   const day = useSelector(getArabicDate);
+  // console.error("COMPONENT: SALAH TRACKER VIEW: date fetch <= store: ", day)
+
   const checkFajr = async () => {
     let previous = null;
 
@@ -44,13 +46,9 @@ const SalahTrackerView = ({data}) => {
       year: parseInt(day.year, 10),
       month: parseInt(day.monthNumber, 10),
       day: parseInt(day.day, 10),
-
-      // year: 1445,
-      // month: 8,
-      // day: 20,
     });
 
-    console.log('set response: ', response.error.data);
+    // console.log('SALAH TRACKER VIEW: set response: ', response);
   };
 
   const checkFajrSunnah = async () => {
@@ -64,6 +62,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'sunnah_fajr',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -78,6 +79,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'fardh_duhr',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -92,6 +96,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'sunnah_duhr',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -106,6 +113,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'fardh_asr',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -120,6 +130,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'sunnah_asr',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -134,6 +147,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'sunnah_asr',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -148,6 +164,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'sunnah_asr',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -162,6 +181,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'fardh_isha',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -176,6 +198,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'sunnah_isha',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -190,6 +215,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'sunnah_taraweeh',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -204,6 +232,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'sunnah_tahajjud',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
@@ -218,6 +249,9 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'sunnah_duha',
       value: `${!previous}`,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
     });
   };
 
