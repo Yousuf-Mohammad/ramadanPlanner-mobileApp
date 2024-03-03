@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {CheckBox} from 'react-native-elements';
+import {CheckBox, SearchBar} from 'react-native-elements';
+import {useSelector} from 'react-redux';
 // assets
 import {colors} from '../../../assets/colors/colors';
 import {convert} from '../../../assets/dimensions/dimensions';
@@ -9,10 +10,50 @@ import {FontSize} from '../../../assets/fonts/fonts';
 // rtk-slices
 import {useSetSalahCheckListMutation} from '../../../redux-toolkit/features/salah-checklist/salah-checklist-slice';
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
-import {useSelector} from 'react-redux';
 
 const SalahTrackerView = ({data}) => {
+  const day = useSelector(getArabicDate);
+  // console.error("COMPONENT: SALAH TRACKER VIEW: date fetch <= store: ", day)
+
   const [setSalahCheckList] = useSetSalahCheckListMutation();
+
+  //* handeling race conditions with queue
+  const stateUpdateQueue = useRef([]);
+  const [processingQueue, setProcessingQueue] = useState(false);
+
+  const addToQueue = (field, value) => {
+    stateUpdateQueue.current.push({field, value});
+    if (!processingQueue) {
+      processQueue();
+    }
+  };
+
+  const processQueue = async () => {
+    setProcessingQueue(true);
+
+    while (stateUpdateQueue.current.length > 0) {
+      const {field, value} = stateUpdateQueue.current[0];
+      try {
+        const response = await setSalahCheckList({
+          field,
+          value,
+          year: parseInt(day.year, 10),
+          month: parseInt(day.monthNumber, 10),
+          day: parseInt(day.day, 10),
+        });
+
+        // console.log("SALAH TRACKER RACE QUEUE: response: ", response);
+
+        // Remove processed state from the queue
+        stateUpdateQueue.current.shift();
+      } catch (error) {
+        console.error('Error updating state:', error);
+        break;
+      }
+    }
+
+    setProcessingQueue(false);
+  };
 
   //   todo: think of a alternative solution than using 13 useState in a single component
   const [fajr, setFajr] = useState(data.fardh_fajr);
@@ -29,230 +70,95 @@ const SalahTrackerView = ({data}) => {
   const [tahajjut, setTahajjut] = useState(data.sunnah_tahajjud);
   const [salahDuha, setSalahDuha] = useState(data.sunnah_duha);
 
-  const day = useSelector(getArabicDate);
-  // console.error("COMPONENT: SALAH TRACKER VIEW: date fetch <= store: ", day)
-
   const checkFajr = async () => {
-    let previous = null;
+    let newValue = !fajr;
 
-    setFajr(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'fardh_fajr',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
-
-    // console.log('SALAH TRACKER VIEW: set response: ', response);
+    setFajr(newValue);
+    addToQueue('fardh_fajr', `${newValue}`);
   };
 
   const checkFajrSunnah = async () => {
-    let previous = null;
+    let newValue = !fajrSunnah;
 
-    setFajrSunnah(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'sunnah_fajr',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setFajrSunnah(newValue);
+    addToQueue('sunnah_fajr', `${newValue}`);
   };
 
   const checkJohr = async () => {
-    let previous = null;
+    let newValue = !johr;
 
-    setJohr(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'fardh_duhr',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setJohr(newValue);
+    addToQueue('fardh_duhr', `${newValue}`);
   };
 
   const checkJohrSunnah = async () => {
-    let previous = null;
+    let newValue = !johrSunnah;
 
-    setJohrSunnah(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'sunnah_duhr',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setJohrSunnah(newValue);
+    addToQueue('sunnah_duhr', `${newValue}`);
   };
 
   const checkAsr = async () => {
-    let previous = null;
+    let newValue = !asr;
 
-    setAsr(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'fardh_asr',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setAsr(newValue);
+    addToQueue('fardh_asr', `${newValue}`);
   };
 
   const checkAsrSunnah = async () => {
-    let previous = null;
+    let newValue = !asrSunnah;
 
-    setAsrSunnah(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'sunnah_asr',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setAsrSunnah(newValue);
+    addToQueue('sunnah_asr', `${newValue}`);
   };
 
   const checkMagrib = async () => {
-    let previous = null;
+    let newValue = !magrib;
 
-    setMagrib(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'sunnah_asr',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setMagrib(newValue);
+    addToQueue('fardh_maghrib', `${newValue}`);
   };
 
   const checkMagribSunnah = async () => {
-    let previous = null;
+    let newValue = !magribSunnah;
 
-    setMagribSunnah(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'sunnah_asr',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setMagribSunnah(newValue);
+    addToQueue('sunnah_maghrib', `${newValue}`);
   };
 
   const checkEsha = async () => {
-    let previous = null;
+    let newValue = !esha;
 
-    setEsha(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'fardh_isha',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setEsha(newValue);
+    addToQueue('fardh_isha', `${newValue}`);
   };
 
   const checkEshaSunnah = async () => {
-    let previous = null;
+    let newValue = !eshaSunnah;
 
-    setEshaSunnah(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'sunnah_isha',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setEshaSunnah(newValue);
+    addToQueue('sunnah_isha', `${newValue}`);
   };
 
   const checkTaraweeh = async () => {
-    let previous = null;
+    let newValue = !taraweeh;
 
-    setTaraweeh(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'sunnah_taraweeh',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setTaraweeh(newValue);
+    addToQueue('sunnah_taraweeh', `${newValue}`);
   };
 
   const checkTahajjut = async () => {
-    let previous = null;
+    let newValue = !tahajjut;
 
-    setTahajjut(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'sunnah_tahajjud',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setTahajjut(newValue);
+    addToQueue('sunnah_tahajjud', `${newValue}`);
   };
 
   const checkSalahDuha = async () => {
-    let previous = null;
+    let newValue = !salahDuha;
 
-    setSalahDuha(prev => {
-      previous = prev;
-      return !prev;
-    });
-
-    const response = await setSalahCheckList({
-      field: 'sunnah_duha',
-      value: `${!previous}`,
-      year: parseInt(day.year, 10),
-      month: parseInt(day.monthNumber, 10),
-      day: parseInt(day.day, 10),
-    });
+    setSalahDuha(newValue);
+    addToQueue('sunnah_duha', `${newValue}`);
   };
 
   const salah = [
