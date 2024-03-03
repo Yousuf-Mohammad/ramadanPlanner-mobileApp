@@ -12,7 +12,7 @@ export const recitationInfoSlice = createApi({
       //* {"authorization": `Bearer ${authToken}`}
       headers.set('authorization', `Bearer ${authToken}`);
 
-      console.log('RECITATION INFO SLICE: headers: ', headers);
+      // console.log('RECITATION INFO SLICE: headers: ', headers);
 
       return headers;
     },
@@ -20,14 +20,26 @@ export const recitationInfoSlice = createApi({
   endpoints: builder => {
     return {
       setRecitationInfo: builder.mutation({
-        query: data => ({
+        query: ({data, year, month, day}) => ({
           url: '/api/checklists/quran',
+          params: {
+            year: year,
+            month: month,
+            day: day,
+          },
           method: 'PATCH',
           body: data,
         }),
       }),
       getRecitationInfo: builder.query({
-        query: () => '/api/checklists/quran',
+        query: ({year, month, day}) => ({
+          url: '/api/checklists/quran',
+          params: {
+            year: year,
+            month: month,
+            day: day,
+          },
+        }),
       }),
     };
   },

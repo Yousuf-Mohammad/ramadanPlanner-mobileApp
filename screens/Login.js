@@ -1,12 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 // components
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 // rtk-slices
 import {setAuthToken} from '../redux-toolkit/features/authentication/authToken';
-// assets, functions
-import {emailValidation, passwordValidation} from '../functions/validation';
+// functions
+import {
+  emailValidation,
+  passwordValidation,
+} from '../functions/validations/formValidation';
 import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-slice';
 
 const Login = ({navigation}) => {
@@ -22,14 +24,12 @@ const Login = ({navigation}) => {
   const validation = input => {
     // password validation
     if (!passwordValidation(input.password)) {
-      // console.log('here');
       setErr('Please enter valid email and password');
       return false;
     }
 
     // email validation
     if (!emailValidation(input.email)) {
-      // console.log('over here');
       setErr('Please enter a valid email address');
       return false;
     }

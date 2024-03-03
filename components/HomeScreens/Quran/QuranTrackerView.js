@@ -1,18 +1,26 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import {useSetRecitationInfoMutation} from '../../../redux-toolkit/features/recitation-Info/recitation-info-slice';
-import {digitValidation} from '../../../functions/validation';
-import {surahInfo} from '../../../assets/constants/surahInfo';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
-import {colors} from '../../../assets/colors/colors';
+import {useSelector} from 'react-redux';
+// rtk-slices
+import {useSetRecitationInfoMutation} from '../../../redux-toolkit/features/recitation-Info/recitation-info-slice';
+import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
+// functions
+import {inputError} from '../../../functions/validations/recitationValidation';
 import {SCREEN_HEIGHT, convert} from '../../../assets/dimensions/dimensions';
+// assets
+import {surahInfo} from '../../../assets/constants/surahInfo';
+import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
+// components
 import CompletedToday from './CompletedToday';
 import BgBox from './BgBox';
 import LastRead from './LastRead';
 import RegularTarget from './RegularTarget';
+import BottomSlider from '../../BottomSlider/BottomSlider';
 
 const QuranTrackerView = ({data}) => {
+  const day = useSelector(getArabicDate);
   const [setRecitationInfo] = useSetRecitationInfoMutation();
 
   //* REGULAR TARGET
@@ -73,138 +81,6 @@ const QuranTrackerView = ({data}) => {
     return data.completed_value === null ? 'value' : data.completed_value;
   }
 
-  const handleRegularTargetErr = input => {
-    // console.log('regular target: ', input);
-    // console.log();
-    // console.log();
-    if (input.unit === '') {
-      return false;
-    }
-
-    if (input.unit === null) {
-      return false;
-    }
-
-    if (input.target_value === '') {
-      return false;
-    }
-
-    if (input.target_value === null) {
-      return false;
-    }
-
-    if (!digitValidation(input.target_value)) {
-      return false;
-    }
-
-    if (input.unit === 'Ayat' && input.target_value > 286) {
-      return false;
-    }
-
-    if (input.unit === 'Para' && input.target_value > 30) {
-      return false;
-    }
-
-    return true;
-  };
-
-  const handleLastReadErr = input => {
-    // console.log('last read: ', input);
-    // console.log();
-    // console.log();
-    if (input.last_read_surah === '') {
-      return false;
-    }
-
-    if (input.last_read_surah === null) {
-      return false;
-    }
-
-    if (isNaN(input.last_read_surah)) {
-      return false;
-    }
-
-    if (input.last_read_value === '') {
-      return false;
-    }
-
-    if (input.last_read_value === null) {
-      return false;
-    }
-
-    if (isNaN(input.last_read_value)) {
-      return false;
-    }
-
-    let numOfAyats = null;
-
-    surahInfo.map((i, idx) => {
-      if (input.last_read_surah === idx + 1) {
-        numOfAyats = i.ayats;
-      }
-    });
-
-    if (parseInt(input.last_read_value, 10) > numOfAyats) {
-      console.log('last read surah: ', lastread.unit, ' ayat: ', numOfAyats);
-      return false;
-    }
-
-    return true;
-  };
-
-  const handleSetTodayErr = input => {
-    // console.log('completed today: ', input);
-    // console.log();
-    // console.log();
-    if (input.unit === '') {
-      return false;
-    }
-
-    if (input.unit === null) {
-      return false;
-    }
-
-    if (input.completed_value === '') {
-      return false;
-    }
-
-    if (input.completed_value === null) {
-      return false;
-    }
-
-    if (!digitValidation(input.completed_value)) {
-      return false;
-    }
-
-    if (input.unit === 'Ayat' && input.completed_value > 286) {
-      return false;
-    }
-    if (input.unit === 'Para' && input.completed_value > 30) {
-      return false;
-    }
-
-    return true;
-  };
-
-  const inputError = input => {
-    if (!handleRegularTargetErr(input)) {
-      handleError('Invalid input in Regular Target Module');
-      return true;
-    }
-
-    if (!handleLastReadErr(input)) {
-      handleError('Invalid input in Last Read Module');
-      return true;
-    }
-
-    if (!handleSetTodayErr(input)) {
-      handleError('Invalid input in Comppleted Today Module');
-      return true;
-    }
-
-    return false;
-  };
-
   const handleSubmit = async () => {
     const input = {
       unit: regularTarget.unit ?? data.unit,
@@ -215,10 +91,10 @@ const QuranTrackerView = ({data}) => {
       completed_value: parseInt(today.value ?? data.completed_value, 10),
     };
 
-    console.log('input: ', input);
+    // console.log('input: ', input);
 
     //* inputError -> true; error exists
-    if (inputError(input)) {
+    if (inputError(input, handleError)) {
       return;
     } else {
       handleError('');
@@ -227,7 +103,12 @@ const QuranTrackerView = ({data}) => {
     try {
       // console.log('SCREEN: QURAN: info: ', input);
       loadingHandler();
-      const response = await setRecitationInfo(input);
+      const response = await setRecitationInfo({
+        data: input,
+        year: parseInt(day.year, 10),
+        month: parseInt(day.monthNumber, 10),
+        day: parseInt(day.day, 10),
+      });
       loadingHandler();
       // console.log('SCREEN:QURAN: set recitation info: ', response);
 
@@ -288,6 +169,8 @@ const QuranTrackerView = ({data}) => {
         containerStyle={styles.btn.containerStyle}
         onPress={() => handleSubmit()}
       />
+
+      <BottomSlider title={"Today's dua"} />
     </ScrollView>
   );
 };

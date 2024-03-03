@@ -12,7 +12,7 @@ export const salahChecklistSlice = createApi({
       //* {"authorization": `Bearer ${authToken}`}
       headers.set('authorization', `Bearer ${authToken}`);
 
-      console.log('SALAH SLICE: headers: ', authToken);
+      // console.log('SALAH SLICE: headers: ', authToken);
 
       return headers;
     },
@@ -33,13 +33,6 @@ export const salahChecklistSlice = createApi({
       getSalahCheckList: builder.query({
         //* hijri
         query: ({year, month, day}) => {
-          // console.log('salah checklist slice: year:', typeof year);
-          // console.log('salah checklist slice: month:', typeof month);
-          // console.log('salah checklist slice: day:', typeof day);
-          // console.log('---------------------------------');
-          // console.log('salah checklist slice: year:', year);
-          // console.log('salah checklist slice: month:', month);
-          // console.log('salah checklist slice: day:', day);
           return {
             url: '/api/checklists/salah',
             params: {

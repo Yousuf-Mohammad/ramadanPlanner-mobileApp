@@ -5,10 +5,10 @@ import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 import {useRegistrationMutation} from '../redux-toolkit/features/authentication/auth-slice';
 // functions
 import {
+  passwordValidation,
   emailValidation,
   nameValidation,
-  passwordValidation,
-} from '../functions/validation';
+} from '../functions/validations/formValidation';
 
 const Register = ({navigation}) => {
   const [err, setErr] = useState('');

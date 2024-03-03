@@ -1,17 +1,18 @@
 import React, {useRef, useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button, Input} from 'react-native-elements';
-import {useDispatch} from 'react-redux';
+// rtk-slices
+import {useResetPassReqMutation} from '../../../redux-toolkit/features/authentication/auth-slice';
 // assets
 import {colors} from '../../../assets/colors/colors';
 import {convert} from '../../../assets/dimensions/dimensions';
 import {FontSize} from '../../../assets/fonts/fonts';
-import {useResetPassReqMutation} from '../../../redux-toolkit/features/authentication/auth-slice';
-import {emailValidation} from '../../../functions/validation';
+// functions
+import {emailValidation} from '../../../functions/validations/formValidation';
 
 const RequestNewPassword = () => {
-  const dispatch = useDispatch();
   const [resetPassReq] = useResetPassReqMutation();
+
   const emailRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState('');

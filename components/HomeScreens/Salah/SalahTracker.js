@@ -1,11 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
-import {
-  // ActivityIndicator,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 // rtk-slices
 import {useGetSalahCheckListQuery} from '../../../redux-toolkit/features/salah-checklist/salah-checklist-slice';
@@ -16,7 +11,6 @@ import {colors} from '../../../assets/colors/colors';
 import SalahTrackerView from './SalahTrackerView';
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
 import {useSelector} from 'react-redux';
-import {getAuthToken} from '../../../redux-toolkit/features/authentication/authToken';
 
 // todo: optimize the rendering, try a different appraoch to this useState solution
 const SalahTracker = () => {
