@@ -16,14 +16,20 @@ const Dailytarget = () => {
   useEffect(() => {
     try {
       if (isError) {
-        console.error('SCREEN:SALAH: get salah checklist error: ', error);
+        console.error(
+          'SCREEN:DAILY TARGET: get salah checklist error: ',
+          error,
+        );
       }
 
       if (!isLoading) {
-        console.log('SCREEN:SALAH: get salah checklist data: ', data);
+        // console.log('SCREEN:DAILY TARGET: get salah checklist data: ', data);
       }
     } catch (issue) {
-      console.error("SCREEN:SALAH: 'CATCH' salah checklist error: ", issue);
+      console.error(
+        "SCREEN:DAILY TARGET: 'CATCH' salah checklist error: ",
+        issue,
+      );
     }
   }, [isLoading, isError]);
 

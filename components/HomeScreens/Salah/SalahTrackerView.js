@@ -8,6 +8,8 @@ import {convert} from '../../../assets/dimensions/dimensions';
 import {FontSize} from '../../../assets/fonts/fonts';
 // rtk-slices
 import {useSetSalahCheckListMutation} from '../../../redux-toolkit/features/salah-checklist/salah-checklist-slice';
+import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
+import {useSelector} from 'react-redux';
 
 const SalahTrackerView = ({data}) => {
   const [setSalahCheckList] = useSetSalahCheckListMutation();
@@ -27,6 +29,7 @@ const SalahTrackerView = ({data}) => {
   const [tahajjut, setTahajjut] = useState(data.sunnah_tahajjud);
   const [salahDuha, setSalahDuha] = useState(data.sunnah_duha);
 
+  const day = useSelector(getArabicDate);
   const checkFajr = async () => {
     let previous = null;
 
@@ -38,7 +41,16 @@ const SalahTrackerView = ({data}) => {
     const response = await setSalahCheckList({
       field: 'fardh_fajr',
       value: `${!previous}`,
+      // year: parseInt(day.year, 10),
+      // month: parseInt(day.month, 10),
+      // day: parseInt(day.day, 10),
+
+      year: 1445,
+      month: 8,
+      day: 20,
     });
+
+    console.log('set response: ', response.error.data);
   };
 
   const checkFajrSunnah = async () => {

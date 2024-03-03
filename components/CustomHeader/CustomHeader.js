@@ -39,17 +39,16 @@ const CustomHeader = () => {
   useEffect(() => {
     if (isError) {
       // todo: handle error
-      console.error('SCREEN:LOGIN: error fetching arabic date: ', error);
+      console.error('SCREEN:HEADER: error fetching arabic date: ', error);
       // return;
     }
 
-    // setting the date -> redux
+    // console.log('date params: ', hijri);
     dispatch(setArabicDate(hijri));
 
-    // setting the date -> header
-    // setDate(day);
+    // console.log('hijri date type in reducer: ', typeof day.day);
 
-    // setting time -> iftar, seheri
+    //* setting time -> iftar, seheri
     getSuntimings(setTime);
   }, [isLoading, outerData]);
 

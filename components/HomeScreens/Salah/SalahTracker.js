@@ -3,6 +3,7 @@ import React, {useEffect} from 'react';
 import {
   // ActivityIndicator,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
@@ -13,14 +14,29 @@ import {FontSize} from '../../../assets/fonts/fonts';
 import {colors} from '../../../assets/colors/colors';
 // components
 import SalahTrackerView from './SalahTrackerView';
+import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
+import {useSelector} from 'react-redux';
+import {getAuthToken} from '../../../redux-toolkit/features/authentication/authToken';
 
 // todo: optimize the rendering, try a different appraoch to this useState solution
 const SalahTracker = () => {
-  const {data = {}, error, isError, isLoading} = useGetSalahCheckListQuery();
+  const day = useSelector(getArabicDate);
+  // const token = useSelector(getAuthToken);
+  const {
+    data = {},
+    error,
+    isError,
+    isLoading,
+  } = useGetSalahCheckListQuery({
+    year: day.day,
+    month: day.month,
+    day: day.year,
+  });
+
   useEffect(() => {
     try {
       if (isError) {
-        console.error('SCREEN:SALAH: get salah checklist error: ', error);
+        console.error('SCREEN:SALAH: get salah checklist error: ', error.data);
       }
 
       if (!isLoading) {
@@ -39,15 +55,18 @@ const SalahTracker = () => {
           color={colors.light.PRIMARY}
           size={'large'}
         />
+        {/* <Text style={{color: 'black'}}>{token}</Text> */}
       </View>
     );
   }
 
-  return (
-    <>
-      <SalahTrackerView data={data} />
-    </>
-  );
+  if (!isError) {
+    return (
+      <>
+        <SalahTrackerView data={data} />
+      </>
+    );
+  }
 };
 
 export default SalahTracker;

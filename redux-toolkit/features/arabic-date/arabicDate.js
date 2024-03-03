@@ -4,6 +4,7 @@ const initialState = {
   value: {
     day: '',
     month: '',
+    year: '',
   },
 };
 
@@ -14,6 +15,7 @@ export const arabicDateSlice = createSlice({
     setArabicDate: (state, action) => {
       state.value.day = action.payload?.day;
       state.value.month = action.payload?.month?.en;
+      state.value.year = action.payload?.year;
     },
   },
 });

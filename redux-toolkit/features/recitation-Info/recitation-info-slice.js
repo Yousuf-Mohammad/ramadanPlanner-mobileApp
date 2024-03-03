@@ -12,7 +12,7 @@ export const recitationInfoSlice = createApi({
       //* {"authorization": `Bearer ${authToken}`}
       headers.set('authorization', `Bearer ${authToken}`);
 
-      // console.log('RECITATION INFO SLICE: headers: ', headers);
+      console.log('RECITATION INFO SLICE: headers: ', headers);
 
       return headers;
     },

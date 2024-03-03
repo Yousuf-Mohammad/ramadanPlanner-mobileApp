@@ -67,6 +67,7 @@ const Login = ({navigation}) => {
 
       if (response.data) {
         if (response.data.access_token) {
+          // console.log('token? :', response.data.access_token);
           disptach(setAuthToken(response.data.access_token));
           navigation.navigate('Home');
         }

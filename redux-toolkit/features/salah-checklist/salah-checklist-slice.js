@@ -12,7 +12,7 @@ export const salahChecklistSlice = createApi({
       //* {"authorization": `Bearer ${authToken}`}
       headers.set('authorization', `Bearer ${authToken}`);
 
-      // console.log('RECITATION INFO SLICE: headers: ', headers);
+      console.log('SALAH SLICE: headers: ', authToken);
 
       return headers;
     },
@@ -20,13 +20,58 @@ export const salahChecklistSlice = createApi({
   endpoints: builder => {
     return {
       setSalahCheckList: builder.mutation({
-        query: ({field, value}) => ({
-          url: `/api/checklists/salah/${field}/${value}`,
+        // console.log('inside the fcking slice: ', typeof year);
+        // return;
+        query: ({field, value, year, month, day}) => ({
+          url: `/api/checklists/salah/${field}/${value}?`,
           method: 'PATCH',
+
+          // params: {
+          //   year: year,
+          //   month: month,
+          //   day: day,
+          // },
+
+          params: {
+            year: 1445,
+            month: 8,
+            day: 20,
+          },
+
+          // params: {
+          //   year: parseInt(year, 10),
+          //   month: parseInt(month, 10),
+          //   day: parseInt(day, 10),
+          // },
         }),
       }),
       getSalahCheckList: builder.query({
-        query: () => '/api/checklists/salah',
+        //* hijri
+        query: ({year, month, day}) => ({
+          url: '/api/checklists/salah',
+          // url: `/api/checklists/quran?year=${parseInt(
+          //   year,
+          //   10,
+          // )}&month=${parseInt(month, 10)}&day=${parseInt(day, 10)}`,
+
+          // params: {
+          //   year: parseInt(year, 10),
+          //   month: parseInt(month, 10),
+          //   day: parseInt(day, 10),
+          // },
+
+          params: {
+            year: 1445,
+            month: 8,
+            day: 20,
+          },
+
+          // params: {
+          //   year: year,
+          //   month: month,
+          //   day: day,
+          // },
+        }),
       }),
     };
   },
