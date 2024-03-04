@@ -2,6 +2,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
+import {useSelector} from 'react-redux';
 // assets
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
@@ -9,47 +10,117 @@ import {convert} from '../../assets/dimensions/dimensions';
 // components
 import TasksContainer from './DailyTarget/TasksContainer';
 // rtk-slices
-import {useGetTodosQuery} from '../../redux-toolkit/features/daily-todolist/daily-todolist-slice';
+import {
+  useAddTodoMutation,
+  useGetTodosQuery,
+  useUpdateTodoMutation,
+} from '../../redux-toolkit/features/daily-todolist/daily-todolist-slice';
+import {getArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
 
 const Dailytarget = () => {
-  const {data = {}, error, isError, isLoading} = useGetTodosQuery();
-  useEffect(() => {
-    try {
-      if (isError) {
-        console.error(
-          'SCREEN:DAILY TARGET: get salah checklist error: ',
-          error,
-        );
-      }
+  const day = useSelector(getArabicDate);
 
-      if (!isLoading) {
-        // console.log('SCREEN:DAILY TARGET: get salah checklist data: ', data);
-      }
-    } catch (issue) {
-      console.error(
-        "SCREEN:DAILY TARGET: 'CATCH' salah checklist error: ",
-        issue,
-      );
-    }
-  }, [isLoading, isError]);
+  //* handeling race conditions with queue
+  const stateUpdateQueue = useRef([]);
+  const [processingQueue, setProcessingQueue] = useState(false);
 
-  const taskRef = useRef(null);
-  const [task, setTask] = useState([]);
-  const handleSubmit = () => {
-    const newTask = taskRef.current.value;
-
-    if (!(newTask === '')) {
-      setTask(prevTask => [...prevTask, {name: newTask, complete: false}]);
-      // reset value
-      taskRef.current.value = '';
-      // reset input field
-      taskRef.current.clear();
+  const addToQueue = (taskID, newValue) => {
+    stateUpdateQueue.current.push({taskID, newValue});
+    if (!processingQueue) {
+      processQueue();
     }
   };
 
-  const handleTaskCompletion = idx => {
+  const processQueue = async () => {
+    setProcessingQueue(true);
+
+    while (stateUpdateQueue.current.length > 0) {
+      const {taskID, newValue} = stateUpdateQueue.current[0];
+      try {
+        const response = await updateTodo({
+          id: taskID,
+          value: newValue,
+          year: parseInt(day.year, 10),
+          month: parseInt(day.monthNumber, 10),
+          day: parseInt(day.day, 10),
+        });
+        // console.log('TODO LIST TRACKER RACE QUEUE: response: ', response);
+
+        // Remove processed state from the queue
+        stateUpdateQueue.current.shift();
+      } catch (issue) {
+        console.error('Error updating state:', issue);
+        break;
+      }
+    }
+
+    setProcessingQueue(false);
+  };
+
+  const {
+    data = {},
+    error,
+    isError,
+    isLoading,
+  } = useGetTodosQuery({
+    year: parseInt(day.year, 10),
+    month: parseInt(day.monthNumber, 10),
+    day: parseInt(day.day, 10),
+  });
+  const [addTodo] = useAddTodoMutation();
+  const [updateTodo] = useUpdateTodoMutation();
+
+  const taskRef = useRef(null);
+  const [task, setTask] = useState([]);
+
+  useEffect(() => {
+    try {
+      if (!isLoading && !(JSON.stringify(data) === '{}')) {
+        if (isError) {
+          console.error('SCREEN:DAILY TARGET: get todolist error: ', error);
+        }
+
+        // console.log('screen:daily target: get todolist data: ', data.items);
+        setTask(data.items);
+      }
+    } catch (issue) {
+      console.error("SCREEN:DAILY TARGET: 'CATCH' todolist error: ", issue);
+    }
+  }, [isLoading, isError]);
+
+  const handleSubmit = async () => {
+    const newTask = taskRef.current.value;
+
+    if (newTask === '') {
+      // reset input field
+      taskRef.current.clear();
+      return;
+    }
+
+    setTask(prevTask => [...prevTask, {name: newTask, is_completed: false}]);
+
+    // reset input field
+    taskRef.current.value = '';
+    taskRef.current.clear();
+
+    //! todo: queue and try-catch
+    const response = await addTodo({
+      value: newTask,
+      year: parseInt(day.year, 10),
+      month: parseInt(day.monthNumber, 10),
+      day: parseInt(day.day, 10),
+    });
+  };
+
+  const handleTaskCompletion = (idx, taskID) => {
+    let newValue = !task[idx].is_completed;
+
     setTask(prevTask => {
-      const updatedTask = {...prevTask[idx], complete: !prevTask[idx].complete};
+      const updatedTask = {
+        ...prevTask[idx],
+        is_completed: newValue,
+      };
+      // console.log('comp:Daily Target: updatedTask: ', updatedTask);
 
       return [
         ...prevTask.slice(0, idx),
@@ -57,6 +128,8 @@ const Dailytarget = () => {
         ...prevTask.slice(idx + 1),
       ];
     });
+
+    addToQueue(taskID, newValue);
   };
 
   const handleTaskEdit = (idx, updatedName) => {
@@ -98,6 +171,7 @@ const Dailytarget = () => {
           // errorMessage={errorMessage ? errorMessage : ''}
         />
       </View>
+
       <Button
         title={'+ Add task'}
         loading={false}

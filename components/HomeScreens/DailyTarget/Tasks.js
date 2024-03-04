@@ -12,10 +12,10 @@ const Tasks = ({
   idx,
   name,
   complete,
-  lastItem,
   handleTaskCompletion,
   handleTaskDeletion,
   handleTaskEdit,
+  taskID,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const handleEditPress = () => {
@@ -55,10 +55,11 @@ const Tasks = ({
           <View style={styles.smallBox}>
             <CheckBox
               checked={complete}
-              onPress={() => handleTaskCompletion(idx)}
+              onPress={() => handleTaskCompletion(idx, taskID)}
               checkedColor={colors.light.PRIMARY}
             />
           </View>
+
           <TaskInput
             idx={idx}
             name={name}

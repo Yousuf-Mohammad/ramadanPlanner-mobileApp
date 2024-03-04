@@ -19,23 +19,42 @@ export const dailyTodolistSlice = createApi({
   }),
   endpoints: builder => {
     return {
-      //   addTodo: builder.mutation({
-      //     query: ({field, value}) => ({
-      //       url: `/api/checklists/salah/${field}/${value}`,
-      //       method: 'PATCH',
-      //     }),
-      //   }),
       getTodos: builder.query({
-        query: () => '/api/checklists/activities',
+        query: ({year, month, day}) => ({
+          url: '/api/checklists/activities',
+          params: {
+            year: year,
+            month: month,
+            day: day,
+          },
+        }),
       }),
-      //   updateTodo: builder.mutation({
-      //     query: ({field, value}) => ({
-      //       url: `/api/checklists/salah/${field}/${value}`,
-      //       method: 'PATCH',
-      //     }),
-      //   }),
+      addTodo: builder.mutation({
+        query: ({value, year, month, day}) => ({
+          url: '/api/checklists/activities',
+          params: {
+            year: year,
+            month: month,
+            day: day,
+          },
+          method: 'POST',
+          body: {custom_name: value},
+        }),
+      }),
+      updateTodo: builder.mutation({
+        query: ({id, value, year, month, day}) => ({
+          url: `/api/checklists/activities/${id}/${value}`,
+          params: {
+            year: year,
+            month: month,
+            day: day,
+          },
+          method: 'PATCH',
+        }),
+      }),
     };
   },
 });
 
-export const {useGetTodosQuery} = dailyTodolistSlice;
+export const {useGetTodosQuery, useAddTodoMutation, useUpdateTodoMutation} =
+  dailyTodolistSlice;

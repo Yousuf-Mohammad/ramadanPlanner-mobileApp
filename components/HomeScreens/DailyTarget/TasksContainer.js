@@ -11,9 +11,7 @@ const TasksContainer = ({
   handleTaskDeletion,
   handleTaskEdit,
 }) => {
-  // todo: replace all scrollviews with flat/flash list
   // todo: replace all onPress to regular functions instead of arrow functions. r&d about the scoping issue?
-  // todo: HERMES
   return (
     <ScrollView contentContainerStyle={styles.tasklist}>
       {typeof task === 'undefined' || task.length === 0 ? (
@@ -27,8 +25,9 @@ const TasksContainer = ({
               key={idx}
               name={i.name}
               idx={idx}
+              taskID={i.id}
               lastItem={i === task.length - 1 ? true : false}
-              complete={i.complete}
+              complete={i.is_completed}
               handleTaskCompletion={handleTaskCompletion}
               handleTaskDeletion={handleTaskDeletion}
               handleTaskEdit={handleTaskEdit}
