@@ -9,6 +9,8 @@
     "start": "react-native start",
     "test": "jest",
     "cache-reset": "npx react-native start --reset-cache",
+    "gclean": "cd android && ./gradlew clean",
+    "clean": "yarn gclean && yarn cache-reset",
     "build-android-release": "npx react-native build-android --mode=release",
     "apk-android-release": "cd android && ./gradlew assembleRelease"
   },

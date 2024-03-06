@@ -9,24 +9,47 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
+import {Text, View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Provider} from 'react-redux';
 // screens
 import Register from './screens/Register';
 import Login from './screens/Login';
 import Home from './screens/Home';
+import RequestNewPassword from './components/AuthScreens/ForgotPassScreens/RequestNewPassword';
+import ChangePassword from './components/AuthScreens/ForgotPassScreens/ChangePassword';
 // components
 import CustomHeader from './components/CustomHeader/CustomHeader';
 // redux-store
 import {store} from './redux-toolkit/store/store';
-
-import RequestNewPassword from './components/AuthScreens/ForgotPassScreens/RequestNewPassword';
+import FallbackScreens from './components/FallBackScreens/FallbackScreens';
 
 const Stack = createNativeStackNavigator();
 
+const linking = {
+  prefixes: ['https://ramadan-planner-frontend.vercel.app'],
+  config: {
+    screens: {
+      ChangePass: 'password-reset/Mg/:params',
+    },
+  },
+};
+
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      linking={linking}
+      fallback={
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'white',
+          }}>
+          <Text>{'Loading...'}</Text>
+        </View>
+      }>
       <Provider store={store}>
         <Stack.Navigator>
           <Stack.Screen
@@ -44,11 +67,11 @@ const App = () => {
             name="ReqPassChange"
             component={RequestNewPassword}
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             options={{headerShown: false}}
             name="ChangePass"
             component={ChangePassword}
-          /> */}
+          />
           <Stack.Screen
             name="Home"
             component={Home}
@@ -57,8 +80,6 @@ const App = () => {
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
-    // <ChangePassword />
-    // <RequestNewPassword />
   );
 };
 

@@ -1,0 +1,10 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.ramadanplanner_mobileapp",
+      "sha256_cert_fingerprints":
+      ["BA:8A:D1:73:EE:EB:3A:50:35:1F:BE:D3:9C:7E:C1:86:CA:C3:71:EB:03:79:23:2D:6E:4A:1C:38:00:C0:4F:08"]
+    }
+}]
+

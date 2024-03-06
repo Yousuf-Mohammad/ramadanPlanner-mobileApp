@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useRoute} from '@react-navigation/native';
 import {Button, Input} from 'react-native-elements';
 // assets
 import {colors} from '../../../assets/colors/colors';
@@ -7,6 +8,11 @@ import {convert} from '../../../assets/dimensions/dimensions';
 import {FontSize} from '../../../assets/fonts/fonts';
 
 const ChangePassword = () => {
+  const route = useRoute();
+  const {params} = route.params;
+
+  console.log('SCREEN: CHANGE PASS: getting info: ', params);
+
   const oldPassRef = useRef(null);
   const newPassRef = useRef(null);
   const [loading, setLoading] = useState(false);
