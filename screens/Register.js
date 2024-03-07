@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 // components
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 // rtk-slices
@@ -14,6 +14,14 @@ const Register = ({navigation}) => {
   const loadingHandler = () => {
     setLoading(prev => !prev);
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setErr('');
+    }, 3500);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   // todo: pref: 1. useMemo, useCallback, lazy loading
   // remove console.logs -> use lib
@@ -67,7 +75,7 @@ const Register = ({navigation}) => {
   return (
     <AuthenticationForm
       title={'Register'}
-      btnTitle={'Register'}
+      btnTitle={'Sign Up'}
       onSubmit={onSubmit}
       handleLoginNav={handleLoginNav}
       err={err}

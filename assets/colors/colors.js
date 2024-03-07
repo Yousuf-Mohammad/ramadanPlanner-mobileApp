@@ -6,9 +6,10 @@ export const colors = {
     SECONDARY: '#8eb69b',
     CONTRAST: '#daf1dd',
     ACCENT: '#f1ae17',
+    WARNING: '#900',
     // ACCENT: 'gold',
     BLACK: 'black',
     WHITE: 'white',
-    ERROR: 'red',
+    ERROR: '#900',
   },
 };

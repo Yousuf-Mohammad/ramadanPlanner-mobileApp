@@ -43,22 +43,30 @@ const CustomTextInput = ({
       height: convert(120),
       borderRadius: convert(100),
       color: colors.dark.CONTRAST,
+      fontFamily: 'Montserrat-Light',
       // borderWidth: 1,
       // borderColor: 'blue',
     },
     hint: {
       container: {
         width: convert(700),
-        //  borderWidth: 1, borderColor: 'blue'
       },
       txt: {
-        // marginVertical: convert(5),
+        fontFamily: 'Montserrat-Regular',
         marginTop: convert(5),
         marginBottom: convert(-30),
         fontSize: FontSize.hint,
         color: colors.dark.CONTRAST,
         opacity: 0.5,
       },
+    },
+    eye: {
+      height: convert(100),
+      width: convert(100),
+      alignItems: 'center',
+      justifyContent: 'center',
+      // borderWidth: 1,
+      // borderColor: 'red',
     },
   });
 
@@ -80,7 +88,9 @@ const CustomTextInput = ({
           rightIcon ? (
             <>
               {hidden ? (
-                <TouchableOpacity onPress={() => eyePressHandler()}>
+                <TouchableOpacity
+                  onPress={() => eyePressHandler()}
+                  style={styles.eye}>
                   <Icon
                     name="eye-slash"
                     size={FontSize.semiMedium}
@@ -88,8 +98,14 @@ const CustomTextInput = ({
                   />
                 </TouchableOpacity>
               ) : (
-                <TouchableOpacity onPress={() => eyePressHandler()}>
-                  <Icon name="eye" size={FontSize.semiMedium} color="#900" />
+                <TouchableOpacity
+                  onPress={() => eyePressHandler()}
+                  style={styles.eye}>
+                  <Icon
+                    name="eye"
+                    size={FontSize.semiMedium}
+                    color={colors.dark.WARNING}
+                  />
                 </TouchableOpacity>
               )}
             </>

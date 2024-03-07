@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 // components
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
@@ -18,6 +18,14 @@ const Login = ({navigation}) => {
   const loadingHandler = () => {
     setLoading(prev => !prev);
   };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setErr('');
+    }, 3500);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   const onSubmit = async input => {
     // console.log('screen: login: input ->', input);
@@ -66,7 +74,7 @@ const Login = ({navigation}) => {
 
   return (
     <AuthenticationForm
-      // title={'Login'}
+      title={'Login'}
       btnTitle={'Log in'}
       onSubmit={onSubmit}
       handleRegistrationNav={handleRegistrationNav}

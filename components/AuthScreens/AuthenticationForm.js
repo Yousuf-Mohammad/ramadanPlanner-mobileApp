@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -6,13 +6,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {Input, Button} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 // assets
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
 import CustomTextInput from '../TextInput/CustomTextInput';
+import {APP_NAME} from '../../assets/texts/staticText';
 
 const AuthenticationForm = ({
   errorMessage,
@@ -25,6 +25,118 @@ const AuthenticationForm = ({
   err,
   navigation,
 }) => {
+  const styles = StyleSheet.create({
+    root: {
+      containerStyle: {
+        width: convert(1000),
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.dark.PRIMARY,
+        // borderWidth: 1,
+        // borderColor: 'blue',
+      },
+    },
+    form: {
+      flex: 1,
+      paddingTop: title === 'Login' ? convert(300) : null,
+      width: convert(1000),
+      alignItems: 'center',
+      justifyContent: 'center',
+      // borderWidth: 1,
+      // borderColor: 'blue',
+    },
+    titleTop: {
+      marginVertical: convert(200),
+      color: colors.dark.ACCENT,
+      fontFamily: 'NovaMono-Regular',
+      fontSize: convert(80),
+    },
+    bottom: {
+      width: '100%',
+      justifyContent: 'center',
+      marginTop: convert(50),
+      marginBottom: convert(300),
+      alignItems: 'center',
+      // borderWidth: 1,
+      // borderColor: 'red',
+    },
+    titleBottom: {
+      opacity: 0.5,
+      color: colors.dark.CONTRAST,
+      fontFamily: 'Montserrat-Regular',
+    },
+    touchtitleBottom: {
+      fontFamily: 'Montserrat-SemiBold',
+      fontSize: FontSize.mgsBottom,
+      color: colors.dark.CONTRAST,
+    },
+    touchtitleBottomContainer: {
+      // borderwidth: 1,
+      // borderColor: 'red',
+      height: convert(150),
+      width: title === 'Register' ? convert(300) : null,
+      alignItems: 'center',
+    },
+    error: {color: colors.dark.ERROR},
+    btn: {
+      buttonStyle: {
+        backgroundColor: colors.dark.ACCENT,
+        height: convert(110),
+        borderRadius: convert(75),
+        width: convert(425),
+        borderwidth: 1,
+        borderColor: 'red',
+      },
+      titleStyle: {
+        fontSize: FontSize.btnTitle,
+        fontFamily: 'Montserrat-Bold',
+      },
+      containerStyle: {
+        marginTop: convert(80),
+        borderRadius: convert(75),
+      },
+    },
+    err: {
+      msg: {
+        color: colors.dark.ERROR,
+        fontFamily: 'Montserrat-Bold',
+      },
+      errContainer: {
+        width: convert(1000),
+        alignItems: 'center',
+        // marginTop: convert(25),
+        // borderWidth: 1,
+        // borderColor: 'black',
+      },
+      errContainerEmpty: {
+        width: convert(1000),
+        alignItems: 'center',
+        marginTop: convert(50),
+        // borderWidth: 1,
+        // borderColor: 'black',
+      },
+    },
+    info: {color: colors.dark.PRIMARY, fontSize: FontSize.hint},
+    infoContainer: {
+      width: convert(1000),
+      paddingLeft: convert(25),
+      // borderWidth: 1,
+      // borderColor: 'black',
+    },
+    forgotPass: {
+      container: {
+        width: convert(1000),
+        paddingLeft: convert(25),
+        marginTop: convert(50),
+      },
+      txt: {
+        color: colors.dark.PRIMARY,
+        fontSize: FontSize.hint,
+        fontWeight: 'bold',
+      },
+    },
+  });
+
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -34,11 +146,9 @@ const AuthenticationForm = ({
   const [hidden, setHidden] = useState(true);
   const [hidden2, setHidden2] = useState(true);
   const eyePressHandler = () => {
-    // console.log('here!');
     setHidden(prev => !prev);
   };
   const eyePressHandler2 = () => {
-    // console.log('here!2');
     setHidden2(prev => !prev);
   };
 
@@ -80,7 +190,7 @@ const AuthenticationForm = ({
     <ScrollView
       contentContainerStyle={styles.root.containerStyle}
       showsVerticalScrollIndicator={false}>
-      <Text style={styles.titleTop}>{title}</Text>
+      <Text style={styles.titleTop}>{APP_NAME}</Text>
 
       <View style={styles.form}>
         {title === 'Register' ? (
@@ -142,13 +252,6 @@ const AuthenticationForm = ({
           <></>
         )}
 
-        <View style={styles.infoContainer}>
-          <Text style={styles.info}>
-            *case sensitive | 8-32 characters | atleast 1 digit | atleast 1
-            letter
-          </Text>
-        </View>
-
         {title === 'Login' ? (
           <TouchableOpacity
             style={styles.forgotPass.container}
@@ -164,7 +267,7 @@ const AuthenticationForm = ({
             <Text style={styles.err.msg}>{err}</Text>
           </View>
         ) : (
-          <Text />
+          <View style={styles.err.errContainerEmpty} />
         )}
 
         <Button
@@ -176,112 +279,29 @@ const AuthenticationForm = ({
           containerStyle={styles.btn.containerStyle}
           onPress={handleSubmit}
         />
-      </View>
 
-      {title === 'Register' ? (
-        <View style={styles.bottom}>
-          <Text style={styles.titleBottom}>Already registered?</Text>
-          <TouchableOpacity onPress={handleLoginNav}>
-            <Text style={styles.touchtitleBottom}> Login</Text>
-          </TouchableOpacity>
-          <Text style={styles.titleBottom}> here!</Text>
-        </View>
-      ) : (
-        <View style={styles.bottom}>
-          <Text style={styles.titleBottom}>Don't have an account?</Text>
-          <TouchableOpacity onPress={handleRegistrationNav}>
-            <Text style={styles.touchtitleBottom}> Register</Text>
-          </TouchableOpacity>
-          <Text style={styles.titleBottom}> here!</Text>
-        </View>
-      )}
+        {title === 'Register' ? (
+          <View style={styles.bottom}>
+            <Text style={styles.titleBottom}>or,</Text>
+            <TouchableOpacity
+              onPress={handleLoginNav}
+              style={styles.touchtitleBottomContainer}>
+              <Text style={styles.touchtitleBottom}>Login</Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={styles.bottom}>
+            <Text style={styles.titleBottom}>or,</Text>
+            <TouchableOpacity
+              onPress={handleRegistrationNav}
+              style={styles.touchtitleBottomContainer}>
+              <Text style={styles.touchtitleBottom}>Create an account</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
     </ScrollView>
   );
 };
 
 export default AuthenticationForm;
-
-const styles = StyleSheet.create({
-  root: {
-    containerStyle: {
-      width: convert(1000),
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: colors.dark.PRIMARY,
-      // borderWidth: 1,
-      // borderColor: 'blue',
-    },
-  },
-  form: {
-    flex: 1,
-    width: convert(1000),
-    alignItems: 'center',
-    justifyContent: 'center',
-    // borderWidth: 1,
-    // borderColor: 'blue',
-  },
-  titleTop: {
-    marginVertical: 100,
-    fontSize: FontSize.title,
-    color: colors.dark.PRIMARY,
-    // backgroundColor: 'green',
-  },
-  bottom: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: 115,
-    alignItems: 'center',
-    // borderWidth: 1,
-    // borderColor: 'blue',
-  },
-  titleBottom: {color: colors.dark.BLACK},
-  touchtitleBottom: {
-    fontSize: FontSize.mgsBottom,
-    fontWeight: 'bold',
-    color: colors.dark.PRIMARY,
-  },
-  error: {color: colors.dark.ERROR},
-  btn: {
-    buttonStyle: {backgroundColor: colors.dark.PRIMARY},
-    titleStyle: {fontWeight: 'bold', fontSize: FontSize.btnTitle},
-    containerStyle: {
-      marginHorizontal: 50,
-      height: 50,
-      width: 200,
-      marginVertical: 10,
-      marginTop: 80,
-    },
-  },
-  err: {
-    msg: {
-      color: colors.dark.ERROR,
-    },
-    errContainer: {
-      width: convert(1000),
-      alignItems: 'center',
-      marginTop: convert(25),
-      // borderWidth: 1,
-      // borderColor: 'black',
-    },
-  },
-  info: {color: colors.dark.PRIMARY, fontSize: FontSize.hint},
-  infoContainer: {
-    width: convert(1000),
-    paddingLeft: convert(25),
-    // borderWidth: 1,
-    // borderColor: 'black',
-  },
-  forgotPass: {
-    container: {
-      width: convert(1000),
-      paddingLeft: convert(25),
-      marginTop: convert(50),
-    },
-    txt: {
-      color: colors.dark.PRIMARY,
-      fontSize: FontSize.hint,
-      fontWeight: 'bold',
-    },
-  },
-});
