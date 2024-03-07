@@ -4,44 +4,26 @@ import {useDispatch} from 'react-redux';
 import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 // rtk-slices
 import {setAuthToken} from '../redux-toolkit/features/authentication/authToken';
-// functions
-import {
-  emailValidation,
-  passwordValidation,
-} from '../functions/validations/formValidation';
 import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-slice';
+// functions
+import {loginFormValidation} from '../functions/validations/formValidation';
 
 const Login = ({navigation}) => {
   const disptach = useDispatch();
+  const [login] = useLoginMutation();
+
   const [err, setErr] = useState('');
   const [loading, setLoading] = useState(false);
-  const [login] = useLoginMutation();
 
   const loadingHandler = () => {
     setLoading(prev => !prev);
-  };
-
-  const validation = input => {
-    // password validation
-    if (!passwordValidation(input.password)) {
-      setErr('Please enter valid email and password');
-      return false;
-    }
-
-    // email validation
-    if (!emailValidation(input.email)) {
-      setErr('Please enter a valid email address');
-      return false;
-    }
-
-    return true;
   };
 
   const onSubmit = async input => {
     // console.log('screen: login: input ->', input);
 
     // handle wrong input
-    if (!validation(input)) {
+    if (!loginFormValidation(input, setErr)) {
       //! todo: uncomment!
       return;
     } else {
@@ -56,11 +38,10 @@ const Login = ({navigation}) => {
       loadingHandler();
 
       if (response.error) {
-        //! todo: remove in production
         const error =
           response.error.data.detail === 'Invalid credentials'
-            ? 'Invalid credentials'
-            : 'Error logging in!';
+            ? 'Error logging in!'
+            : '';
 
         setErr(error);
       }

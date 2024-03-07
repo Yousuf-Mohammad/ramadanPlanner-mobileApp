@@ -2,7 +2,7 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
-// import {Dialog} from '@rneui/themed';
+import {useSelector} from 'react-redux';
 // rtk-slices
 import {useGetRecitationInfoQuery} from '../../../redux-toolkit/features/recitation-Info/recitation-info-slice';
 // assets
@@ -11,7 +11,6 @@ import {FontSize} from '../../../assets/fonts/fonts';
 // components
 import QuranTrackerView from './QuranTrackerView';
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
-import {useSelector} from 'react-redux';
 
 const QuranTracker = () => {
   const day = useSelector(getArabicDate);
@@ -29,16 +28,13 @@ const QuranTracker = () => {
   });
 
   useEffect(() => {
-    try {
-      if (!isLoading && !(JSON.stringify(data) === '{}')) {
-        if (isError) {
-          console.error('SCREEN:QURAN: get recitation error: ', error);
-        }
+    if (isError) {
+      console.error('SCREEN:QURAN: get recitation error: ', error);
+      console.error('SCREEN:QURAN: get recitation error: ', error.data);
+    }
 
-        // console.log('SCREEN:QURAN: get recitation data: ', data);
-      }
-    } catch (issue) {
-      console.error('SCREEN:QURAN: get recitation error: ', issue);
+    if (!isLoading && data) {
+      // console.log('SCREEN:QURAN: get recitation data: ', data);
     }
   }, [isLoading, isError]);
 

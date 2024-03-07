@@ -4,11 +4,7 @@ import AuthenticationForm from '../components/AuthScreens/AuthenticationForm';
 // rtk-slices
 import {useRegistrationMutation} from '../redux-toolkit/features/authentication/auth-slice';
 // functions
-import {
-  passwordValidation,
-  emailValidation,
-  nameValidation,
-} from '../functions/validations/formValidation';
+import {registerFormValidation} from '../functions/validations/formValidation';
 
 const Register = ({navigation}) => {
   const [err, setErr] = useState('');
@@ -19,54 +15,15 @@ const Register = ({navigation}) => {
     setLoading(prev => !prev);
   };
 
-  // todo1: pass match validation
   // todo: pref: 1. useMemo, useCallback, lazy loading
   // remove console.logs -> use lib
-  // lazy load images -> rn-fast-image
   // profiling -> flipper, rn-debugger
   // check if using hermes
-  const validation = input => {
-    // user name validation
-    if (!nameValidation(input.first_name)) {
-      setErr('Please enter valid name and password');
-      return false;
-    }
-
-    if (!nameValidation(input.last_name)) {
-      setErr('Please enter valid name and password');
-      return false;
-    }
-
-    // email validation
-    if (!emailValidation(input.email)) {
-      setErr('Please enter a valid email address');
-      return false;
-    }
-
-    // password validation
-    if (input.password1 !== input.password2) {
-      setErr("Passwords don't match!");
-      return;
-    }
-
-    if (!passwordValidation(input.password1)) {
-      setErr('Please enter valid name and password');
-      return false;
-    }
-
-    if (!passwordValidation(input.password2)) {
-      setErr('Please enter valid name and password');
-      return false;
-    }
-
-    return true;
-  };
-
   const onSubmit = async input => {
     // console.log('screen: register: input ->', input);
 
     // handle wrong input
-    if (!validation(input)) {
+    if (!registerFormValidation(input, setErr)) {
       //! todo: uncomment
       return;
     } else {
@@ -81,7 +38,7 @@ const Register = ({navigation}) => {
       loadingHandler();
 
       if (response?.error) {
-        const error = response.error.data.detail;
+        const error = 'Error registering!';
         setErr(error);
         return;
       }

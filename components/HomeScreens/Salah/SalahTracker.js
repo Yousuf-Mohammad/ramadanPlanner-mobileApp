@@ -2,6 +2,7 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
+import {useSelector} from 'react-redux';
 // rtk-slices
 import {useGetSalahCheckListQuery} from '../../../redux-toolkit/features/salah-checklist/salah-checklist-slice';
 // assets
@@ -10,9 +11,7 @@ import {colors} from '../../../assets/colors/colors';
 // components
 import SalahTrackerView from './SalahTrackerView';
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
-import {useSelector} from 'react-redux';
 
-// todo: optimize the rendering, try a different appraoch to this useState solution
 const SalahTracker = () => {
   const day = useSelector(getArabicDate);
 
@@ -28,19 +27,13 @@ const SalahTracker = () => {
   });
 
   useEffect(() => {
-    try {
-      if (!isLoading && !(JSON.stringify(data) === '{}')) {
-        if (isError) {
-          console.error('SCREEN:SALAH: get salah checklist error: ', error);
-          console.error(
-            'SCREEN:SALAH: get salah checklist error: ',
-            error.data,
-          );
-        }
-        // console.log('SCREEN:SALAH: get salah checklist data: ', data);
-      }
-    } catch (issue) {
-      console.error("SCREEN:SALAH: 'CATCH' salah checklist error: ", issue);
+    if (isError) {
+      console.error('SCREEN:SALAH: get salah checklist error: ', error);
+      console.error('SCREEN:SALAH: get salah checklist error: ', error.data);
+    }
+
+    if (!isLoading && data) {
+      // console.log('SCREEN:SALAH: get salah checklist data: ', data);
     }
   }, [isLoading, isError]);
 

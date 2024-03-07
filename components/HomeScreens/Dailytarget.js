@@ -3,12 +3,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import {useSelector} from 'react-redux';
-// assets
-import {colors} from '../../assets/colors/colors';
-import {FontSize} from '../../assets/fonts/fonts';
-import {convert} from '../../assets/dimensions/dimensions';
-// components
-import TasksContainer from './DailyTarget/TasksContainer';
 // rtk-slices
 import {
   useAddTodoMutation,
@@ -16,8 +10,18 @@ import {
   useUpdateTodoMutation,
 } from '../../redux-toolkit/features/daily-todolist/daily-todolist-slice';
 import {getArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
+// assets
+import {colors} from '../../assets/colors/colors';
+import {FontSize} from '../../assets/fonts/fonts';
+import {convert} from '../../assets/dimensions/dimensions';
+// components
+import TasksContainer from './DailyTarget/TasksContainer';
 
 const Dailytarget = () => {
+  useEffect(() => {
+    console.log('SCREEN: DAILY TARGET: rendered!');
+  }, []);
+
   const day = useSelector(getArabicDate);
 
   //* handeling race conditions with queue
@@ -26,6 +30,7 @@ const Dailytarget = () => {
 
   const addToQueue = (taskID, newValue) => {
     stateUpdateQueue.current.push({taskID, newValue});
+
     if (!processingQueue) {
       processQueue();
     }
@@ -36,6 +41,7 @@ const Dailytarget = () => {
 
     while (stateUpdateQueue.current.length > 0) {
       const {taskID, newValue} = stateUpdateQueue.current[0];
+
       try {
         const response = await updateTodo({
           id: taskID,
@@ -44,9 +50,9 @@ const Dailytarget = () => {
           month: parseInt(day.monthNumber, 10),
           day: parseInt(day.day, 10),
         });
+
         // console.log('TODO LIST TRACKER RACE QUEUE: response: ', response);
 
-        // Remove processed state from the queue
         stateUpdateQueue.current.shift();
       } catch (issue) {
         console.error('Error updating state:', issue);
@@ -67,19 +73,14 @@ const Dailytarget = () => {
     month: parseInt(day.monthNumber, 10),
     day: parseInt(day.day, 10),
   });
-  const [addTodo] = useAddTodoMutation();
-  const [updateTodo] = useUpdateTodoMutation();
-
-  const taskRef = useRef(null);
-  const [task, setTask] = useState([]);
 
   useEffect(() => {
     try {
-      if (!isLoading && !(JSON.stringify(data) === '{}')) {
-        if (isError) {
-          console.error('SCREEN:DAILY TARGET: get todolist error: ', error);
-        }
+      if (isError) {
+        console.error('SCREEN:DAILY TARGET: get todolist error: ', error);
+      }
 
+      if (!isLoading && data) {
         // console.log('screen:daily target: get todolist data: ', data.items);
         setTask(data.items);
       }
@@ -87,6 +88,12 @@ const Dailytarget = () => {
       console.error("SCREEN:DAILY TARGET: 'CATCH' todolist error: ", issue);
     }
   }, [isLoading, isError]);
+
+  const [addTodo] = useAddTodoMutation();
+  const [updateTodo] = useUpdateTodoMutation();
+
+  const taskRef = useRef(null);
+  const [task, setTask] = useState([]);
 
   const handleSubmit = async () => {
     const newTask = taskRef.current.value;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 import Salah from '../components/HomeScreens/Salah';
@@ -8,6 +8,10 @@ import Dailytarget from '../components/HomeScreens/Dailytarget';
 const Tab = createMaterialTopTabNavigator();
 
 const Home = () => {
+  useEffect(() => {
+    console.log('SCREEN: HOME: rendered!');
+  }, []);
+
   return (
     <Tab.Navigator>
       <Tab.Screen name="Salah" component={Salah} />

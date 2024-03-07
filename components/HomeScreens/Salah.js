@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 // components
 import SalahTracker from './Salah/SalahTracker';
 import BottomSlider from '../BottomSlider/BottomSlider';
 
 const Salah = () => {
+  useEffect(() => {
+    console.log('SCREEN: SALAH: rendered!');
+  }, []);
+
   return (
     <View style={styles.root}>
       <SalahTracker />
