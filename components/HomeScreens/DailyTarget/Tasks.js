@@ -56,7 +56,7 @@ const Tasks = ({
             <CheckBox
               checked={complete}
               onPress={() => handleTaskCompletion(idx, taskID)}
-              checkedColor={colors.light.PRIMARY}
+              checkedColor={colors.dark.PRIMARY}
             />
           </View>
 

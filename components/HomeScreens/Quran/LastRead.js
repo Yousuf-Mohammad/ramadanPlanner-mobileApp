@@ -66,7 +66,7 @@ const LastRead = ({dropDownPlaceholder, inputPlaceholder, setter, data}) => {
           placeholder={`${inputPlaceholder}`}
           inputContainerStyle={{
             width: convert(350),
-            backgroundColor: colors.light.WHITE,
+            backgroundColor: colors.dark.WHITE,
             // borderWidth: 1,
             // borderColor: 'yellow',
           }}
@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'black',
   },
-  title: {color: colors.light.BLACK, fontSize: FontSize.secondaryTitle},
+  title: {color: colors.dark.BLACK, fontSize: FontSize.secondaryTitle},
   bottomSlider: {
     position: 'absolute',
     bottom: 0,
   },
   container: {
-    backgroundColor: colors.light.PRIMARY,
+    backgroundColor: colors.dark.PRIMARY,
     width: convert(425),
     padding: 16,
   },
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   dropdown: {
-    backgroundColor: colors.light.WHITE,
+    backgroundColor: colors.dark.WHITE,
     height: 50,
     borderColor: 'gray',
     borderWidth: 0.5,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   itemTextStyle: {color: 'black'},
   btn: {
     symbol: {
-      color: colors.light.BLACK,
+      color: colors.dark.BLACK,
       fontSize: FontSize.dateTxt,
     },
     height: convert(100),
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: convert(50),
-    backgroundColor: colors.light.WHITE,
+    backgroundColor: colors.dark.WHITE,
   },
   btnContainer: {
     marginTop: convert(35),
@@ -164,6 +164,6 @@ const styles = StyleSheet.create({
   },
   targetVal: {
     fontSize: FontSize.secondaryTitle,
-    color: colors.light.WHITE,
+    color: colors.dark.WHITE,
   },
 });

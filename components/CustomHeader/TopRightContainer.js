@@ -33,7 +33,7 @@ const TopRightContainer = ({sunrise, sunset}) => {
   return (
     <View style={styles.topBoxContainer}>
       {/* sahri iftar component */}
-      <View style={{...styles.topbox, borderBottomColor: colors.light.WHITE}}>
+      <View style={{...styles.topbox, borderBottomColor: colors.dark.WHITE}}>
         <Text style={styles.text}>
           seheri ends:
           <Text style={styles.time}>
@@ -73,17 +73,17 @@ const styles = StyleSheet.create({
   topbox: {
     justifyContent: 'center',
     borderWidth: convert(5),
-    // borderColor: colors.light.PRIMARY,
-    borderTopColor: colors.light.PRIMARY,
-    borderBottomColor: colors.light.PRIMARY,
-    borderRightColor: colors.light.WHITE,
-    borderLeftColor: colors.light.WHITE,
+    // borderColor: colors.dark.PRIMARY,
+    borderTopColor: colors.dark.PRIMARY,
+    borderBottomColor: colors.dark.PRIMARY,
+    borderRightColor: colors.dark.WHITE,
+    borderLeftColor: colors.dark.WHITE,
     height: convert(92.5),
   },
-  text: {color: colors.light.BLACK},
+  text: {color: colors.dark.BLACK},
   time: {
     fontSize: FontSize.mgsBottom,
     fontWeight: 'bold',
-    color: colors.light.PRIMARY,
+    color: colors.dark.PRIMARY,
   },
 });

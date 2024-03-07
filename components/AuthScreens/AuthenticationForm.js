@@ -189,7 +189,7 @@ const AuthenticationForm = ({
         <Button
           title={btnTitle}
           loading={loading}
-          loadingProps={{size: 'small', color: colors.light.WHITE}}
+          loadingProps={{size: 'small', color: colors.dark.WHITE}}
           buttonStyle={styles.btn.buttonStyle}
           titleStyle={styles.btn.titleStyle}
           containerStyle={styles.btn.containerStyle}
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
   titleTop: {
     marginVertical: 100,
     fontSize: FontSize.title,
-    color: colors.light.PRIMARY,
+    color: colors.dark.PRIMARY,
     // backgroundColor: 'green',
   },
   bottom: {
@@ -253,15 +253,15 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'blue',
   },
-  titleBottom: {color: colors.light.BLACK},
+  titleBottom: {color: colors.dark.BLACK},
   touchtitleBottom: {
     fontSize: FontSize.mgsBottom,
     fontWeight: 'bold',
-    color: colors.light.PRIMARY,
+    color: colors.dark.PRIMARY,
   },
-  error: {color: colors.light.ERROR},
+  error: {color: colors.dark.ERROR},
   btn: {
-    buttonStyle: {backgroundColor: colors.light.PRIMARY},
+    buttonStyle: {backgroundColor: colors.dark.PRIMARY},
     titleStyle: {fontWeight: 'bold', fontSize: FontSize.btnTitle},
     containerStyle: {
       marginHorizontal: 50,
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
   },
   err: {
     msg: {
-      color: colors.light.ERROR,
+      color: colors.dark.ERROR,
     },
     errContainer: {
       width: convert(1000),
@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
       // borderColor: 'black',
     },
   },
-  info: {color: colors.light.PRIMARY, fontSize: FontSize.hint},
+  info: {color: colors.dark.PRIMARY, fontSize: FontSize.hint},
   infoContainer: {
     width: convert(1000),
     paddingLeft: convert(25),
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
       marginTop: convert(50),
     },
     txt: {
-      color: colors.light.PRIMARY,
+      color: colors.dark.PRIMARY,
       fontSize: FontSize.hint,
       fontWeight: 'bold',
     },

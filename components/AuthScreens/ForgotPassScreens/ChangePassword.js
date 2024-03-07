@@ -49,7 +49,7 @@ const ChangePassword = () => {
       <Button
         title={'Reset Password'}
         loading={loading}
-        loadingProps={{size: 'small', color: colors.light.WHITE}}
+        loadingProps={{size: 'small', color: colors.dark.WHITE}}
         buttonStyle={styles.btn.buttonStyle}
         titleStyle={styles.btn.titleStyle}
         containerStyle={styles.btn.containerStyle}
@@ -66,10 +66,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.light.WHITE,
+    backgroundColor: colors.dark.WHITE,
   },
   btn: {
-    buttonStyle: {backgroundColor: colors.light.PRIMARY},
+    buttonStyle: {backgroundColor: colors.dark.PRIMARY},
     titleStyle: {fontWeight: 'bold', fontSize: FontSize.btnTitle},
     containerStyle: {
       marginHorizontal: 50,
@@ -79,10 +79,10 @@ const styles = StyleSheet.create({
       marginTop: 80,
     },
   },
-  error: {color: colors.light.ERROR},
+  error: {color: colors.dark.ERROR},
   err: {
     msg: {
-      color: colors.light.ERROR,
+      color: colors.dark.ERROR,
     },
     errContainer: {
       width: convert(1000),

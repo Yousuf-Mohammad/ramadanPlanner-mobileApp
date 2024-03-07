@@ -256,7 +256,7 @@ const SalahTrackerView = ({data}) => {
                 <CheckBox
                   checked={i.checked}
                   onPress={() => i.farjCheck()}
-                  checkedColor={colors.light.PRIMARY}
+                  checkedColor={colors.dark.PRIMARY}
                 />
               ) : (
                 <></>
@@ -267,7 +267,7 @@ const SalahTrackerView = ({data}) => {
               <CheckBox
                 checked={i.checkedSunnah}
                 onPress={() => i.sunnahCheck()}
-                checkedColor={colors.light.PRIMARY}
+                checkedColor={colors.dark.PRIMARY}
               />
             </View>
           </View>
@@ -294,15 +294,15 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'blue',
   },
-  title: {color: colors.light.BLACK, fontSize: FontSize.secondaryTitle},
+  title: {color: colors.dark.BLACK, fontSize: FontSize.secondaryTitle},
   salahRowContainer: {
     flexDirection: 'row',
     height: convert(130),
     borderWidth: 1,
-    borderLeftColor: colors.light.WHITE,
-    borderRightColor: colors.light.WHITE,
-    borderTopColor: colors.light.WHITE,
-    borderBottomColor: colors.light.BLACK,
+    borderLeftColor: colors.dark.WHITE,
+    borderRightColor: colors.dark.WHITE,
+    borderTopColor: colors.dark.WHITE,
+    borderBottomColor: colors.dark.BLACK,
     // borderColor: 'black',
   },
 });

@@ -42,7 +42,7 @@ const SalahTracker = () => {
       <View style={styles.loading.root}>
         <ActivityIndicator
           animating={true}
-          color={colors.light.PRIMARY}
+          color={colors.dark.PRIMARY}
           size={'large'}
         />
       </View>
@@ -61,6 +61,6 @@ export default SalahTracker;
 const styles = StyleSheet.create({
   loading: {
     root: {flex: 1, alignItems: 'center', justifyContent: 'center'},
-    txt: {fontSize: FontSize.secondaryTitle, color: colors.light.BLACK},
+    txt: {fontSize: FontSize.secondaryTitle, color: colors.dark.BLACK},
   },
 });

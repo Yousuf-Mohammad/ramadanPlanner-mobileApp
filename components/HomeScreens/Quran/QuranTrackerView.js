@@ -163,7 +163,7 @@ const QuranTrackerView = ({data}) => {
       <Button
         title={'+ ADD TARGET'}
         loading={loading}
-        loadingProps={{size: 'small', color: colors.light.WHITE}}
+        loadingProps={{size: 'small', color: colors.dark.WHITE}}
         buttonStyle={styles.btn.buttonStyle}
         titleStyle={styles.btn.titleStyle}
         containerStyle={styles.btn.containerStyle}
@@ -190,14 +190,14 @@ const styles = StyleSheet.create({
       height: convert(150),
       width: convert(750),
       borderRadius: convert(50),
-      backgroundColor: colors.light.PRIMARY,
+      backgroundColor: colors.dark.PRIMARY,
       borderWidth: convert(10),
-      borderColor: colors.light.ACCENT,
+      borderColor: colors.dark.ACCENT,
     },
     titleStyle: {
       fontWeight: 'bold',
       fontSize: FontSize.btnTitle,
-      color: colors.light.WHITE,
+      color: colors.dark.WHITE,
     },
     containerStyle: {
       borderwidth: 4,
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
   },
   err: {
     msg: {
-      color: colors.light.ERROR,
+      color: colors.dark.ERROR,
     },
     container: {
       width: convert(1000),

@@ -75,6 +75,6 @@ const styles = StyleSheet.create({
     paddingVertical: convert(25),
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: colors.light.WHITE,
+    backgroundColor: colors.dark.WHITE,
   },
 });

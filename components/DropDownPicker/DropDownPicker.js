@@ -17,10 +17,7 @@ const DropDownPicker = ({
   return (
     <View style={styles.container}>
       <Dropdown
-        style={[
-          styles.dropdown,
-          isFocus && {borderColor: colors.light.PRIMARY},
-        ]}
+        style={[styles.dropdown, isFocus && {borderColor: colors.dark.PRIMARY}]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
@@ -50,7 +47,7 @@ export default DropDownPicker;
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: colors.light.PRIMARY,
+    // backgroundColor: colors.dark.PRIMARY,
     height: convert(150),
     width: convert(425),
     backgroundColor: 'transparent',
@@ -60,7 +57,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   dropdown: {
-    backgroundColor: colors.light.WHITE,
+    backgroundColor: colors.dark.WHITE,
     // width: convert(300),
     height: 50,
     borderColor: 'gray',
@@ -93,7 +90,7 @@ const styles = StyleSheet.create({
     height: 20,
   },
   inputSearchStyle: {
-    color: colors.light.BLACK,
+    color: colors.dark.BLACK,
     height: 40,
     fontSize: 16,
   },

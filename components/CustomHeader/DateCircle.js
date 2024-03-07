@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     width: convert(220),
     borderRadius: convert(110),
     borderWidth: convert(10),
-    borderColor: colors.light.PRIMARY,
+    borderColor: colors.dark.PRIMARY,
   },
   circleInner: {
     flexDirection: 'column',
@@ -34,11 +34,11 @@ const styles = StyleSheet.create({
     width: convert(200),
     borderRadius: convert(100),
     borderWidth: convert(10),
-    borderColor: colors.light.ACCENT,
+    borderColor: colors.dark.ACCENT,
   },
-  text: {color: colors.light.BLACK},
+  text: {color: colors.dark.BLACK},
   dateTxt: {
-    color: colors.light.BLACK,
+    color: colors.dark.BLACK,
     fontSize: FontSize.dateTxt,
     fontWeight: 'bold',
   },

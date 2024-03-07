@@ -182,7 +182,7 @@ const Dailytarget = () => {
       <Button
         title={'+ Add task'}
         loading={false}
-        loadingProps={{size: 'small', color: colors.light.WHITE}}
+        loadingProps={{size: 'small', color: colors.dark.WHITE}}
         buttonStyle={styles.btn.buttonStyle}
         titleStyle={styles.btn.titleStyle}
         containerStyle={styles.btn.containerStyle}
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
   },
   task: {color: 'black', fontSize: FontSize.btnTitle},
   btn: {
-    buttonStyle: {backgroundColor: colors.light.PRIMARY},
+    buttonStyle: {backgroundColor: colors.dark.PRIMARY},
     titleStyle: {fontWeight: 'bold', fontSize: FontSize.btnTitle},
     containerStyle: {
       marginHorizontal: 50,

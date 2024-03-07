@@ -61,10 +61,10 @@ const RegularTarget = ({dropDownPlaceholder, inputPlaceholder, setter}) => {
             ref={regularTargetRef}
             onChangeText={e => onChangeText(e)}
             placeholder={`${inputPlaceholder}`}
-            placeholderStyle={{color: colors.light.BLACK}}
+            placeholderStyle={{color: colors.dark.BLACK}}
             inputContainerStyle={{
               width: convert(350),
-              backgroundColor: colors.light.WHITE,
+              backgroundColor: colors.dark.WHITE,
             }}
             // errorStyle={styles.error}
             // errorMessage={errorMessage ? errorMessage : ''}
@@ -86,13 +86,13 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'black',
   },
-  title: {color: colors.light.BLACK, fontSize: FontSize.secondaryTitle},
+  title: {color: colors.dark.BLACK, fontSize: FontSize.secondaryTitle},
   bottomSlider: {
     position: 'absolute',
     bottom: 0,
   },
   container: {
-    backgroundColor: colors.light.PRIMARY,
+    backgroundColor: colors.dark.PRIMARY,
     width: convert(425),
     padding: 16,
   },
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   dropdown: {
-    backgroundColor: colors.light.WHITE,
+    backgroundColor: colors.dark.WHITE,
     // width: convert(300),
     height: 50,
     borderColor: 'gray',
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   itemTextStyle: {color: 'black'},
   btn: {
     symbol: {
-      color: colors.light.BLACK,
+      color: colors.dark.BLACK,
       fontSize: FontSize.dateTxt,
     },
     height: convert(100),
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: convert(50),
-    backgroundColor: colors.light.WHITE,
+    backgroundColor: colors.dark.WHITE,
   },
   targetInputContainer: {
     marginHorizontal: convert(50),
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
   targetVal: {
     fontSize: FontSize.secondaryTitle,
-    color: colors.light.WHITE,
+    color: colors.dark.WHITE,
   },
   targetInput: {
     paddingTop: convert(50),
