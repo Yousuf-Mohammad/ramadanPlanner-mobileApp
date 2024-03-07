@@ -66,7 +66,7 @@ const Login = ({navigation}) => {
 
   return (
     <AuthenticationForm
-      title={'Login'}
+      // title={'Login'}
       btnTitle={'Log in'}
       onSubmit={onSubmit}
       handleRegistrationNav={handleRegistrationNav}

@@ -12,6 +12,7 @@ import {Input, Button} from 'react-native-elements';
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
+import CustomTextInput from '../TextInput/CustomTextInput';
 
 const AuthenticationForm = ({
   errorMessage,
@@ -33,9 +34,11 @@ const AuthenticationForm = ({
   const [hidden, setHidden] = useState(true);
   const [hidden2, setHidden2] = useState(true);
   const eyePressHandler = () => {
+    // console.log('here!');
     setHidden(prev => !prev);
   };
   const eyePressHandler2 = () => {
+    // console.log('here!2');
     setHidden2(prev => !prev);
   };
 
@@ -58,6 +61,8 @@ const AuthenticationForm = ({
       last_name: lastName,
     };
 
+    console.log('new user data: ', newUserData);
+
     const validationData = {
       email: email,
       password: password,
@@ -72,23 +77,23 @@ const AuthenticationForm = ({
 
   // todo: error disappear on reattempt and after 5 sec!
   return (
-    <ScrollView contentContainerStyle={styles.root.containerStyle}>
+    <ScrollView
+      contentContainerStyle={styles.root.containerStyle}
+      showsVerticalScrollIndicator={false}>
       <Text style={styles.titleTop}>{title}</Text>
 
       <View style={styles.form}>
         {title === 'Register' ? (
           <>
-            <Input
-              ref={firstNameRef}
-              onChangeText={e => (firstNameRef.current.value = e)}
+            <CustomTextInput
+              refProp={firstNameRef}
               placeholder="First Name"
               maxLength={20}
               errorStyle={styles.error}
               errorMessage={errorMessage ? errorMessage : ''}
             />
-            <Input
-              ref={lastNameRef}
-              onChangeText={e => (lastNameRef.current.value = e)}
+            <CustomTextInput
+              refProp={lastNameRef}
               placeholder="Last Name"
               maxLength={20}
               errorStyle={styles.error}
@@ -99,61 +104,37 @@ const AuthenticationForm = ({
           <></>
         )}
 
-        <Input
-          // todo:remove
+        <CustomTextInput
           defaultValue="fardinshuvro96@gmail.com"
-          ref={emailRef}
-          onChangeText={e => (emailRef.current.value = e)}
+          refProp={emailRef}
           placeholder="Email"
           errorStyle={styles.error}
           errorMessage={errorMessage ? errorMessage : ''}
+          hint={'*case-sensitive'}
         />
 
-        <View style={styles.infoContainer}>
-          <Text style={styles.info}>*case sensitive</Text>
-        </View>
-
-        <Input
-          // todo:remove
+        <CustomTextInput
           defaultValue="something1"
-          ref={passwordRef}
-          onChangeText={e => (passwordRef.current.value = e)}
-          secureTextEntry={hidden}
-          rightIcon={
-            hidden ? (
-              <TouchableOpacity onPress={eyePressHandler}>
-                <Icon name="eye-slash" size={30} color="green" />
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity onPress={eyePressHandler}>
-                <Icon name="eye" size={30} color="#900" />
-              </TouchableOpacity>
-            )
-          }
-          placeholder="Password"
+          refProp={passwordRef}
+          hidden={hidden}
+          rightIcon={true}
+          placeholder={'Password'}
           maxLength={32}
+          eyePressHandler={eyePressHandler}
           errorStyle={styles.error}
           errorMessage={errorMessage ? errorMessage : ''}
+          hint={'*case-sensitive | 8-32 characters | min 1 letter & 1 digit'}
         />
 
         {title === 'Register' ? (
-          <Input
-            ref={confirmPasswordRef}
-            onChangeText={e => (confirmPasswordRef.current.value = e)}
-            secureTextEntry={hidden2}
-            rightIcon={
-              hidden2 ? (
-                <TouchableOpacity onPress={eyePressHandler2}>
-                  <Icon name="eye-slash" size={30} color="green" />
-                </TouchableOpacity>
-              ) : (
-                <TouchableOpacity onPress={eyePressHandler2}>
-                  <Icon name="eye" size={30} color="#900" />
-                </TouchableOpacity>
-              )
-            }
-            placeholder="Confirm Password"
+          <CustomTextInput
+            defaultValue="something1"
+            refProp={confirmPasswordRef}
+            hidden={hidden2}
+            rightIcon={true}
+            placeholder={'Password'}
             maxLength={32}
+            eyePressHandler={eyePressHandler2}
             errorStyle={styles.error}
             errorMessage={errorMessage ? errorMessage : ''}
           />
@@ -226,6 +207,7 @@ const styles = StyleSheet.create({
       width: convert(1000),
       alignItems: 'center',
       justifyContent: 'center',
+      backgroundColor: colors.dark.PRIMARY,
       // borderWidth: 1,
       // borderColor: 'blue',
     },

@@ -8,9 +8,9 @@ import Dailytarget from '../components/HomeScreens/Dailytarget';
 const Tab = createMaterialTopTabNavigator();
 
 const Home = () => {
-  useEffect(() => {
-    console.log('SCREEN: HOME: rendered!');
-  }, []);
+  // useEffect(() => {
+  //   console.log('SCREEN: HOME: rendered!');
+  // }, []);
 
   return (
     <Tab.Navigator>

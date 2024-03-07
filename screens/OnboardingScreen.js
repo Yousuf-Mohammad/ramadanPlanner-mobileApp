@@ -1,11 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+// assets
 import {APP_NAME, salam, welcome} from '../assets/texts/staticText';
 import {colors} from '../assets/colors/colors';
 import {FontSize} from '../assets/fonts/fonts';
 import {convert} from '../assets/dimensions/dimensions';
 
-const OnboardingScreen = () => {
+const OnboardingScreen = ({navigation}) => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      navigation.navigate('Login');
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <View style={styles.root}>
       <View style={styles.salam.root}>
@@ -26,7 +36,6 @@ const styles = StyleSheet.create({
   root: {
     flex: 10,
     alignItems: 'center',
-    // justifyContent: 'center',
     backgroundColor: colors.dark.PRIMARY,
     flexDirection: 'column',
   },
