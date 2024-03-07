@@ -20,12 +20,18 @@ const Login = ({navigation}) => {
   };
 
   useEffect(() => {
+    navigation.addListener('beforeRemove', e => {
+      e.preventDefault();
+    });
+  }, [navigation]);
+
+  useEffect(() => {
     const timeout = setTimeout(() => {
       setErr('');
     }, 3500);
 
     return () => clearTimeout(timeout);
-  }, []);
+  }, [err]);
 
   const onSubmit = async input => {
     // console.log('screen: login: input ->', input);

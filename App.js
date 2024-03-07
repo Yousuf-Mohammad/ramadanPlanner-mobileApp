@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
 /**
  * Sample React Native App
@@ -24,6 +25,7 @@ import CustomHeader from './components/CustomHeader/CustomHeader';
 import {store} from './redux-toolkit/store/store';
 import FallbackScreens from './components/FallBackScreens/FallbackScreens';
 import OnboardingScreen from './screens/OnboardingScreen';
+import {colors} from './assets/colors/colors';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,9 +48,9 @@ const App = () => {
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: 'white',
+            backgroundColor: colors.dark.PRIMARY,
           }}>
-          <Text>{'Loading...'}</Text>
+          {/* <Text>{'Loading...'}</Text> */}
         </View>
       }>
       <Provider store={store}>

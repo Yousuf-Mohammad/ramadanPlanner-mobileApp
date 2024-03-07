@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
+  ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
@@ -13,6 +14,7 @@ import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
 import CustomTextInput from '../TextInput/CustomTextInput';
 import {APP_NAME} from '../../assets/texts/staticText';
+import {Image} from 'react-native';
 
 const AuthenticationForm = ({
   errorMessage,
@@ -36,9 +38,22 @@ const AuthenticationForm = ({
         // borderColor: 'blue',
       },
     },
+    logo: {
+      container: {
+        borderwidth: 1,
+        borderColor: 'white',
+        flexDirection: 'column',
+        alignItems: 'center',
+      },
+      img: {
+        marginTop: convert(150),
+        height: convert(200),
+        width: convert(600),
+      },
+    },
     form: {
       flex: 1,
-      paddingTop: title === 'Login' ? convert(300) : null,
+      paddingTop: title === 'Login' ? convert(300) : convert(100),
       width: convert(1000),
       alignItems: 'center',
       justifyContent: 'center',
@@ -46,10 +61,19 @@ const AuthenticationForm = ({
       // borderColor: 'blue',
     },
     titleTop: {
-      marginVertical: convert(200),
+      // marginVertical: convert(200),
+      marginTop: convert(50),
       color: colors.dark.ACCENT,
       fontFamily: 'NovaMono-Regular',
-      fontSize: convert(80),
+      fontSize: convert(70),
+    },
+    bg: {
+      container: {
+        position: 'absolute',
+        top: title === 'Register' ? convert(175) : convert(100),
+        opacity: 0.03,
+      },
+      img: {height: convert(700), width: convert(500)},
     },
     bottom: {
       width: '100%',
@@ -100,18 +124,19 @@ const AuthenticationForm = ({
       msg: {
         color: colors.dark.ERROR,
         fontFamily: 'Montserrat-Bold',
+        fontSize: FontSize.mgsBottom,
       },
       errContainer: {
         width: convert(1000),
         alignItems: 'center',
-        // marginTop: convert(25),
+        marginTop: convert(10),
         // borderWidth: 1,
         // borderColor: 'black',
       },
       errContainerEmpty: {
         width: convert(1000),
         alignItems: 'center',
-        marginTop: convert(50),
+        marginTop: convert(60),
         // borderWidth: 1,
         // borderColor: 'black',
       },
@@ -126,13 +151,16 @@ const AuthenticationForm = ({
     forgotPass: {
       container: {
         width: convert(1000),
-        paddingLeft: convert(25),
+        paddingLeft: convert(155),
         marginTop: convert(50),
+        // borderwidth: 5,
+        // borderColor: 'red',
       },
       txt: {
-        color: colors.dark.PRIMARY,
-        fontSize: FontSize.hint,
-        fontWeight: 'bold',
+        fontFamily: 'Montserrat-Bold',
+        color: colors.dark.CONTRAST,
+        fontSize: FontSize.mgsBottom,
+        // fontWeight: 'bold',
       },
     },
   });
@@ -171,7 +199,7 @@ const AuthenticationForm = ({
       last_name: lastName,
     };
 
-    console.log('new user data: ', newUserData);
+    // console.log('new user data: ', newUserData);
 
     const validationData = {
       email: email,
@@ -185,12 +213,19 @@ const AuthenticationForm = ({
     }
   };
 
-  // todo: error disappear on reattempt and after 5 sec!
   return (
     <ScrollView
       contentContainerStyle={styles.root.containerStyle}
       showsVerticalScrollIndicator={false}>
-      <Text style={styles.titleTop}>{APP_NAME}</Text>
+      <View style={styles.logo.container}>
+        <Image
+          source={require('../../assets/images/tazkiah-logo.png')}
+          resizeMode="contain"
+          style={styles.logo.img}
+        />
+
+        <Text style={styles.titleTop}>{APP_NAME}</Text>
+      </View>
 
       <View style={styles.form}>
         {title === 'Register' ? (
@@ -222,6 +257,14 @@ const AuthenticationForm = ({
           errorMessage={errorMessage ? errorMessage : ''}
           hint={'*case-sensitive'}
         />
+
+        <View style={styles.bg.container}>
+          <Image
+            source={require('../../assets/images/auth-bg.png')}
+            style={styles.bg.img}
+            resizeMode="contain"
+          />
+        </View>
 
         <CustomTextInput
           defaultValue="something1"
@@ -256,7 +299,7 @@ const AuthenticationForm = ({
           <TouchableOpacity
             style={styles.forgotPass.container}
             onPress={handleForgotPass}>
-            <Text style={styles.forgotPass.txt}>Forgot Password</Text>
+            <Text style={styles.forgotPass.txt}>Forgot Password?</Text>
           </TouchableOpacity>
         ) : (
           <></>
@@ -286,7 +329,7 @@ const AuthenticationForm = ({
             <TouchableOpacity
               onPress={handleLoginNav}
               style={styles.touchtitleBottomContainer}>
-              <Text style={styles.touchtitleBottom}>Login</Text>
+              <Text style={styles.touchtitleBottom}>Log In</Text>
             </TouchableOpacity>
           </View>
         ) : (

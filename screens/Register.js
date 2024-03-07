@@ -21,7 +21,7 @@ const Register = ({navigation}) => {
     }, 3500);
 
     return () => clearTimeout(timeout);
-  }, []);
+  }, [err]);
 
   // todo: pref: 1. useMemo, useCallback, lazy loading
   // remove console.logs -> use lib
