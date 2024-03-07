@@ -5,6 +5,7 @@ import {convert} from '../dimensions/dimensions';
 export const FontSize = {
   title: convert(150),
   mgsBottom: convert(35),
+  medium: convert(40),
   btnTitle: convert(50),
   hint: convert(30),
   dateTxt: convert(70),
