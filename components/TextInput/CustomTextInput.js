@@ -9,6 +9,7 @@ import {FontSize} from '../../assets/fonts/fonts';
 
 const CustomTextInput = ({
   refProp,
+  value,
   defaultValue,
   placeholder,
   maxLength,
@@ -20,7 +21,13 @@ const CustomTextInput = ({
   rightIcon,
 }) => {
   const styles = StyleSheet.create({
-    root: {alignItems: 'center', marginVertical: convert(25)},
+    root: {
+      alignItems: 'center',
+      marginVertical: convert(25),
+
+      // borderWidth: 1,
+      // borderColor: 'red',
+    },
     containerStyle: {
       height: convert(120),
       width: convert(800),
@@ -34,16 +41,18 @@ const CustomTextInput = ({
     },
     inputContainerStyle: {
       height: convert(117),
-      marginHorizontal: convert(25),
       borderRadius: convert(100),
+
       // borderWidth: 1,
       // borderColor: 'green',
     },
     inputStyle: {
       height: convert(120),
+      marginHorizontal: convert(25),
       borderRadius: convert(100),
       color: colors.dark.CONTRAST,
       fontFamily: 'Montserrat-Light',
+
       // borderWidth: 1,
       // borderColor: 'blue',
     },
@@ -74,7 +83,9 @@ const CustomTextInput = ({
     <View style={styles.root}>
       <Input
         ref={refProp}
+        value={value ? `${value}` : null}
         defaultValue={defaultValue ? `${defaultValue}` : null}
+        // onPressIn={() => console.log('first')}
         inputStyle={styles.inputStyle}
         placeholder={`${placeholder}`}
         maxLength={maxLength}

@@ -1,6 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
-  ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
@@ -34,6 +33,7 @@ const AuthenticationForm = ({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.dark.PRIMARY,
+
         // borderWidth: 1,
         // borderColor: 'blue',
       },
@@ -183,6 +183,17 @@ const AuthenticationForm = ({
   function handleForgotPass() {
     navigation.navigate('ReqPassChange');
   }
+
+  useEffect(() => {
+    if (title === 'Login') {
+      emailRef.current.focus();
+    }
+
+    if (title === 'Register') {
+      firstNameRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = () => {
     const firstName = firstNameRef.current?.value;

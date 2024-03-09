@@ -19,12 +19,12 @@ import Login from './screens/Login';
 import Home from './screens/Home';
 import RequestNewPassword from './components/AuthScreens/ForgotPassScreens/RequestNewPassword';
 import ChangePassword from './components/AuthScreens/ForgotPassScreens/ChangePassword';
+import OnboardingScreen from './screens/OnboardingScreen';
 // components
 import CustomHeader from './components/CustomHeader/CustomHeader';
 // redux-store
 import {store} from './redux-toolkit/store/store';
-import FallbackScreens from './components/FallBackScreens/FallbackScreens';
-import OnboardingScreen from './screens/OnboardingScreen';
+// assets
 import {colors} from './assets/colors/colors';
 
 const Stack = createNativeStackNavigator();
@@ -88,7 +88,12 @@ const App = () => {
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
-    // <OnboardingScreen />
+
+    // <NavigationContainer>
+    //   <Provider store={store}>
+    //     <ChangePassword />
+    //   </Provider>
+    // </NavigationContainer>
   );
 };
 
