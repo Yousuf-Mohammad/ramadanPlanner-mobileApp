@@ -7,7 +7,7 @@ export const colors = {
     CONTRAST: '#daf1dd',
     ACCENT: '#f1ae17',
     WARNING: '#900',
-    // ACCENT: 'gold',
+
     BLACK: 'black',
     WHITE: 'white',
     ERROR: '#900',

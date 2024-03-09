@@ -5,9 +5,9 @@ import SalahTracker from './Salah/SalahTracker';
 import BottomSlider from '../BottomSlider/BottomSlider';
 
 const Salah = () => {
-  useEffect(() => {
-    console.log('SCREEN: SALAH: rendered!');
-  }, []);
+  // useEffect(() => {
+  //   console.log('SCREEN: SALAH: rendered!');
+  // }, []);
 
   return (
     <View style={styles.root}>

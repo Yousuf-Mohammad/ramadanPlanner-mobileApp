@@ -18,9 +18,9 @@ import {convert} from '../../assets/dimensions/dimensions';
 import TasksContainer from './DailyTarget/TasksContainer';
 
 const Dailytarget = () => {
-  useEffect(() => {
-    console.log('SCREEN: DAILY TARGET: rendered!');
-  }, []);
+  // useEffect(() => {
+  //   console.log('SCREEN: DAILY TARGET: rendered!');
+  // }, []);
 
   const day = useSelector(getArabicDate);
 

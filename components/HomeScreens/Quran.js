@@ -7,9 +7,9 @@ import {useSelector} from 'react-redux';
 import {getAuthToken} from '../../redux-toolkit/features/authentication/authToken';
 
 const Quran = () => {
-  useEffect(() => {
-    console.log('SCREEN: QURAN: rendered!');
-  }, []);
+  // useEffect(() => {
+  //   console.log('SCREEN: QURAN: rendered!');
+  // }, []);
 
   return (
     <View style={styles.root}>
