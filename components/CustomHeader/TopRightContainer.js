@@ -4,6 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const TopRightContainer = ({sunrise, sunset}) => {
   const seheriTime = sunrise
@@ -36,33 +37,31 @@ const TopRightContainer = ({sunrise, sunset}) => {
         {/* sahri iftar component */}
         <View style={styles.topbox}>
           <Text style={styles.text}>
-            seheri ends:
+            Seheri ends
             <Text style={styles.time}>
               {' '}
-              {seheriTime.hours}:{seheriTime.minutes}:{seheriTime.seconds}{' '}
+              {seheriTime.hours}:{seheriTime.minutes}
               {' AM'}
             </Text>
           </Text>
 
           <View style={styles.iftar.container}>
             <Text style={styles.text}>
-              Iftar:
+              Iftar
               <Text style={styles.time}>
                 {' '}
-                {sunsetTime.hours}:{sunsetTime.minutes}:{sunsetTime.seconds}
+                {sunsetTime.hours}:{sunsetTime.minutes}
                 {' PM'}
               </Text>
             </Text>
           </View>
         </View>
-
-        {/* todays task component */}
-        {/* <View style={styles.topbox}>
-          <Text style={styles.text}>Today's task</Text>
-        </View> */}
       </View>
 
-      <View style={styles.location.container}></View>
+      <View style={styles.location.container}>
+        <Icon name={'location-pin'} size={20} color={colors.dark.WHITE} />
+        <Text style={styles.location.txt}>LOCATION</Text>
+      </View>
     </View>
   );
 };
@@ -80,13 +79,14 @@ const styles = StyleSheet.create({
   topBoxContainer: {
     height: convert(200),
     justifyContent: 'center',
+    marginRight: convert(20),
 
     // borderWidth: 1,
     // borderColor: 'blue',
   },
   topbox: {
     justifyContent: 'center',
-    borderWidth: convert(5),
+    // borderWidth: convert(5),
     // borderColor: colors.dark.BLACK,
     // borderTopColor: colors.dark.PRIMARY,
     // borderBottomColor: colors.dark.PRIMARY,
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     // borderLeftColor: colors.dark.WHITE,
     height: convert(92.5),
   },
-  text: {color: colors.dark.BLACK, fontFamily: 'Montserrat-SemiBold'},
+  text: {color: colors.dark.BLACK, fontFamily: 'Montserrat-Bold'},
   time: {
     fontSize: FontSize.mgsBottom,
     fontWeight: 'bold',
@@ -107,9 +107,21 @@ const styles = StyleSheet.create({
     container: {
       height: convert(100),
       width: convert(200),
+      paddingHorizontal: convert(5),
+      marginLeft: convert(5),
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: convert(40),
+      backgroundColor: colors.dark.PRIMARY,
 
-      borderWidth: 1,
-      borderColor: 'red',
+      // borderWidth: 1,
+      // borderColor: 'red',
+    },
+    txt: {
+      fontFamily: 'Montserrat-ExtraBold',
+      color: colors.dark.WHITE,
+      fontSize: convert(20),
     },
   },
 });

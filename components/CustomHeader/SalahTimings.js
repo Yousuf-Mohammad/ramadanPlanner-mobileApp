@@ -5,15 +5,11 @@ import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
 
-const SalahTimings = ({
-  startTime = '4.30',
-  icon = 'sunrise',
-  name = 'Fajr',
-}) => {
+const SalahTimings = ({startTime, meridiem, icon, name}) => {
   return (
     <View style={styles.root}>
       <Text style={styles.txt}>{startTime}</Text>
-      <Text style={styles.txt}>AM</Text>
+      <Text style={styles.txt}>{meridiem}</Text>
       <Icon name={`${icon}`} size={30} color={colors.dark.WHITE} />
       <Text style={styles.txt}>{name}</Text>
     </View>
@@ -24,12 +20,13 @@ export default SalahTimings;
 
 const styles = StyleSheet.create({
   root: {
-    height: convert(300),
+    height: convert(250),
     width: convert(180),
-    marginHorizontal: convert(10),
+    marginHorizontal: convert(5),
+    paddingVertical: convert(10),
     borderRadius: convert(50),
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     backgroundColor: colors.dark.PRIMARY,
 
     // borderWidth: 1,
