@@ -17,6 +17,7 @@ import {useGetArabicDateQuery} from '../../redux-toolkit/features/arabic-date/ar
 // components
 import DateCircle from './DateCircle';
 import TopRightContainer from './TopRightContainer';
+import SalahTimings from './SalahTimings';
 
 const CustomHeader = () => {
   // todo:yousuf: set the new package for date and time
@@ -59,9 +60,19 @@ const CustomHeader = () => {
   // todo: seheri, iftar time integrate & logic, err handling
   return (
     <View style={styles.root}>
-      <DateCircle date={day} />
+      <View style={styles.timedate}>
+        <DateCircle date={day} />
 
-      <TopRightContainer sunrise={time.sunrise} sunset={time.sunset} />
+        <TopRightContainer sunrise={time.sunrise} sunset={time.sunset} />
+      </View>
+
+      <View style={styles.salahtime}>
+        <SalahTimings />
+        <SalahTimings />
+        <SalahTimings />
+        <SalahTimings />
+        <SalahTimings />
+      </View>
     </View>
   );
 };
@@ -69,7 +80,8 @@ const CustomHeader = () => {
 export default CustomHeader;
 
 const styles = StyleSheet.create({
-  root: {
+  root: {backgroundColor: 'white'},
+  timedate: {
     height: convert(250),
     width: convert(1000),
     paddingVertical: convert(25),
@@ -77,5 +89,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: colors.dark.WHITE,
+
+    // borderWidth: 1,
+    // borderColor: 'blue',
   },
+  salahtime: {flexDirection: 'row', backgroundColor: 'transparent'},
 });

@@ -3,6 +3,8 @@ import {convert} from '../dimensions/dimensions';
 // todo: covert all fonts to MUST use fontsize
 // incase device is set to differet fontsize
 export const FontSize = {
+  tiny: convert(25),
+  small: convert(35),
   medium: convert(40),
   semiMedium: convert(50),
   title: convert(150),
