@@ -8,6 +8,9 @@ export const colors = {
     ACCENT: '#f1ae17',
     WARNING: '#900',
 
+    GRADIENT_START: '#FFD500',
+    GRADIENT_END: '#FF9900',
+
     BLACK: 'black',
     WHITE: 'white',
     ERROR: '#900',

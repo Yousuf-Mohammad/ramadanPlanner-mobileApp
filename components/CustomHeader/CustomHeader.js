@@ -18,82 +18,128 @@ import {useGetArabicDateQuery} from '../../redux-toolkit/features/arabic-date/ar
 import DateCircle from './DateCircle';
 import TopRightContainer from './TopRightContainer';
 import SalahTimings from './SalahTimings';
-import {getPrayerTimes} from '../../functions/Astronomicaltime/PrayerTimes';
+import {getPrayerTimes} from '../../functions/timeNLocation.time.prayerTimes';
 import LinearGradient from 'react-native-linear-gradient';
-import {getCityName} from '../../functions/Astronomicaltime/RevGeoCoding';
+import {getCityName} from '../../functions/RevGeoCoding';
+import {geoLocationIssue} from '../../functions/IsolatingIssue';
+import {hijriDate} from '../../functions/HijriDate';
+import {getTimeNLocation} from '../../functions/CurrentTimeNLocation';
 
 const CustomHeader = () => {
   const dispatch = useDispatch();
-  const day = useSelector(getArabicDate);
+  // const day = useSelector(getArabicDate);
   // const [date, setDate] = useState('');
   // todo: date coming directly, check if this is okay
   //* getting arabic date
-  const {
-    data: outerData = {},
-    isError,
-    error,
-    isLoading,
-  } = useGetArabicDateQuery(CURRENT_DATE);
-  // todo: call once and calculate whole month -> dates and timings
-  const {hijri = ''} = outerData?.data ?? {};
+  // const {
+  //   data: outerData = {},
+  //   isError,
+  //   error,
+  //   isLoading,
+  // } = useGetArabicDateQuery(CURRENT_DATE);
+  // // todo: call once and calculate whole month -> dates and timings
+  // const {hijri = ''} = outerData?.data ?? {};
 
-  const [time, setTime] = useState({sunrise: '', sunset: ''});
-  const [prayerTimes, setPrayerTimes] = useState({});
+  // const [time, setTime] = useState({sunrise: '', sunset: ''});
+  // const [timeNLocation.time.prayerTimes, setPrayerTimes] = useState({});
+  // const [city, setCity] = useState('');
+  const [timeNLocation, setTimeNLocation] = useState({
+    location: {
+      city: '',
+    },
+    time: {
+      seheriIftarTimes: {
+        seheri: {
+          hour: '',
+          minute: '',
+        },
+        iftar: {
+          hour: '',
+          minute: '',
+        },
+      },
+      prayerTimes: {
+        fajr: {
+          hour: '',
+          minute: '',
+        },
+        duhr: {
+          hour: '',
+          minute: '',
+        },
+        asr: {
+          hour: '',
+          minute: '',
+        },
+        magrib: {
+          hour: '',
+          minute: '',
+        },
+        isha: {
+          hour: '',
+          minute: '',
+        },
+      },
+    },
+  });
 
   useEffect(() => {
-    getPrayerTimes(setPrayerTimes);
+    // (async () => {
+    // getCityName(setCity);
+    // await geoLocationIssue();
+    // getPrayerTimes(setPrayerTimes);
+    // })();
+    getTimeNLocation(setTimeNLocation);
   }, []);
+
+  // console.log('city in HEADER: ', city);
 
   useEffect(() => {
     try {
-      if (isError) {
-        // todo: handle error
-        console.error('SCREEN:HEADER: error fetching arabic date: ', error);
-        // return;
-      }
-
+      // if (isError) {
+      //   // todo: handle error
+      //   console.error('SCREEN:HEADER: error fetching arabic date: ', error);
+      //   // return;
+      // }
       // console.log('date params: ', hijri);
-      dispatch(setArabicDate(hijri));
-
+      // dispatch(setArabicDate(hijri));
       // console.log('hijri date type in reducer: ', typeof day.day);
-
       //* setting time -> iftar, seheri
-      getSuntimings(setTime);
+      // getSuntimings(setTime);
       // setPrayerTimes(getPrayerTimes());
       // getPrayerTimes();
-      getCityName();
     } catch (issue) {
       console.log('SALAH TRACKER: CATCH error: ', issue);
     }
-  }, [isLoading, outerData]);
+  }, []);
 
   const allSalahTimings = [
     {
-      startTime: `${prayerTimes?.fajr?.hour} : ${prayerTimes?.fajr?.minute}`,
+      startTime: `${timeNLocation.time.prayerTimes.fajr.hour} : ${timeNLocation.time.prayerTimes.fajr.minute}`,
       meridiem: 'AM',
       icon: 'sunrise',
       name: 'Fajr',
     },
     {
-      startTime: `${prayerTimes?.duhr?.hour} : ${prayerTimes?.duhr?.minute}`,
+      startTime: `${timeNLocation.time.prayerTimes.duhr.hour} : ${timeNLocation.time.prayerTimes.duhr.minute}`,
       meridiem: 'PM',
       icon: 'sun',
       name: "Duh'r",
     },
     {
-      startTime: `${prayerTimes?.asr?.hour} : ${prayerTimes?.asr?.minute}`,
+      startTime: `${timeNLocation.time.prayerTimes.asr.hour} : ${timeNLocation.time.prayerTimes.asr.minute}`,
       meridiem: 'PM',
       icon: 'sunset',
       name: 'Asr',
     },
     {
-      startTime: `${prayerTimes?.magrib?.hour} : ${prayerTimes?.magrib?.minute}`,
+      startTime: `${timeNLocation.time.prayerTimes.magrib.hour} : ${timeNLocation.time.prayerTimes.magrib.minute}`,
       meridiem: 'PM',
       icon: 'moon',
       name: 'Magrib',
     },
     {
-      startTime: `${prayerTimes?.isha?.hour} : ${prayerTimes?.isha?.minute}`,
+      startTime: `${timeNLocation.time.prayerTimes.isha.hour} : ${timeNLocation.time.prayerTimes.isha.minute}`,
       meridiem: 'PM',
       icon: 'moon',
       name: 'Isha',
@@ -102,11 +148,17 @@ const CustomHeader = () => {
 
   // todo: seheri, iftar time integrate & logic, err handling
   return (
-    <LinearGradient style={styles.root} colors={['#FFD500', '#FF9900']}>
+    <LinearGradient
+      style={styles.root}
+      colors={[colors.dark.GRADIENT_START, colors.dark.GRADIENT_END]}>
       <View style={styles.timedate}>
-        <DateCircle date={day} />
+        <DateCircle date={hijriDate()} />
 
-        <TopRightContainer sunrise={time.sunrise} sunset={time.sunset} />
+        <TopRightContainer
+          seheri={timeNLocation.time.seheriIftarTimes.seheri}
+          iftar={timeNLocation.time.seheriIftarTimes.iftar}
+          city={timeNLocation.location.city}
+        />
       </View>
 
       <View style={styles.salahtime}>
@@ -130,8 +182,6 @@ export default CustomHeader;
 
 const styles = StyleSheet.create({
   root: {
-    // borderWidth: 3,
-    // borderColor: 'green',
     paddingBottom: convert(30),
     borderBottomLeftRadius: convert(50),
     borderBottomRightRadius: convert(50),
@@ -143,7 +193,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // backgroundColor: colors.dark.WHITE,
 
     // borderWidth: 1,
     // borderColor: 'blue',

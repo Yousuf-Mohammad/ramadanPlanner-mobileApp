@@ -6,31 +6,7 @@ import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const TopRightContainer = ({sunrise, sunset}) => {
-  const seheriTime = sunrise
-    ? {
-        hours: sunrise.getHours() - 1,
-        minutes: sunrise.getMinutes(),
-        seconds: sunrise.getSeconds(),
-      }
-    : {
-        hours: '',
-        minutes: '',
-        seconds: '',
-      };
-
-  const sunsetTime = sunset
-    ? {
-        hours: sunset.getHours() - 12,
-        minutes: sunset.getMinutes(),
-        seconds: sunset.getSeconds(),
-      }
-    : {
-        hours: '',
-        minutes: '',
-        seconds: '',
-      };
-
+const TopRightContainer = ({seheri, iftar, city}) => {
   return (
     <View style={styles.root}>
       <View style={styles.topBoxContainer}>
@@ -40,7 +16,7 @@ const TopRightContainer = ({sunrise, sunset}) => {
             Seheri ends
             <Text style={styles.time}>
               {' '}
-              {seheriTime.hours}:{seheriTime.minutes}
+              {seheri.hour} : {seheri.minute}
               {' AM'}
             </Text>
           </Text>
@@ -50,7 +26,7 @@ const TopRightContainer = ({sunrise, sunset}) => {
               Iftar
               <Text style={styles.time}>
                 {' '}
-                {sunsetTime.hours}:{sunsetTime.minutes}
+                {iftar.hour} : {iftar.minute}
                 {' PM'}
               </Text>
             </Text>
@@ -60,7 +36,7 @@ const TopRightContainer = ({sunrise, sunset}) => {
 
       <View style={styles.location.container}>
         <Icon name={'location-pin'} size={20} color={colors.dark.WHITE} />
-        <Text style={styles.location.txt}>LOCATION</Text>
+        <Text style={styles.location.txt}>{city}</Text>
       </View>
     </View>
   );
@@ -121,7 +97,7 @@ const styles = StyleSheet.create({
     txt: {
       fontFamily: 'Montserrat-ExtraBold',
       color: colors.dark.WHITE,
-      fontSize: convert(20),
+      fontSize: convert(30),
     },
   },
 });
