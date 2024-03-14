@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-
+// assets
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
@@ -36,11 +36,8 @@ const styles = StyleSheet.create({
       right: convert(-23),
       height: convert(150),
       width: convert(150),
-      // flexDirection: 'row',
-      // alignItems: 'center',
       borderRadius: convert(110),
       backgroundColor: colors.dark.WHITE,
-
       borderWidth: convert(10),
       borderColor: colors.dark.ACCENT,
     },
@@ -52,19 +49,15 @@ const styles = StyleSheet.create({
     height: convert(130),
     width: convert(130),
     borderRadius: convert(100),
-    // borderWidth: convert(10),
-    // borderColor: colors.dark.ACCENT,
   },
   text: {color: colors.dark.BLACK, fontFamily: 'Montserrat-ExtraBold'},
   dateTxt: {
     color: colors.dark.BLACK,
     fontFamily: 'Montserrat-ExtraBold',
     fontSize: FontSize.dateTxt,
-    // fontWeight: 'bold',
   },
   month: {
     container: {
-      // left: -10,
       height: convert(80),
       width: convert(200),
       borderTopEndRadius: convert(30),
@@ -78,6 +71,7 @@ const styles = StyleSheet.create({
       borderRightColor: colors.dark.ACCENT,
       borderTopColor: colors.dark.ACCENT,
       borderBottomColor: colors.dark.ACCENT,
+
       // borderColor: 'blue',
     },
   },

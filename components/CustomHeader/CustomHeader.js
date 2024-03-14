@@ -1,48 +1,18 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 // asstes
-import {convert} from '../../assets/dimensions/dimensions';
+import {SCREEN_WIDTH, convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
-// functions
-import {CURRENT_DATE} from '../../functions/InternationalDate/InternationalDate';
-import {getSuntimings} from '../../functions/Astronomicaltime/astronomicaltime';
-// rtk-slices
-import {
-  getArabicDate,
-  setArabicDate,
-} from '../../redux-toolkit/features/arabic-date/arabicDate';
-import {useGetArabicDateQuery} from '../../redux-toolkit/features/arabic-date/arabic-date-slice';
 // components
 import DateCircle from './DateCircle';
 import TopRightContainer from './TopRightContainer';
 import SalahTimings from './SalahTimings';
-import {getPrayerTimes} from '../../functions/timeNLocation.time.prayerTimes';
-import LinearGradient from 'react-native-linear-gradient';
-import {getCityName} from '../../functions/RevGeoCoding';
-import {geoLocationIssue} from '../../functions/IsolatingIssue';
+// functions
 import {hijriDate} from '../../functions/HijriDate';
 import {getTimeNLocation} from '../../functions/CurrentTimeNLocation';
 
 const CustomHeader = () => {
-  const dispatch = useDispatch();
-  // const day = useSelector(getArabicDate);
-  // const [date, setDate] = useState('');
-  // todo: date coming directly, check if this is okay
-  //* getting arabic date
-  // const {
-  //   data: outerData = {},
-  //   isError,
-  //   error,
-  //   isLoading,
-  // } = useGetArabicDateQuery(CURRENT_DATE);
-  // // todo: call once and calculate whole month -> dates and timings
-  // const {hijri = ''} = outerData?.data ?? {};
-
-  // const [time, setTime] = useState({sunrise: '', sunset: ''});
-  // const [timeNLocation.time.prayerTimes, setPrayerTimes] = useState({});
-  // const [city, setCity] = useState('');
   const [timeNLocation, setTimeNLocation] = useState({
     location: {
       city: '',
@@ -84,33 +54,7 @@ const CustomHeader = () => {
   });
 
   useEffect(() => {
-    // (async () => {
-    // getCityName(setCity);
-    // await geoLocationIssue();
-    // getPrayerTimes(setPrayerTimes);
-    // })();
     getTimeNLocation(setTimeNLocation);
-  }, []);
-
-  // console.log('city in HEADER: ', city);
-
-  useEffect(() => {
-    try {
-      // if (isError) {
-      //   // todo: handle error
-      //   console.error('SCREEN:HEADER: error fetching arabic date: ', error);
-      //   // return;
-      // }
-      // console.log('date params: ', hijri);
-      // dispatch(setArabicDate(hijri));
-      // console.log('hijri date type in reducer: ', typeof day.day);
-      //* setting time -> iftar, seheri
-      // getSuntimings(setTime);
-      // setPrayerTimes(getPrayerTimes());
-      // getPrayerTimes();
-    } catch (issue) {
-      console.log('SALAH TRACKER: CATCH error: ', issue);
-    }
   }, []);
 
   const allSalahTimings = [
@@ -133,7 +77,7 @@ const CustomHeader = () => {
       name: 'Asr',
     },
     {
-      startTime: `${timeNLocation.time.prayerTimes.magrib.hour} : ${timeNLocation.time.prayerTimes.magrib.minute}`,
+      startTime: `${timeNLocation.time.seheriIftarTimes.iftar.hour} : ${timeNLocation.time.seheriIftarTimes.iftar.minute}`,
       meridiem: 'PM',
       icon: 'moon',
       name: 'Magrib',
@@ -146,7 +90,6 @@ const CustomHeader = () => {
     },
   ];
 
-  // todo: seheri, iftar time integrate & logic, err handling
   return (
     <LinearGradient
       style={styles.root}

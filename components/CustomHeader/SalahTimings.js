@@ -20,10 +20,10 @@ export default SalahTimings;
 
 const styles = StyleSheet.create({
   root: {
-    height: convert(250),
+    height: convert(280),
     width: convert(180),
     marginHorizontal: convert(5),
-    paddingVertical: convert(10),
+    paddingVertical: convert(30),
     borderRadius: convert(50),
     alignItems: 'center',
     justifyContent: 'space-around',

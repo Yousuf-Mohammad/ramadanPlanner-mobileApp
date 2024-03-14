@@ -1,10 +1,11 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 // assets
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 import {FontSize} from '../../assets/fonts/fonts';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import {IFTAR_TXT, SEHERI_TXT} from '../../assets/texts/staticText';
 
 const TopRightContainer = ({seheri, iftar, city}) => {
   return (
@@ -13,7 +14,7 @@ const TopRightContainer = ({seheri, iftar, city}) => {
         {/* sahri iftar component */}
         <View style={styles.topbox}>
           <Text style={styles.text}>
-            Seheri ends
+            {SEHERI_TXT}
             <Text style={styles.time}>
               {' '}
               {seheri.hour} : {seheri.minute}
@@ -23,7 +24,7 @@ const TopRightContainer = ({seheri, iftar, city}) => {
 
           <View style={styles.iftar.container}>
             <Text style={styles.text}>
-              Iftar
+              {IFTAR_TXT}
               <Text style={styles.time}>
                 {' '}
                 {iftar.hour} : {iftar.minute}
@@ -62,12 +63,6 @@ const styles = StyleSheet.create({
   },
   topbox: {
     justifyContent: 'center',
-    // borderWidth: convert(5),
-    // borderColor: colors.dark.BLACK,
-    // borderTopColor: colors.dark.PRIMARY,
-    // borderBottomColor: colors.dark.PRIMARY,
-    // borderRightColor: colors.dark.WHITE,
-    // borderLeftColor: colors.dark.WHITE,
     height: convert(92.5),
   },
   text: {color: colors.dark.BLACK, fontFamily: 'Montserrat-Bold'},
@@ -97,7 +92,7 @@ const styles = StyleSheet.create({
     txt: {
       fontFamily: 'Montserrat-ExtraBold',
       color: colors.dark.WHITE,
-      fontSize: convert(30),
+      fontSize: convert(27),
     },
   },
 });
