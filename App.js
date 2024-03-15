@@ -83,7 +83,13 @@ const App = () => {
           <Stack.Screen
             name="Home"
             component={Home}
-            options={{header: () => <CustomHeader />}}
+            options={{
+              header: () => (
+                <View style={{backgroundColor: colors.dark.PRIMARY}}>
+                  <CustomHeader />
+                </View>
+              ),
+            }}
           />
         </Stack.Navigator>
       </Provider>

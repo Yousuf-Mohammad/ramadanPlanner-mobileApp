@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 // asstes
-import {SCREEN_WIDTH, convert} from '../../assets/dimensions/dimensions';
+import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 // components
 import DateCircle from './DateCircle';
