@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 // components
 import SalahTracker from './Salah/SalahTracker';
 import BottomSlider from '../BottomSlider/BottomSlider';
+import {colors} from '../../assets/colors/colors';
+import {convert} from '../../assets/dimensions/dimensions';
 
 const Salah = () => {
   // useEffect(() => {
@@ -10,11 +12,14 @@ const Salah = () => {
   // }, []);
 
   return (
-    <View style={styles.root}>
+    <ScrollView
+      style={styles.root.style}
+      contentContainerStyle={styles.root.contentContainerStyle}
+      showsVerticalScrollIndicator={false}>
       <SalahTracker />
 
       <BottomSlider title={"Today's dua"} />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -22,10 +27,17 @@ export default Salah;
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    // borderWidth: 1,
-    // borderColor: 'red',
+    style: {
+      flex: 1,
+      backgroundColor: colors.dark.PRIMARY,
+      // marginHorizontal: convert(25),
+    },
+    contentContainerStyle: {
+      alignItems: 'center',
+      justifyContent: 'space-around',
+
+      // borderWidth: 1,
+      // borderColor: 'red',
+    },
   },
 });

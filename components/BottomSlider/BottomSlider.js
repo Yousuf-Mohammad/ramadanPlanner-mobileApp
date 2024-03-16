@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 5,
-    borderColor: colors.dark.PRIMARY,
+    borderColor: colors.dark.CONTRAST,
   },
   dua: {color: colors.dark.BLACK, fontSize: convert(100)},
 });

@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
       borderRadius: convert(25),
       borderWidth: convert(5),
       borderColor: colors.dark.CONTRAST,
-      marginHorizontal: convert(5),
+      marginHorizontal: convert(7),
       marginVertical: convert(22),
     },
     txt: {

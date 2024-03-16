@@ -42,7 +42,14 @@ const SalahTrackerView = ({data}) => {
           day: parseInt(day.day, 10),
         });
 
-        // console.log("SALAH TRACKER RACE QUEUE: response: ", response);
+        // console.log('request date: ', day.year);
+        // console.log('request date type: ', typeof day.year);
+
+        // console.log('SALAH TRACKER RACE QUEUE: response: ', response);
+        // console.log(
+        //   'SALAH TRACKER RACE QUEUE: response: ',
+        //   response.error.data.detail,
+        // );
 
         // Remove processed state from the queue
         stateUpdateQueue.current.shift();
@@ -163,7 +170,7 @@ const SalahTrackerView = ({data}) => {
 
   const salah = [
     {
-      salahName: 'fajr',
+      salahName: 'Fajr',
       farj: true,
       checked: fajr,
       checkedSunnah: fajrSunnah,
@@ -171,7 +178,7 @@ const SalahTrackerView = ({data}) => {
       sunnahCheck: checkFajrSunnah,
     },
     {
-      salahName: 'johr',
+      salahName: 'Johr',
       farj: true,
       checked: johr,
       checkedSunnah: johrSunnah,
@@ -179,7 +186,7 @@ const SalahTrackerView = ({data}) => {
       sunnahCheck: checkJohrSunnah,
     },
     {
-      salahName: 'asr',
+      salahName: 'Asr',
       farj: true,
       checked: asr,
       checkedSunnah: asrSunnah,
@@ -187,7 +194,7 @@ const SalahTrackerView = ({data}) => {
       sunnahCheck: checkAsrSunnah,
     },
     {
-      salahName: 'magrib',
+      salahName: 'Magrib',
       farj: true,
       checked: magrib,
       checkedSunnah: magribSunnah,
@@ -195,7 +202,7 @@ const SalahTrackerView = ({data}) => {
       sunnahCheck: checkMagribSunnah,
     },
     {
-      salahName: 'esha',
+      salahName: 'Esha',
       farj: true,
       checked: esha,
       checkedSunnah: eshaSunnah,
@@ -203,7 +210,7 @@ const SalahTrackerView = ({data}) => {
       sunnahCheck: checkEshaSunnah,
     },
     {
-      salahName: 'taraweeh',
+      salahName: 'Taraweeh',
       farj: false,
       checked: '',
       checkedSunnah: taraweeh,
@@ -211,7 +218,7 @@ const SalahTrackerView = ({data}) => {
       sunnahCheck: checkTaraweeh,
     },
     {
-      salahName: 'tahajjut',
+      salahName: 'Tahajjut',
       farj: false,
       checked: '',
       checkedSunnah: tahajjut,
@@ -219,7 +226,7 @@ const SalahTrackerView = ({data}) => {
       sunnahCheck: checkTahajjut,
     },
     {
-      salahName: 'salatuh duha',
+      salahName: 'Salatuh duha',
       farj: false,
       checked: '',
       checkedSunnah: salahDuha,
@@ -232,7 +239,7 @@ const SalahTrackerView = ({data}) => {
     <View style={styles.trackerContainer}>
       {/* ROW TITLE */}
       <View style={styles.salahRowContainer}>
-        <View style={styles.smallBox} />
+        <View style={{...styles.smallBox, marginHorizontal: convert(30)}} />
 
         <View style={styles.smallBox}>
           <Text style={styles.title}>Farj</Text>
@@ -247,8 +254,8 @@ const SalahTrackerView = ({data}) => {
       {salah.map((i, idx) => {
         return (
           <View key={idx} style={styles.salahRowContainer}>
-            <View style={styles.smallBox}>
-              <Text style={styles.title}>{i.salahName}</Text>
+            <View style={styles.rows.container}>
+              <Text style={styles.rows.txt}>{i.salahName}</Text>
             </View>
 
             <View style={styles.smallBox}>
@@ -256,7 +263,8 @@ const SalahTrackerView = ({data}) => {
                 <CheckBox
                   checked={i.checked}
                   onPress={() => i.farjCheck()}
-                  checkedColor={colors.dark.PRIMARY}
+                  checkedColor={colors.dark.CONTRAST}
+                  size={FontSize.semiMedium}
                 />
               ) : (
                 <></>
@@ -267,7 +275,8 @@ const SalahTrackerView = ({data}) => {
               <CheckBox
                 checked={i.checkedSunnah}
                 onPress={() => i.sunnahCheck()}
-                checkedColor={colors.dark.PRIMARY}
+                checkedColor={colors.dark.CONTRAST}
+                size={FontSize.semiMedium}
               />
             </View>
           </View>
@@ -282,27 +291,60 @@ export default SalahTrackerView;
 
 const styles = StyleSheet.create({
   trackerContainer: {
-    width: convert(1000),
-    height: convert(1200),
-    // borderWidth: 5,
-    // borderColor: 'blue',
+    width: convert(950),
+    height: convert(1150),
+    // paddingHorizontal: convert(25),
+
+    borderWidth: convert(5),
+    borderRadius: convert(25),
+    borderColor: colors.dark.CONTRAST,
+    // borderColor: 'green',
   },
   smallBox: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    width: convert(335),
+    // backgroundColor: colors.dark.CONTRAST,
+    // width: convert(335),
+
     // borderWidth: 1,
     // borderColor: 'blue',
   },
-  title: {color: colors.dark.BLACK, fontSize: FontSize.secondaryTitle},
+  title: {
+    fontFamily: 'Montserrat-SemiBold',
+    color: colors.dark.CONTRAST,
+    fontSize: FontSize.medium,
+  },
   salahRowContainer: {
     flexDirection: 'row',
-    height: convert(130),
-    borderWidth: 1,
-    borderLeftColor: colors.dark.WHITE,
-    borderRightColor: colors.dark.WHITE,
-    borderTopColor: colors.dark.WHITE,
-    borderBottomColor: colors.dark.BLACK,
+    alignItems: 'center',
+    height: convert(125),
+
+    // borderWidth: 1,
+    // borderLeftColor: colors.dark.WHITE,
+    // borderRightColor: colors.dark.WHITE,
+    // borderTopColor: colors.dark.WHITE,
+    // borderBottomColor: colors.dark.BLACK,
     // borderColor: 'black',
+  },
+  rows: {
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: convert(90),
+      marginHorizontal: convert(30),
+      // marginVertical: convert(10),
+      borderRadius: convert(25),
+      backgroundColor: colors.dark.CONTRAST,
+
+      // borderWidth: 1,
+      // borderColor: 'red',
+    },
+    txt: {
+      fontFamily: 'Montserrat-SemiBold',
+      // fontSize: convert(35),
+      color: colors.dark.PRIMARY,
+    },
   },
 });

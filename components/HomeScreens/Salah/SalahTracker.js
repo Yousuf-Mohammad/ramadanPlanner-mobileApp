@@ -42,7 +42,7 @@ const SalahTracker = () => {
       <View style={styles.loading.root}>
         <ActivityIndicator
           animating={true}
-          color={colors.dark.PRIMARY}
+          color={colors.dark.CONTRAST}
           size={'large'}
         />
       </View>
