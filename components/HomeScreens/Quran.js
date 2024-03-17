@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
 // components
 import QuranTracker from './Quran/QuranTracker';
-
-import {useSelector} from 'react-redux';
-import {getAuthToken} from '../../redux-toolkit/features/authentication/authToken';
+import BottomSlider from '../BottomSlider/BottomSlider';
+// assets
+import {colors} from '../../assets/colors/colors';
 
 const Quran = () => {
   // useEffect(() => {
@@ -12,9 +12,14 @@ const Quran = () => {
   // }, []);
 
   return (
-    <View style={styles.root}>
+    <ScrollView
+      contentContainerStyle={styles.root.contentContainerStyle}
+      style={styles.root.style}
+      showsVerticalScrollIndicator={false}>
       <QuranTracker />
-    </View>
+
+      <BottomSlider title={"Today's dua"} />
+    </ScrollView>
   );
 };
 
@@ -22,10 +27,15 @@ export default Quran;
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    // borderWidth: 1,
-    // borderColor: 'red',
+    style: {
+      flex: 1,
+      backgroundColor: colors.dark.PRIMARY,
+      // borderWidth: 1,
+      // borderColor: 'red',
+    },
+    contentContainerStyle: {
+      alignItems: 'center',
+      justifyContent: 'space-around',
+    },
   },
 });

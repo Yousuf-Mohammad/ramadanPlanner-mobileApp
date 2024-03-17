@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {useSelector} from 'react-redux';
@@ -125,8 +125,18 @@ const QuranTrackerView = ({data}) => {
     }
   };
 
+  useEffect(() => {
+    let duration = 3500;
+
+    const timeout = setTimeout(() => {
+      setErr('');
+    }, duration);
+
+    return () => clearTimeout(timeout);
+  }, [err]);
+
   return (
-    <ScrollView contentContainerStyle={styles.root}>
+    <View style={styles.root}>
       <BgBox title={'Regular Target'}>
         <RegularTarget
           dropDownPlaceholder={regularTargetDDPlaceholer()}
@@ -169,9 +179,7 @@ const QuranTrackerView = ({data}) => {
         containerStyle={styles.btn.containerStyle}
         onPress={() => handleSubmit()}
       />
-
-      <BottomSlider title={"Today's dua"} />
-    </ScrollView>
+    </View>
   );
 };
 
@@ -179,41 +187,46 @@ export default QuranTrackerView;
 
 const styles = StyleSheet.create({
   root: {
-    height: SCREEN_HEIGHT - 210,
+    width: convert(950),
     alignItems: 'center',
-    justifyContent: 'space-around',
+    borderRadius: convert(25),
+
     // borderWidth: 1,
-    // borderColor: 'black',
+    // borderColor: 'blue',
   },
   btn: {
     buttonStyle: {
-      height: convert(150),
-      width: convert(750),
-      borderRadius: convert(50),
-      backgroundColor: colors.dark.PRIMARY,
-      borderWidth: convert(10),
-      borderColor: colors.dark.ACCENT,
+      height: convert(85),
+      width: convert(890),
+      marginVertical: convert(41),
+      borderRadius: convert(25),
+      backgroundColor: colors.dark.CONTRAST,
+
+      // borderWidth: convert(10),
+      // borderColor: colors.dark.ACCENT,
     },
     titleStyle: {
-      fontWeight: 'bold',
-      fontSize: FontSize.btnTitle,
-      color: colors.dark.WHITE,
+      fontFamily: 'Montserrat-SemiBold',
+      color: colors.dark.PRIMARY,
     },
-    containerStyle: {
-      borderwidth: 4,
-      borderColor: 'black',
-    },
+    // containerStyle: {
+    //   borderwidth: 4,
+    //   borderColor: 'black',
+    // },
   },
   err: {
     msg: {
+      fontFamily: 'Montserrat-SemiBold',
       color: colors.dark.ERROR,
     },
     container: {
+      height: convert(75),
       width: convert(1000),
       alignItems: 'center',
-      marginTop: convert(25),
+      justifyContent: 'center',
+
       // borderWidth: 1,
-      // borderColor: 'black',
+      // borderColor: 'blue',
     },
   },
 });

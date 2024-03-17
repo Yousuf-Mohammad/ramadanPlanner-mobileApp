@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import React from 'react';
+import {ScrollView, StyleSheet} from 'react-native';
 // components
 import SalahTracker from './Salah/SalahTracker';
 import BottomSlider from '../BottomSlider/BottomSlider';
 import {colors} from '../../assets/colors/colors';
-import {convert} from '../../assets/dimensions/dimensions';
 
 const Salah = () => {
   // useEffect(() => {

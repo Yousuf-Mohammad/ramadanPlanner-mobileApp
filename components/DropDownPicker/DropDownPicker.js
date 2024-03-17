@@ -17,15 +17,25 @@ const DropDownPicker = ({
   return (
     <View style={styles.container}>
       <Dropdown
-        style={[styles.dropdown, isFocus && {borderColor: colors.dark.PRIMARY}]}
-        placeholderStyle={styles.placeholderStyle}
+        style={[
+          styles.dropdown,
+          isFocus && {
+            backgroundColor: colors.dark.CONTRAST,
+          },
+        ]}
+        placeholderStyle={[
+          styles.placeholderStyle,
+          isFocus && {color: colors.dark.PRIMARY},
+        ]}
+        selectedStyle={{}}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
+        itemContainerStyle={{backgroundColor: colors.dark.CONTRAST}}
         itemTextStyle={styles.itemTextStyle}
         labelField="label"
         valueField="value"
-        //   pass
+        // props
         data={data}
         value={value}
         search={search}
@@ -50,18 +60,18 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.dark.PRIMARY,
     height: convert(150),
     width: convert(425),
-    backgroundColor: 'transparent',
+    // backgroundColor: 'transparent',
     padding: 16,
   },
   containerStyle: {
-    color: 'black',
+    // color: 'black',
+    // backgroundColor: 'blue',
   },
   dropdown: {
-    backgroundColor: colors.dark.WHITE,
+    backgroundColor: colors.dark.PRIMARY,
     // width: convert(300),
     height: 50,
-    borderColor: 'gray',
-    borderWidth: 0.5,
+    // borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: convert(10),
   },
@@ -78,21 +88,29 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   placeholderStyle: {
-    color: 'black',
-    fontSize: 16,
+    fontFamily: 'Montserrat-SemiBold',
+    color: colors.dark.CONTRAST,
+    fontSize: convert(35),
+    // fontSize: 16,
   },
   selectedTextStyle: {
-    fontSize: 16,
-    color: 'black',
+    fontFamily: 'Montserrat-SemiBold',
+    color: colors.dark.CONTRAST,
   },
   iconStyle: {
     width: 20,
     height: 20,
   },
   inputSearchStyle: {
-    color: colors.dark.BLACK,
-    height: 40,
-    fontSize: 16,
+    fontFamily: 'Montserrat-SemiBold',
+    color: colors.dark.PRIMARY,
+
+    // height: 40,
+    // fontSize: 16,
+    // backgroundColor: colors.dark.CONTRAST,
   },
-  itemTextStyle: {color: 'black'},
+  itemTextStyle: {
+    fontFamily: 'Montserrat-SemiBold',
+    color: colors.dark.PRIMARY,
+  },
 });
