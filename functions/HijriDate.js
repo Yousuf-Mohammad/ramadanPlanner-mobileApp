@@ -12,7 +12,9 @@ export const hijriDate = () => {
       month = i.name;
     }
   });
+  const monthNumber = hijriDateNow._month;
+  const year = hijriDateNow._year;
 
   // console.log('day: ', day, 'month: ', month);
-  return {day: day, month: month};
+  return {day: day, month: month, monthNumber: monthNumber, year: year};
 };

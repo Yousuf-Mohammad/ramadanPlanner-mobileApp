@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {useDispatch} from 'react-redux';
 // asstes
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
@@ -11,6 +13,8 @@ import SalahTimings from './SalahTimings';
 // functions
 import {hijriDate} from '../../functions/HijriDate';
 import {getTimeNLocation} from '../../functions/CurrentTimeNLocation';
+// rtk-slices
+import {setArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
 
 const CustomHeader = () => {
   const [timeNLocation, setTimeNLocation] = useState({
@@ -53,7 +57,10 @@ const CustomHeader = () => {
     },
   });
 
+  const dispatch = useDispatch();
   useEffect(() => {
+    const hijriDateToday = hijriDate();
+    dispatch(setArabicDate(hijriDateToday));
     getTimeNLocation(setTimeNLocation);
   }, []);
 

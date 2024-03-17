@@ -13,7 +13,6 @@ import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicD
 
 const SalahTrackerView = ({data}) => {
   const day = useSelector(getArabicDate);
-  // console.error("COMPONENT: SALAH TRACKER VIEW: date fetch <= store: ", day)
 
   const [setSalahCheckList] = useSetSalahCheckListMutation();
 
@@ -41,9 +40,6 @@ const SalahTrackerView = ({data}) => {
           month: parseInt(day.monthNumber, 10),
           day: parseInt(day.day, 10),
         });
-
-        // console.log('request date: ', day.year);
-        // console.log('request date type: ', typeof day.year);
 
         // console.log('SALAH TRACKER RACE QUEUE: response: ', response);
         // console.log(
@@ -293,7 +289,6 @@ const styles = StyleSheet.create({
   trackerContainer: {
     width: convert(950),
     height: convert(1150),
-    // paddingHorizontal: convert(25),
 
     borderWidth: convert(5),
     borderRadius: convert(25),
@@ -304,8 +299,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: colors.dark.CONTRAST,
-    // width: convert(335),
 
     // borderWidth: 1,
     // borderColor: 'blue',
@@ -321,10 +314,6 @@ const styles = StyleSheet.create({
     height: convert(125),
 
     // borderWidth: 1,
-    // borderLeftColor: colors.dark.WHITE,
-    // borderRightColor: colors.dark.WHITE,
-    // borderTopColor: colors.dark.WHITE,
-    // borderBottomColor: colors.dark.BLACK,
     // borderColor: 'black',
   },
   rows: {
@@ -334,7 +323,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       height: convert(90),
       marginHorizontal: convert(30),
-      // marginVertical: convert(10),
       borderRadius: convert(25),
       backgroundColor: colors.dark.CONTRAST,
 
@@ -343,7 +331,6 @@ const styles = StyleSheet.create({
     },
     txt: {
       fontFamily: 'Montserrat-SemiBold',
-      // fontSize: convert(35),
       color: colors.dark.PRIMARY,
     },
   },
