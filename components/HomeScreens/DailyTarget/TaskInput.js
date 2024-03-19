@@ -62,7 +62,7 @@ const TaskInput = ({
         onLongPress={() => {
           handleTaskDeletion(idx);
         }}>
-        <Icon name="trash" size={convert(50)} color="red" />
+        <Icon name="trash" size={convert(50)} color={colors.dark.ERROR} />
       </TouchableOpacity>
     </View>
   );
