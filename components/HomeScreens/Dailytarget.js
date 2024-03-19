@@ -18,10 +18,6 @@ import {convert} from '../../assets/dimensions/dimensions';
 import TasksContainer from './DailyTarget/TasksContainer';
 
 const Dailytarget = () => {
-  // useEffect(() => {
-  //   console.log('SCREEN: DAILY TARGET: rendered!');
-  // }, []);
-
   const day = useSelector(getArabicDate);
 
   //* handeling race conditions with queue
@@ -177,11 +173,17 @@ const Dailytarget = () => {
           placeholder="Add a task"
           // errorStyle={styles.error}
           // errorMessage={errorMessage ? errorMessage : ''}
+          inputContainerStyle={{
+            backgroundColor: colors.dark.PRIMARY,
+          }}
+          inputStyle={{
+            color: colors.dark.CONTRAST,
+          }}
         />
       </View>
 
       <Button
-        title={'+ Add task'}
+        title={'+ ADD TASK'}
         loading={false}
         loadingProps={{size: 'small', color: colors.dark.WHITE}}
         buttonStyle={styles.btn.buttonStyle}

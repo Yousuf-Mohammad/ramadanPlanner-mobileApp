@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-// components
 import {CheckBox} from 'react-native-elements';
+// components
+import TaskInput from './TaskInput';
+import EditTaskInput from './EditTaskInput';
 // assets
 import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
-import TaskInput from './TaskInput';
-import EditTaskInput from './EditTaskInput';
 
 const Tasks = ({
   idx,
@@ -24,18 +24,23 @@ const Tasks = ({
 
   const styles = StyleSheet.create({
     root: {
-      height: convert(200),
+      height: convert(150),
       flexDirection: 'row',
       alignItems: 'center',
-      //   todo: last item bottom not visible properly
+      marginBottom: convert(15),
+      marginHorizontal: convert(33),
+      borderWidth: convert(5),
+      borderRadius: convert(25),
+      borderColor: colors.dark.CONTRAST,
+
       // paddingBottom: lastItem ? convert(150) : 0,
       // borderWidth: 1,
-      // borderColor: 'blue',
     },
     smallBox: {
       width: convert(150),
       alignItems: 'center',
       justifyContent: 'center',
+
       //   borderWidth: 1,
       //   borderColor: 'blue',
     },
@@ -56,7 +61,7 @@ const Tasks = ({
             <CheckBox
               checked={complete}
               onPress={() => handleTaskCompletion(idx, taskID)}
-              checkedColor={colors.dark.PRIMARY}
+              checkedColor={colors.dark.CONTRAST}
             />
           </View>
 

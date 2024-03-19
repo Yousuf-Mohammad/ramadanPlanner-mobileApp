@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 // assets
 import {FontSize} from '../../../assets/fonts/fonts';
 import {convert} from '../../../assets/dimensions/dimensions';
+import {colors} from '../../../assets/colors/colors';
 
 const TaskInput = ({
   idx,
@@ -16,22 +17,26 @@ const TaskInput = ({
     taskBox: {
       flex: 1,
       flexDirection: 'row',
-      //   borderWidth: 1,
-      //   borderColor: 'red',
+      alignItems: 'center',
+
+      // borderWidth: 1,
+      // borderColor: 'red',
     },
     txtContainer: {flex: 1},
     text: {
       textDecorationLine: complete ? 'line-through' : null,
-      color: 'black',
-      fontSize: FontSize.btnTitle,
+      color: colors.dark.CONTRAST,
+      fontSize: FontSize.medium,
+      fontFamily: 'Montserrat-SemiBold',
     },
     delete: {
-      // alignSelf: 'flex-end',
+      height: convert(100),
+      width: convert(150),
       alignItems: 'center',
       justifyContent: 'center',
-      width: convert(150),
-      //   borderWidth: 1,
-      //   borderColor: 'blue',
+
+      // borderWidth: 1,
+      // borderColor: 'blue',
     },
   });
 
@@ -43,20 +48,21 @@ const TaskInput = ({
         </Text>
       </View>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.delete}
         onPress={() => {
           handleEditPress();
         }}>
         <Icon name="pencil" size={30} color="blue" />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
         style={styles.delete}
-        onPress={() => {
+        activeOpacity={0.8}
+        onLongPress={() => {
           handleTaskDeletion(idx);
         }}>
-        <Icon name="trash" size={30} color="red" />
+        <Icon name="trash" size={convert(50)} color="red" />
       </TouchableOpacity>
     </View>
   );

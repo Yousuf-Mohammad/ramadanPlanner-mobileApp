@@ -13,7 +13,9 @@ const TasksContainer = ({
 }) => {
   // todo: replace all onPress to regular functions instead of arrow functions. r&d about the scoping issue?
   return (
-    <ScrollView contentContainerStyle={styles.tasklist}>
+    <ScrollView
+      contentContainerStyle={styles.tasklist}
+      showsVerticalScrollIndicator={false}>
       {typeof task === 'undefined' || task.length === 0 ? (
         <View style={{padding: convert(30)}}>
           <Text style={styles.empty}>No tasks :(</Text>
@@ -45,6 +47,7 @@ const styles = StyleSheet.create({
   tasklist: {
     flexGrow: 1,
     width: convert(1000),
+
     // borderWidth: 1,
     // borderColor: 'red',
   },
