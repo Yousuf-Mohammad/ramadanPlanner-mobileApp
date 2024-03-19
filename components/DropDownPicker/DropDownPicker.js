@@ -13,10 +13,12 @@ const DropDownPicker = ({
   setIsFocus,
   setValue,
   placeholder,
+  dropdownPosition,
 }) => {
   return (
     <View style={styles.container}>
       <Dropdown
+        dropdownPosition={dropdownPosition ? dropdownPosition : 'auto'}
         style={[
           styles.dropdown,
           isFocus && {

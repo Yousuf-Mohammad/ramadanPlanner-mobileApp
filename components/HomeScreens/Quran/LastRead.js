@@ -55,6 +55,7 @@ const LastRead = ({dropDownPlaceholder, inputPlaceholder, setter, data}) => {
         setIsFocus={setIsFocus}
         setValue={setValue}
         placeholder={dropDownPlaceholder}
+        dropdownPosition={'top'}
       />
 
       <View style={styles.btnContainer}>
