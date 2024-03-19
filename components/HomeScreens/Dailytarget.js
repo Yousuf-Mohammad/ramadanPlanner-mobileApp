@@ -196,7 +196,12 @@ const Dailytarget = () => {
 export default Dailytarget;
 
 const styles = StyleSheet.create({
-  root: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.dark.PRIMARY,
+  },
   tasklist: {
     height: convert(1200),
     width: convert(1000),
@@ -208,7 +213,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: convert(1000),
     alignItems: 'center',
-    // justifyContent: 'center',
+
     // borderWidth: 1,
     // borderColor: 'black',
   },
@@ -218,14 +223,23 @@ const styles = StyleSheet.create({
   },
   task: {color: 'black', fontSize: FontSize.btnTitle},
   btn: {
-    buttonStyle: {backgroundColor: colors.dark.PRIMARY},
-    titleStyle: {fontWeight: 'bold', fontSize: FontSize.btnTitle},
+    buttonStyle: {
+      height: convert(100),
+      width: convert(890),
+      marginBottom: convert(41),
+      borderRadius: convert(25),
+      backgroundColor: colors.dark.CONTRAST,
+
+      // borderWidth: convert(10),
+      // borderColor: colors.dark.ACCENT,
+    },
+    titleStyle: {fontFamily: 'Montserrat-SemiBold', color: colors.dark.PRIMARY},
     containerStyle: {
-      marginHorizontal: 50,
-      height: 50,
-      width: 200,
-      marginVertical: 10,
-      marginTop: 80,
+      // marginHorizontal: 50,
+      // height: 50,
+      // width: 200,
+      // marginVertical: 10,
+      // marginTop: 80,
     },
   },
 });
