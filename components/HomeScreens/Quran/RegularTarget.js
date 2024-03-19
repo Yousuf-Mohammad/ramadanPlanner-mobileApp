@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {Input} from 'react-native-elements';
 // components
 import DropDownPicker from '../../DropDownPicker/DropDownPicker';
 // assets
 import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
-import {Input} from 'react-native-elements';
 
 const RegularTarget = ({dropDownPlaceholder, inputPlaceholder, setter}) => {
   const regularTargetRef = useRef(null);
@@ -64,10 +64,11 @@ const RegularTarget = ({dropDownPlaceholder, inputPlaceholder, setter}) => {
             placeholderStyle={{color: colors.dark.BLACK}}
             inputContainerStyle={{
               width: convert(350),
-              backgroundColor: colors.dark.WHITE,
+              backgroundColor: colors.dark.PRIMARY,
             }}
-            // errorStyle={styles.error}
-            // errorMessage={errorMessage ? errorMessage : ''}
+            inputStyle={{
+              color: colors.dark.CONTRAST,
+            }}
           />
         </View>
       </View>

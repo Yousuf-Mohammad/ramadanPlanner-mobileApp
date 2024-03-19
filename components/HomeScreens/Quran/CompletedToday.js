@@ -64,12 +64,11 @@ const CompletedToday = ({dropDownPlaceholder, inputPlaceholder, setter}) => {
           }`}
           inputContainerStyle={{
             width: convert(350),
-            backgroundColor: colors.dark.WHITE,
-            // borderWidth: 1,
-            // borderColor: 'yellow',
+            backgroundColor: colors.dark.PRIMARY,
           }}
-          // errorStyle={styles.error}
-          // errorMessage={errorMessage ? errorMessage : ''}
+          inputStyle={{
+            color: colors.dark.CONTRAST,
+          }}
         />
       </View>
     </View>

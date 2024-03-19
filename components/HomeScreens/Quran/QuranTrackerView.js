@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 // rtk-slices
@@ -7,17 +7,15 @@ import {useSetRecitationInfoMutation} from '../../../redux-toolkit/features/reci
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
 // functions
 import {inputError} from '../../../functions/validations/recitationValidation';
-import {SCREEN_HEIGHT, convert} from '../../../assets/dimensions/dimensions';
+import {convert} from '../../../assets/dimensions/dimensions';
 // assets
 import {surahInfo} from '../../../assets/constants/surahInfo';
 import {colors} from '../../../assets/colors/colors';
-import {FontSize} from '../../../assets/fonts/fonts';
 // components
 import CompletedToday from './CompletedToday';
 import BgBox from './BgBox';
 import LastRead from './LastRead';
 import RegularTarget from './RegularTarget';
-import BottomSlider from '../../BottomSlider/BottomSlider';
 
 const QuranTrackerView = ({data}) => {
   const day = useSelector(getArabicDate);
@@ -173,7 +171,7 @@ const QuranTrackerView = ({data}) => {
       <Button
         title={'+ ADD TARGET'}
         loading={loading}
-        loadingProps={{size: 'small', color: colors.dark.WHITE}}
+        loadingProps={{size: 'small', color: colors.dark.PRIMARY}}
         buttonStyle={styles.btn.buttonStyle}
         titleStyle={styles.btn.titleStyle}
         containerStyle={styles.btn.containerStyle}
@@ -189,6 +187,7 @@ const styles = StyleSheet.create({
   root: {
     width: convert(950),
     alignItems: 'center',
+    paddingTop: convert(10),
     borderRadius: convert(25),
 
     // borderWidth: 1,
@@ -196,9 +195,9 @@ const styles = StyleSheet.create({
   },
   btn: {
     buttonStyle: {
-      height: convert(85),
+      height: convert(100),
       width: convert(890),
-      marginVertical: convert(41),
+      marginBottom: convert(41),
       borderRadius: convert(25),
       backgroundColor: colors.dark.CONTRAST,
 
@@ -209,10 +208,6 @@ const styles = StyleSheet.create({
       fontFamily: 'Montserrat-SemiBold',
       color: colors.dark.PRIMARY,
     },
-    // containerStyle: {
-    //   borderwidth: 4,
-    //   borderColor: 'black',
-    // },
   },
   err: {
     msg: {
@@ -220,7 +215,7 @@ const styles = StyleSheet.create({
       color: colors.dark.ERROR,
     },
     container: {
-      height: convert(75),
+      height: convert(80),
       width: convert(1000),
       alignItems: 'center',
       justifyContent: 'center',
