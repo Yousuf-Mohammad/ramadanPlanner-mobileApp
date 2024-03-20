@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     style: {
       flex: 1,
       backgroundColor: colors.dark.PRIMARY,
+
       // borderWidth: 1,
       // borderColor: 'red',
     },
     contentContainerStyle: {
       alignItems: 'center',
-      justifyContent: 'space-around',
     },
   },
 });
