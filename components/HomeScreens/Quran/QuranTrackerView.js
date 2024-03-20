@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     buttonStyle: {
       height: convert(100),
       width: convert(890),
-      // marginBottom: convert(41),
+      marginBottom: convert(58),
       borderRadius: convert(25),
       backgroundColor: colors.dark.CONTRAST,
 
