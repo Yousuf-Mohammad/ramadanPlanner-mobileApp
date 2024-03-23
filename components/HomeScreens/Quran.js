@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 // components
 import QuranTracker from './Quran/QuranTracker';
 import BottomSlider from '../BottomSlider/BottomSlider';

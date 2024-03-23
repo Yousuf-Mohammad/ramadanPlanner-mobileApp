@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   root: {
     width: convert(950),
     alignItems: 'center',
-    paddingTop: convert(10),
+    paddingTop: convert(25),
     borderRadius: convert(25),
 
     // borderWidth: 1,

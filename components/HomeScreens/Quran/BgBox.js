@@ -4,12 +4,13 @@ import {StyleSheet, Text, View} from 'react-native';
 import {colors} from '../../../assets/colors/colors';
 import {convert} from '../../../assets/dimensions/dimensions';
 
-const BgBox = ({title, children}) => {
+const BgBox = ({title, children, styleprop}) => {
   const styles = StyleSheet.create({
     root: {
       width: convert(935),
       marginBottom: title === 'Completed today' ? null : convert(41),
       paddingTop: convert(35),
+      paddingBottom: title === 'Today' ? convert(35) : null,
       alignItems: 'center',
       justifyContent: 'center',
 
