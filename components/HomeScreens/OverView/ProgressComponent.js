@@ -1,20 +1,23 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import ProgressBar from 'react-native-progress/Bar';
+// assets
 import {convert} from '../../../assets/dimensions/dimensions';
 import {colors} from '../../../assets/colors/colors';
-import * as Progress from 'react-native-progress';
 
-const ProgressComponent = ({title}) => {
+const ProgressComponent = ({title, totalTasks, completedTasks}) => {
   return (
     <View style={styles.daily.container}>
       <View style={styles.daily.txtcontainer}>
         <Text style={styles.daily.txt}>{title}</Text>
-        <Text style={styles.daily.txt}>(0/5)</Text>
+        <Text style={styles.daily.txt}>
+          ({completedTasks}/{totalTasks})
+        </Text>
       </View>
 
       <View style={styles.progress.container}>
-        <Progress.Bar
-          progress={0.3}
+        <ProgressBar
+          progress={completedTasks / totalTasks}
           width={convert(620)}
           height={convert(50)}
           color={colors.dark.CONTRAST}
