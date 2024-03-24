@@ -22,9 +22,13 @@ export const salahInfoSlice = createSlice({
   name: 'salahInfoSlice',
   initialState: initialState,
   reducers: {
-    setSalahInfo: (state, action) => {
-      // set salah info on login, salah checkbox checked/uncheked, salah info reset
+    setAllSalahInfo: (state, action) => {
       state.value = action.payload;
+    },
+    setSalahInfo: (state, action) => {
+      const {field, value} = action.payload;
+
+      state.value[field] = value;
     },
     resetSalahInfo: state => {
       state.value = {

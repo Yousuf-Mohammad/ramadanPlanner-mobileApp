@@ -8,15 +8,13 @@ import Dailytarget from '../components/HomeScreens/Dailytarget';
 import OverView from '../components/HomeScreens/OverView/OverView';
 import CustomTopTab from '../components/CustomTopTab/CustomTopTab';
 import {getSalahInfo} from '../redux-toolkit/features/salah-checklist/salah-info';
-import {getAuthToken} from '../redux-toolkit/features/authentication/authToken';
 import {useSelector} from 'react-redux';
 
 const Tab = createMaterialTopTabNavigator();
 
 const Home = () => {
-  const salahInfo = useSelector(getSalahInfo);
-  console.log('salah info: ', salahInfo);
-  // getAuthToken();
+  // const salahInfo = useSelector(getSalahInfo);
+  // console.log('salah info: ', salahInfo);
 
   return (
     <Tab.Navigator tabBar={props => <CustomTopTab {...props} />}>

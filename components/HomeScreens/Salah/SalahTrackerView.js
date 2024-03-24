@@ -2,16 +2,18 @@
 import React, {useRef, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {CheckBox, SearchBar} from 'react-native-elements';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 // assets
 import {colors} from '../../../assets/colors/colors';
 import {convert} from '../../../assets/dimensions/dimensions';
 import {FontSize} from '../../../assets/fonts/fonts';
 // rtk-slices
 import {useSetSalahCheckListMutation} from '../../../redux-toolkit/features/salah-checklist/salah-checklist-slice';
+import {setSalahInfo} from '../../../redux-toolkit/features/salah-checklist/salah-info';
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
 
 const SalahTrackerView = ({data}) => {
+  const dispatch = useDispatch();
   const day = useSelector(getArabicDate);
 
   const [setSalahCheckList] = useSetSalahCheckListMutation();
@@ -35,7 +37,7 @@ const SalahTrackerView = ({data}) => {
       try {
         const response = await setSalahCheckList({
           field,
-          value,
+          value: Boolean(value),
           year: parseInt(day.year, 10),
           month: parseInt(day.monthNumber, 10),
           day: parseInt(day.day, 10),
@@ -46,6 +48,8 @@ const SalahTrackerView = ({data}) => {
         //   'SALAH TRACKER RACE QUEUE: response: ',
         //   response.error.data.detail,
         // );
+
+        dispatch(setSalahInfo({field: field, value: Boolean(value)}));
 
         // Remove processed state from the queue
         stateUpdateQueue.current.shift();
