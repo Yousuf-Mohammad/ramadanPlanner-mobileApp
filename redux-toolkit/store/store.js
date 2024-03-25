@@ -10,6 +10,7 @@ import {arabicDateSlice} from '../features/arabic-date/arabic-date-slice';
 import {salahChecklistSlice} from '../features/salah-checklist/salah-checklist-slice';
 import {recitationInfoSlice} from '../features/recitation-Info/recitation-info-slice';
 import {dailyTodolistSlice} from '../features/daily-todolist/daily-todolist-slice';
+import {duaSlice} from '../features/dua/dua-slice';
 
 export const store = configureStore({
   reducer: {
@@ -28,6 +29,8 @@ export const store = configureStore({
     [dailyTodolistSlice.reducerPath]: dailyTodolistSlice.reducer,
     // todo: check if this is correct
     // todolistInfo: todolistInfo,
+    // dua-slice
+    [duaSlice.reducerPath]: duaSlice.reducer,
   },
   middleware: getDefaultMiddhleware => [
     ...getDefaultMiddhleware(),
@@ -36,5 +39,6 @@ export const store = configureStore({
     salahChecklistSlice.middleware,
     recitationInfoSlice.middleware,
     dailyTodolistSlice.middleware,
+    duaSlice.middleware,
   ],
 });

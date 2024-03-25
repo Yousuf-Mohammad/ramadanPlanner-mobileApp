@@ -31,23 +31,10 @@ export default ProgressComponent;
 
 const styles = StyleSheet.create({
   daily: {
-    // root: {
-    //   width: convert(950),
-    //   height: convert(1150),
-    //   alignItems: 'center',
-    //   justifyContent: 'center',
-    //   borderWidth: convert(5),
-    //   borderRadius: convert(25),
-    //   borderColor: colors.dark.CONTRAST,
-    //   // borderColor: 'green',
-    // },
-
     container: {
       width: convert(930),
       paddingHorizontal: convert(25),
       flexDirection: 'row',
-      // paddingHorizontal: convert(25),
-      // paddingBottom: convert(25),
 
       // borderWidth: 1,
       // borderColor: 'red',
