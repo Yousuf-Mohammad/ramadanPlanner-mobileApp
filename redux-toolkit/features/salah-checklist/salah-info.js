@@ -28,7 +28,9 @@ export const salahInfoSlice = createSlice({
     setSalahInfo: (state, action) => {
       const {field, value} = action.payload;
 
-      state.value[field] = value;
+      const updatedState = {...state.value, [field]: value};
+
+      return {...state, value: updatedState};
     },
     resetSalahInfo: state => {
       state.value = {
@@ -50,7 +52,8 @@ export const salahInfoSlice = createSlice({
   },
 });
 
-export const {setSalahInfo, resetSalahInfo} = salahInfoSlice.actions;
+export const {setAllSalahInfo, setSalahInfo, resetSalahInfo} =
+  salahInfoSlice.actions;
 
 export const getSalahInfo = state => {
   //   console.log('salah-info-slice: get salah info: ', state.salahInfo);

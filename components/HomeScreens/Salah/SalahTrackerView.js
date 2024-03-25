@@ -37,7 +37,7 @@ const SalahTrackerView = ({data}) => {
       try {
         const response = await setSalahCheckList({
           field,
-          value: Boolean(value),
+          value,
           year: parseInt(day.year, 10),
           month: parseInt(day.monthNumber, 10),
           day: parseInt(day.day, 10),
@@ -49,7 +49,8 @@ const SalahTrackerView = ({data}) => {
         //   response.error.data.detail,
         // );
 
-        dispatch(setSalahInfo({field: field, value: Boolean(value)}));
+        // sync db & state
+        dispatch(setSalahInfo({field: field, value: value}));
 
         // Remove processed state from the queue
         stateUpdateQueue.current.shift();
@@ -81,91 +82,91 @@ const SalahTrackerView = ({data}) => {
     let newValue = !fajr;
 
     setFajr(newValue);
-    addToQueue('fardh_fajr', `${newValue}`);
+    addToQueue('fardh_fajr', newValue);
   };
 
   const checkFajrSunnah = async () => {
     let newValue = !fajrSunnah;
 
     setFajrSunnah(newValue);
-    addToQueue('sunnah_fajr', `${newValue}`);
+    addToQueue('sunnah_fajr', newValue);
   };
 
   const checkJohr = async () => {
     let newValue = !johr;
 
     setJohr(newValue);
-    addToQueue('fardh_duhr', `${newValue}`);
+    addToQueue('fardh_duhr', newValue);
   };
 
   const checkJohrSunnah = async () => {
     let newValue = !johrSunnah;
 
     setJohrSunnah(newValue);
-    addToQueue('sunnah_duhr', `${newValue}`);
+    addToQueue('sunnah_duhr', newValue);
   };
 
   const checkAsr = async () => {
     let newValue = !asr;
 
     setAsr(newValue);
-    addToQueue('fardh_asr', `${newValue}`);
+    addToQueue('fardh_asr', newValue);
   };
 
   const checkAsrSunnah = async () => {
     let newValue = !asrSunnah;
 
     setAsrSunnah(newValue);
-    addToQueue('sunnah_asr', `${newValue}`);
+    addToQueue('sunnah_asr', newValue);
   };
 
   const checkMagrib = async () => {
     let newValue = !magrib;
 
     setMagrib(newValue);
-    addToQueue('fardh_maghrib', `${newValue}`);
+    addToQueue('fardh_maghrib', newValue);
   };
 
   const checkMagribSunnah = async () => {
     let newValue = !magribSunnah;
 
     setMagribSunnah(newValue);
-    addToQueue('sunnah_maghrib', `${newValue}`);
+    addToQueue('sunnah_maghrib', newValue);
   };
 
   const checkEsha = async () => {
     let newValue = !esha;
 
     setEsha(newValue);
-    addToQueue('fardh_isha', `${newValue}`);
+    addToQueue('fardh_isha', newValue);
   };
 
   const checkEshaSunnah = async () => {
     let newValue = !eshaSunnah;
 
     setEshaSunnah(newValue);
-    addToQueue('sunnah_isha', `${newValue}`);
+    addToQueue('sunnah_isha', newValue);
   };
 
   const checkTaraweeh = async () => {
     let newValue = !taraweeh;
 
     setTaraweeh(newValue);
-    addToQueue('sunnah_taraweeh', `${newValue}`);
+    addToQueue('sunnah_taraweeh', newValue);
   };
 
   const checkTahajjut = async () => {
     let newValue = !tahajjut;
 
     setTahajjut(newValue);
-    addToQueue('sunnah_tahajjud', `${newValue}`);
+    addToQueue('sunnah_tahajjud', newValue);
   };
 
   const checkSalahDuha = async () => {
     let newValue = !salahDuha;
 
     setSalahDuha(newValue);
-    addToQueue('sunnah_duha', `${newValue}`);
+    addToQueue('sunnah_duha', newValue);
   };
 
   const salah = [

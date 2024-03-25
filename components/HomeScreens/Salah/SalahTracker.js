@@ -2,17 +2,19 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+// components
+import SalahTrackerView from './SalahTrackerView';
 // rtk-slices
+import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
 import {useGetSalahCheckListQuery} from '../../../redux-toolkit/features/salah-checklist/salah-checklist-slice';
+import {setAllSalahInfo} from '../../../redux-toolkit/features/salah-checklist/salah-info';
 // assets
 import {FontSize} from '../../../assets/fonts/fonts';
 import {colors} from '../../../assets/colors/colors';
-// components
-import SalahTrackerView from './SalahTrackerView';
-import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
 
 const SalahTracker = () => {
+  const dispatch = useDispatch();
   const day = useSelector(getArabicDate);
 
   const {
@@ -34,6 +36,7 @@ const SalahTracker = () => {
 
     if (!isLoading && data) {
       // console.log('SCREEN:SALAH: get salah checklist data: ', data);
+      dispatch(setAllSalahInfo(data));
     }
   }, [isLoading, isError]);
 
