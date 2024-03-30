@@ -9,26 +9,25 @@ import {FontSize} from '../../assets/fonts/fonts';
 import {useGetDuaQuery} from '../../redux-toolkit/features/dua/dua-slice';
 
 const BottomSlider = ({title}) => {
-  const {data = {}, error, isError, isLoading} = useGetDuaQuery(1);
+  // const {data = {}, error, isError, isLoading} = useGetDuaQuery(1);
 
-  useEffect(() => {
-    try {
-      if (isError) {
-        // console.error('SCREEN:OVERVIEW: get dua error: ', error);
-      }
+  // useEffect(() => {
+  //   try {
+  //     if (isError) {
+  //       console.error('SCREEN:OVERVIEW: get dua error: ', error);
+  //     }
 
-      if (!isLoading && data) {
-        console.log('screen:overview: get dua data: ', error);
-        console.log(
-          'screen:overview: get dua data: ',
-          data,
-          // data['supplications for when you wake up'],
-        );
-      }
-    } catch (issue) {
-      console.error("SCREEN:OVERVIEW: 'CATCH' dua error: ", issue);
-    }
-  }, [isLoading, isError]);
+  //     if (!isLoading && data) {
+  //       console.log(
+  //         'screen:overview: get dua data: ',
+  //         data,
+  //         // data['supplications for when you wake up'],
+  //       );
+  //     }
+  //   } catch (issue) {
+  //     console.error("SCREEN:OVERVIEW: 'CATCH' dua error: ", issue);
+  //   }
+  // }, [isLoading, isError]);
 
   return (
     <View style={styles.root}>
@@ -46,9 +45,9 @@ const BottomSlider = ({title}) => {
 
         <View style={{marginVertical: convert(30)}}>
           <Text style={styles.arabic}>
-            {/* يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ */}
-            الْحَمْدُ للَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا،
-            وَإِلَيْهِ النُّشُورُ
+            يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ
+            {/* الْحَمْدُ للَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا،
+            وَإِلَيْهِ النُّشُورُ */}
           </Text>
         </View>
 

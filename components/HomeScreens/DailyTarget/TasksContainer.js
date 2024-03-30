@@ -51,4 +51,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'red',
   },
+  empty: {
+    fontFamily: 'Montserrat-SemiBold',
+  },
 });
