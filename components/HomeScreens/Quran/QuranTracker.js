@@ -28,10 +28,10 @@ const QuranTracker = () => {
   });
 
   useEffect(() => {
-    if (isError) {
-      console.error('SCREEN:QURAN: get recitation error: ', error);
-      console.error('SCREEN:QURAN: get recitation error: ', error.data);
-    }
+    // if (isError) {
+    //   console.error('SCREEN:QURAN: get recitation error: ', error);
+    //   console.error('SCREEN:QURAN: get recitation error: ', error.data);
+    // }
 
     if (!isLoading && data) {
       // console.log('SCREEN:QURAN: get recitation data: ', data);

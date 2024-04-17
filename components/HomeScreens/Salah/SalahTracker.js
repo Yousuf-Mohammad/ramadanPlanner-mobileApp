@@ -29,10 +29,10 @@ const SalahTracker = () => {
   });
 
   useEffect(() => {
-    if (isError) {
-      console.error('SCREEN:SALAH: get salah checklist error: ', error);
-      console.error('SCREEN:SALAH: get salah checklist error: ', error.data);
-    }
+    // if (isError) {
+    //   console.error('SCREEN:SALAH: get salah checklist error: ', error);
+    //   console.error('SCREEN:SALAH: get salah checklist error: ', error.data);
+    // }
 
     if (!isLoading && data) {
       // console.log('SCREEN:SALAH: get salah checklist data: ', data);

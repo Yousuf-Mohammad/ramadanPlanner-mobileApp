@@ -57,6 +57,9 @@ const Login = ({navigation}) => {
             ? 'Error logging in!'
             : '';
 
+        // console.log('LOGIN: ERROR: from res: ', response.error);
+        // const error = 'Error logging in!';
+
         setErr(error);
       }
 

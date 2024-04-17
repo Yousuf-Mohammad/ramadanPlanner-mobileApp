@@ -1,4 +1,4 @@
-import {Coordinates, CalculationMethod, PrayerTimes} from 'adhan';
+import {Coordinates, CalculationMethod, PrayerTimes, Madhab} from 'adhan';
 
 export function getTimes(position) {
   const coordinates = new Coordinates(
@@ -6,6 +6,7 @@ export function getTimes(position) {
     position.coords.longitude,
   );
   const params = CalculationMethod.MoonsightingCommittee();
+  params.madhab = Madhab.Hanafi;
   const date = new Date();
   const prayerTimes = new PrayerTimes(coordinates, date, params);
 

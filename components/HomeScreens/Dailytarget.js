@@ -72,10 +72,10 @@ const Dailytarget = () => {
 
   useEffect(() => {
     try {
-      if (isError) {
-        console.error('SCREEN:DAILY TARGET: get todolist error: ', error);
-        console.error('SCREEN:DAILY TARGET: get todolist error: ', error.date);
-      }
+      // if (isError) {
+      //   console.error('SCREEN:DAILY TARGET: get todolist error: ', error);
+      //   console.error('SCREEN:DAILY TARGET: get todolist error: ', error.date);
+      // }
 
       if (!isLoading && data) {
         // console.log('screen:daily target: get todolist data: ', data.items);

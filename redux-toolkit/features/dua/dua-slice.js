@@ -11,6 +11,7 @@ export const duaSlice = createApi({
       getDua: builder.query({
         query: duaNumber => ({
           url: `/${duaNumber}.json`,
+          responseHandler: 'text',
         }),
       }),
     };
