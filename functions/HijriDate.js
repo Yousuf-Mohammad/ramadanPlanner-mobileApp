@@ -5,7 +5,7 @@ export const hijriDate = () => {
   const hijriDateNow = new HijriDate();
 
   const day =
-    hijriDateNow._day < 10 ? '0' + hijriDateNow._day : hijriDateNow._day;
+    hijriDateNow._date < 10 ? '0' + hijriDateNow._date : hijriDateNow._date;
   let month = '';
   months.map((i, idx) => {
     if (hijriDateNow._month === idx + 1) {
