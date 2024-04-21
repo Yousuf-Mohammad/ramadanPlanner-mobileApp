@@ -44,7 +44,8 @@ const TaskInput = ({
     <View style={styles.taskBox}>
       <View style={styles.txtContainer}>
         <Text style={styles.text}>
-          {idx + 1} {name}
+          {/* {idx + 1} */}
+          {name}
         </Text>
       </View>
 
