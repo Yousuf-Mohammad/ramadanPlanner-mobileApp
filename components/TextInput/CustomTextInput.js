@@ -80,7 +80,10 @@ const CustomTextInput = ({
   });
 
   return (
-    <View style={styles.root}>
+    <TouchableOpacity
+      style={styles.root}
+      onPress={() => refProp.current.focus()}
+      activeOpacity={1}>
       <Input
         ref={refProp}
         value={value ? `${value}` : null}
@@ -132,7 +135,7 @@ const CustomTextInput = ({
       ) : (
         <></>
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 
