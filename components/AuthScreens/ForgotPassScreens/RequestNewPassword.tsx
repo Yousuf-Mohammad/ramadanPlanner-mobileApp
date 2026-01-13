@@ -12,8 +12,13 @@ import {FontSize} from '../../../assets/fonts/fonts';
 import {emailValidation} from '../../../functions/validations/formValidation';
 // components
 import CustomTextInput from '../../TextInput/CustomTextInput';
+import {useNavigation} from '@react-navigation/native';
+import {AuthStackParamList} from '../../../libs/types/navigation/index';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const RequestNewPassword = () => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
   const [resetPassReq] = useResetPassReqMutation();
 
   const emailRef = useRef<any>(null);
@@ -68,6 +73,14 @@ const RequestNewPassword = () => {
       console.error('REQUEST NEW PASS SCREEN: MAIL LINK: ', error);
     }
   };
+
+  useEffect(() => {
+    if (err === 'Please check your inbox ON THIS DEVICE!') {
+      setTimeout(() => {
+        navigation.navigate('Login');
+      }, 3000);
+    }
+  }, [err, navigation]);
 
   // todo: btn min width
   return (
