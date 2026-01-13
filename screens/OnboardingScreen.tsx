@@ -20,7 +20,7 @@ interface OnboardingScreenProps {
 const OnboardingScreen: React.FC<OnboardingScreenProps> = ({navigation}) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigation.navigate('Login');
+      navigation.navigate('Home');
     }, 5000);
     return () => clearTimeout(timeout);
   }, []);

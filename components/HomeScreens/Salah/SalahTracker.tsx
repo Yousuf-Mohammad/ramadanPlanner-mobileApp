@@ -28,8 +28,6 @@ const SalahTracker = () => {
     //   console.error('SCREEN:SALAH: get salah checklist error: ', error);
     //   console.error('SCREEN:SALAH: get salah checklist error: ', error.data);
     // }
-    console.log('+----------------Salah_Tracker----------------+');
-    console.log('SCREEN:SALAH: get salah checklist data: ', data);
 
     if (!isLoading && data) {
       dispatch(setAllSalahInfo(data));

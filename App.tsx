@@ -27,9 +27,13 @@ import {store} from './redux-toolkit/store/store';
 // assets
 import {colors} from './assets/colors/colors';
 // types
-import {RootStackParamList} from './libs/types/navigation/index';
+import {
+  AuthStackParamList,
+  RootStackParamList,
+} from './libs/types/navigation/index';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const rootStack = createNativeStackNavigator<RootStackParamList>();
+const authStack = createNativeStackNavigator<AuthStackParamList>();
 
 const linking = {
   prefixes: ['https://ramadan-planner-frontend.vercel.app'],
@@ -38,6 +42,33 @@ const linking = {
       ChangePass: 'password-reset/Mg/:params',
     },
   },
+};
+
+const AuthStackNav: React.FC = () => {
+  return (
+    <authStack.Navigator>
+      <authStack.Screen
+        options={{headerShown: false}}
+        name="Login"
+        component={Login}
+      />
+      <authStack.Screen
+        options={{headerShown: false}}
+        name="Register"
+        component={Register}
+      />
+      <authStack.Screen
+        options={{headerShown: false}}
+        name="ReqPassChange"
+        component={RequestNewPassword}
+      />
+      <authStack.Screen
+        options={{headerShown: false}}
+        name="ChangePass"
+        component={ChangePassword}
+      />
+    </authStack.Navigator>
+  );
 };
 
 const App: React.FC = () => {
@@ -56,33 +87,14 @@ const App: React.FC = () => {
         </View>
       }>
       <Provider store={store}>
-        <Stack.Navigator>
-          <Stack.Screen
+        <rootStack.Navigator>
+          <rootStack.Screen
             options={{headerShown: false}}
             name="Onboarding"
             component={OnboardingScreen}
           />
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Login"
-            component={Login}
-          />
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Register"
-            component={Register}
-          />
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="ReqPassChange"
-            component={RequestNewPassword}
-          />
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="ChangePass"
-            component={ChangePassword}
-          />
-          <Stack.Screen
+
+          <rootStack.Screen
             name="Home"
             component={Home}
             options={{
@@ -93,15 +105,15 @@ const App: React.FC = () => {
               ),
             }}
           />
-        </Stack.Navigator>
+
+          <rootStack.Screen
+            options={{headerShown: false}}
+            name="AuthStack"
+            component={AuthStackNav}
+          />
+        </rootStack.Navigator>
       </Provider>
     </NavigationContainer>
-
-    // <NavigationContainer>
-    //   <Provider store={store}>
-    //     <ChangePassword />
-    //   </Provider>
-    // </NavigationContainer>
   );
 };
 

@@ -28,9 +28,6 @@ const QuranTracker = () => {
     //   console.error('SCREEN:QURAN: get recitation error: ', error.data);
     // }
 
-    console.log('+-----------------QURAN-TRACKER---------------+');
-    console.log('SCREEN:QURAN: get recitation data: ', data);
-
     if (!isLoading && data) {
     }
   }, [isLoading, isError]);

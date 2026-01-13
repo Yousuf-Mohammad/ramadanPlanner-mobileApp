@@ -17,10 +17,6 @@ interface GetSalahCheckListRequest {
   day: string;
 }
 
-// interface SalahCheckListResponse {
-//   data: SalahCheckboxState;
-// }
-
 export const salahChecklistSlice = createApi({
   reducerPath: 'salah-checklist-slice',
   baseQuery: fetchBaseQuery({
