@@ -12,8 +12,14 @@ import {setAllSalahInfo} from '../../../redux-toolkit/features/salah-checklist/s
 // assets
 import {FontSize} from '../../../assets/fonts/fonts';
 import {colors} from '../../../assets/colors/colors';
+import {Button} from 'react-native-elements';
+import {useNavigation} from '@react-navigation/native';
+import {RootStackParamList} from '../../../libs/types/navigation/index';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/typescript/src/types';
 
 const SalahTracker = () => {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const dispatch = useDispatch();
   const day = useSelector(getArabicDate);
 
@@ -47,7 +53,15 @@ const SalahTracker = () => {
   }
 
   if (!data) {
-    return null;
+    // return null;
+    return (
+      <Button
+        title={'Login'}
+        onPress={() => {
+          navigation.navigate('Login');
+        }}
+      />
+    );
   }
 
   return (

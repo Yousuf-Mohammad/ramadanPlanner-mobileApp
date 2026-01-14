@@ -7,15 +7,10 @@ import {RouteProp} from '@react-navigation/native';
 export type RootStackParamList = {
   Onboarding: undefined;
   Home: undefined;
-  AuthStack: AuthStackParamList;
-};
-
-export type AuthStackParamList = {
   Login: undefined;
   Register: undefined;
   ReqPassChange: undefined;
   ChangePass: {params: string};
-  Home: undefined;
 };
 
 // Home Tab Navigator params
@@ -33,27 +28,27 @@ export type OnboardingScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 export type LoginScreenNavigationProp = NativeStackNavigationProp<
-  AuthStackParamList,
+  RootStackParamList,
   'Login'
 >;
 
 export type RegisterScreenNavigationProp = NativeStackNavigationProp<
-  AuthStackParamList,
+  RootStackParamList,
   'Register'
 >;
 
 export type ReqPassChangeScreenNavigationProp = NativeStackNavigationProp<
-  AuthStackParamList,
+  RootStackParamList,
   'ReqPassChange'
 >;
 
 export type ChangePassScreenNavigationProp = NativeStackNavigationProp<
-  AuthStackParamList,
+  RootStackParamList,
   'ChangePass'
 >;
 
 export type ChangePassScreenRouteProp = RouteProp<
-  AuthStackParamList,
+  RootStackParamList,
   'ChangePass'
 >;
 

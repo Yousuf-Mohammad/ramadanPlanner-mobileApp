@@ -30,11 +30,11 @@ const Login: React.FC<LoginProps> = ({navigation}) => {
     setLoading(prev => !prev);
   };
 
-  useEffect(() => {
-    navigation.addListener('beforeRemove', e => {
-      e.preventDefault();
-    });
-  }, [navigation]);
+  // useEffect(() => {
+  //   navigation.addListener('beforeRemove', e => {
+  //     e.preventDefault();
+  //   });
+  // }, [navigation]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -73,7 +73,10 @@ const Login: React.FC<LoginProps> = ({navigation}) => {
       if ('data' in response) {
         if ((response.data as any).access_token) {
           disptach(setAuthToken((response.data as any).access_token));
-          navigation.navigate('Home');
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'Home'}],
+          });
         }
       }
     } catch (error) {

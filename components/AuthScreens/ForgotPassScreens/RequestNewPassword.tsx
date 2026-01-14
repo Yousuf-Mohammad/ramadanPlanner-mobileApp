@@ -134,8 +134,6 @@ const styles = StyleSheet.create({
     height: convert(110),
     borderRadius: convert(75),
     width: convert(425),
-    borderWidth: 1,
-    borderColor: 'red',
   },
   btnTitleStyle: {
     fontSize: FontSize.btnTitle,

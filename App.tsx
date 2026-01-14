@@ -27,13 +27,9 @@ import {store} from './redux-toolkit/store/store';
 // assets
 import {colors} from './assets/colors/colors';
 // types
-import {
-  AuthStackParamList,
-  RootStackParamList,
-} from './libs/types/navigation/index';
+import {RootStackParamList} from './libs/types/navigation/index';
 
 const rootStack = createNativeStackNavigator<RootStackParamList>();
-const authStack = createNativeStackNavigator<AuthStackParamList>();
 
 const linking = {
   prefixes: ['https://ramadan-planner-frontend.vercel.app'],
@@ -42,33 +38,6 @@ const linking = {
       ChangePass: 'password-reset/Mg/:params',
     },
   },
-};
-
-const AuthStackNav: React.FC = () => {
-  return (
-    <authStack.Navigator>
-      <authStack.Screen
-        options={{headerShown: false}}
-        name="Login"
-        component={Login}
-      />
-      <authStack.Screen
-        options={{headerShown: false}}
-        name="Register"
-        component={Register}
-      />
-      <authStack.Screen
-        options={{headerShown: false}}
-        name="ReqPassChange"
-        component={RequestNewPassword}
-      />
-      <authStack.Screen
-        options={{headerShown: false}}
-        name="ChangePass"
-        component={ChangePassword}
-      />
-    </authStack.Navigator>
-  );
 };
 
 const App: React.FC = () => {
@@ -108,8 +77,23 @@ const App: React.FC = () => {
 
           <rootStack.Screen
             options={{headerShown: false}}
-            name="AuthStack"
-            component={AuthStackNav}
+            name="Login"
+            component={Login}
+          />
+          <rootStack.Screen
+            options={{headerShown: false}}
+            name="Register"
+            component={Register}
+          />
+          <rootStack.Screen
+            options={{headerShown: false}}
+            name="ReqPassChange"
+            component={RequestNewPassword}
+          />
+          <rootStack.Screen
+            options={{headerShown: false}}
+            name="ChangePass"
+            component={ChangePassword}
           />
         </rootStack.Navigator>
       </Provider>
