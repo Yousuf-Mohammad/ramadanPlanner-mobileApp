@@ -1,25 +1,32 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {createMMKV, MMKV} from 'react-native-mmkv';
 
-export const localCache = async (item: string) => {
+let storage: MMKV;
+
+function createStorage(): void {
+  storage = createMMKV();
+}
+
+export function setLocalCache(key: string, value: string): void {
   try {
-    // todo: key to env
-    await AsyncStorage.setItem('key', item);
+    if (!storage) {
+      createStorage();
+    }
+
+    storage.set(key, value);
   } catch (e) {
-    console.log(e);
+    console.error('error setting local cache: ', e);
   }
+}
 
-  console.log('Done caching.');
-};
-
-export const getLocalCache = async () => {
+export function getLocalCache(key: string): string | undefined {
   try {
-    await AsyncStorage.getItem('key').then((res: string | null) =>
-      console.log('response from login getLocalCache: ', res),
-    );
-  } catch (e) {
-    // read error
-    console.error('error fetching data: ', e);
-  }
+    if (!storage) {
+      createStorage();
+    }
 
-  console.log('Done fetching cache.');
-};
+    return storage.getString(key);
+  } catch (e) {
+    console.error('error getting local cache: ', e);
+    return undefined;
+  }
+}

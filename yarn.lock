@@ -5725,6 +5725,16 @@ react-native-linear-gradient@^2.8.3:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.8.3.tgz#9a116649f86d74747304ee13db325e20b21e564f"
   integrity sha512-KflAXZcEg54PXkLyflaSZQ3PJp4uC4whM7nT/Uot9m0e/qxFV3p6uor1983D1YOBJbJN7rrWdqIjq0T42jOJyA==
 
+react-native-mmkv@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-mmkv/-/react-native-mmkv-4.1.1.tgz#38aacafca29a64015462e42e486703e4016371b5"
+  integrity sha512-nYFjM27l7zVhIiyAqWEFRagGASecb13JMIlzAuOeakRRz9GMJ49hCQntUBE2aeuZRE4u4ehSqTOomB0mTF56Ew==
+
+react-native-nitro-modules@^0.33.1:
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/react-native-nitro-modules/-/react-native-nitro-modules-0.33.1.tgz#586a44220e3669e620241630e3c05da626c625af"
+  integrity sha512-Kdo8qiqlkGAEs7fq29i0yiZs0Gf7ucmMiFsH8PH4uzsnSGEt2CQRBJGnQKKMl9vJYL8e7rzA0TZKRwO/L8G/Sg==
+
 react-native-pager-view@^6.2.3:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-6.2.3.tgz#698f6387fdf06cecc3d8d4792604419cb89cb775"
