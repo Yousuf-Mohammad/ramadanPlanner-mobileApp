@@ -21,7 +21,7 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({navigation}) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigation.navigate('Home');
-    }, 5000);
+    }, 3000);
     return () => clearTimeout(timeout);
   }, []);
 
