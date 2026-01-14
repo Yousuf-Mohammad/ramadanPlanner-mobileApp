@@ -8,7 +8,7 @@ import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
 // components
 import DateCircle from './DateCircle';
-import TopRightContainer from './TopRightContainer';
+// import TopRightContainer from './TopRightContainer';
 import SalahTimings from './SalahTimings';
 // functions
 import {hijriDate} from '../../functions/HijriDate';
@@ -18,6 +18,7 @@ import {
 } from '../../functions/CurrentTimeNLocation';
 // rtk-slices
 import {setArabicDate} from '../../redux-toolkit/features/arabic-date/arabicDate';
+import LogoutBtn from '../Buttons/LogoutBtn';
 
 const CustomHeader: React.FC = () => {
   const [timeNLocation, setTimeNLocation] = useState<LocationData>({
@@ -107,11 +108,13 @@ const CustomHeader: React.FC = () => {
       <View style={styles.timedate}>
         <DateCircle date={hijriDate()} />
 
-        <TopRightContainer
+        <LogoutBtn />
+
+        {/* <TopRightContainer
           seheri={timeNLocation.time.seheriIftarTimes.seheri}
           iftar={timeNLocation.time.seheriIftarTimes.iftar}
           city={timeNLocation.location.city}
-        />
+        /> */}
       </View>
 
       <View style={styles.salahtime}>
