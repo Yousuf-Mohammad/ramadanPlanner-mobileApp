@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   root: {
     flexDirection: 'row',
     alignItems: 'center',
+    paddingTop: convert(25),
     paddingHorizontal: convert(25),
     backgroundColor: colors.dark.PRIMARY,
   },
