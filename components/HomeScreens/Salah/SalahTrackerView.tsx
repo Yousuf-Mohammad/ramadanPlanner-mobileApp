@@ -14,7 +14,9 @@ import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicD
 import {SalahCheckboxState} from '../../../libs/types/models';
 import {isAuthenticated} from '../../../functions/AuthFunctions';
 
-const SalahTrackerView: React.FC<{data: SalahCheckboxState}> = ({data}) => {
+const SalahTrackerView: React.FC<{data: SalahCheckboxState | undefined}> = ({
+  data,
+}) => {
   const dispatch = useDispatch();
   const day = useSelector(getArabicDate);
 

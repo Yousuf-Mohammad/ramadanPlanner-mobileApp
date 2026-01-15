@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
@@ -12,16 +12,13 @@ import {setAllSalahInfo} from '../../../redux-toolkit/features/salah-checklist/s
 // assets
 import {FontSize} from '../../../assets/fonts/fonts';
 import {colors} from '../../../assets/colors/colors';
-import {Button} from 'react-native-elements';
-import {useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../../../libs/types/navigation/index';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/typescript/src/types';
+import LoginRequest from '../../AuthScreens/LoginRequest';
+import {isAuthenticated} from '../../../functions/AuthFunctions';
 
 const SalahTracker = () => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const dispatch = useDispatch();
   const day = useSelector(getArabicDate);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   const {data, isError, isLoading} = useGetSalahCheckListQuery({
     year: day.year,
@@ -30,15 +27,19 @@ const SalahTracker = () => {
   });
 
   useEffect(() => {
-    // if (isError) {
-    //   console.error('SCREEN:SALAH: get salah checklist error: ', error);
-    //   console.error('SCREEN:SALAH: get salah checklist error: ', error.data);
-    // }
-
     if (!isLoading && data) {
       dispatch(setAllSalahInfo(data));
     }
   }, [isLoading, isError, data]);
+
+  useEffect(() => {
+    async function check() {
+      const user = await isAuthenticated();
+      setLoggedIn(user);
+    }
+
+    check();
+  }, [loggedIn]);
 
   if (isLoading) {
     return (
@@ -52,26 +53,9 @@ const SalahTracker = () => {
     );
   }
 
-  if (!data) {
-    // return null;
-    // return (
-    //   <Button
-    //     title={'Login'}
-    //     onPress={() => {
-    //       navigation.navigate('Login');
-    //     }}
-    //   />
-    // );
-  }
-
   return (
     <>
-      <Button
-        title={'Login'}
-        onPress={() => {
-          navigation.navigate('Login');
-        }}
-      />
+      {!data ? <LoginRequest /> : null}
       <SalahTrackerView data={data} />
     </>
   );

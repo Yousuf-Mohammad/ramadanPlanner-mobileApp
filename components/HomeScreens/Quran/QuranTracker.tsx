@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {useSelector} from 'react-redux';
@@ -11,26 +10,28 @@ import {FontSize} from '../../../assets/fonts/fonts';
 // components
 import QuranTrackerView from './QuranTrackerView';
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
+import LoginRequest from '../../../components/AuthScreens/LoginRequest';
+import {isAuthenticated} from '../../../functions/AuthFunctions';
 
 const QuranTracker = () => {
   const day = useSelector(getArabicDate);
 
   // todo:perf: memoize other components, so that useState doesn't affect them all
-  const {data, isError, isLoading} = useGetRecitationInfoQuery({
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const {data, isLoading} = useGetRecitationInfoQuery({
     year: day.year,
     month: day.monthNumber,
     day: day.day,
   });
 
   useEffect(() => {
-    // if (isError) {
-    //   console.error('SCREEN:QURAN: get recitation error: ', error);
-    //   console.error('SCREEN:QURAN: get recitation error: ', error.data);
-    // }
-
-    if (!isLoading && data) {
+    async function check() {
+      const user = await isAuthenticated();
+      setLoggedIn(user);
     }
-  }, [isLoading, isError]);
+
+    check();
+  }, [loggedIn]);
 
   if (isLoading) {
     return (
@@ -44,12 +45,9 @@ const QuranTracker = () => {
     );
   }
 
-  if (!data) {
-    return null;
-  }
-
   return (
     <>
+      {!loggedIn ? <LoginRequest /> : null}
       <QuranTrackerView data={data} />
     </>
   );
