@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {useSelector} from 'react-redux';
@@ -11,27 +11,18 @@ import {FontSize} from '../../../assets/fonts/fonts';
 import QuranTrackerView from './QuranTrackerView';
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
 import LoginRequest from '../../../components/AuthScreens/LoginRequest';
-import {isAuthenticated} from '../../../functions/AuthFunctions';
+import {getAuthToken} from '../../../redux-toolkit/features/authentication/authToken';
 
 const QuranTracker = () => {
   const day = useSelector(getArabicDate);
+  const loggedIn = useSelector(getAuthToken);
 
   // todo:perf: memoize other components, so that useState doesn't affect them all
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const {data, isLoading} = useGetRecitationInfoQuery({
     year: day.year,
     month: day.monthNumber,
     day: day.day,
   });
-
-  useEffect(() => {
-    async function check() {
-      const user = await isAuthenticated();
-      setLoggedIn(user);
-    }
-
-    check();
-  }, [loggedIn]);
 
   if (isLoading) {
     return (

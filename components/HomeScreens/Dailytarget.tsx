@@ -16,15 +16,15 @@ import {convert} from '../../assets/dimensions/dimensions';
 import TasksContainer from './DailyTarget/TasksContainer';
 import {TaskItem} from '../../libs/types/components';
 import LoginRequest from '../../components/AuthScreens/LoginRequest';
-import {isAuthenticated} from '../../functions/AuthFunctions';
+import {getAuthToken} from '../../redux-toolkit/features/authentication/authToken';
 
 const Dailytarget = () => {
   const day = useSelector(getArabicDate);
+  const loggedIn = useSelector(getAuthToken);
 
   //* handeling race conditions with queue
   const stateUpdateQueue = useRef<any[]>([]);
   const [processingQueue, setProcessingQueue] = useState(false);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   // RTK Mutations
   const [addTodo] = useAddTodoMutation();
@@ -154,15 +154,6 @@ const Dailytarget = () => {
       return [...prevTask.slice(0, idx), ...prevTask.slice(idx + 1)];
     });
   };
-
-  useEffect(() => {
-    async function check() {
-      const user = await isAuthenticated();
-      setLoggedIn(user);
-    }
-
-    check();
-  }, [loggedIn]);
 
   return (
     <View style={styles.root}>

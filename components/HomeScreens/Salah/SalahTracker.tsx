@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
@@ -13,12 +13,12 @@ import {setAllSalahInfo} from '../../../redux-toolkit/features/salah-checklist/s
 import {FontSize} from '../../../assets/fonts/fonts';
 import {colors} from '../../../assets/colors/colors';
 import LoginRequest from '../../AuthScreens/LoginRequest';
-import {isAuthenticated} from '../../../functions/AuthFunctions';
+import {getAuthToken} from '../../../redux-toolkit/features/authentication/authToken';
 
 const SalahTracker = () => {
   const dispatch = useDispatch();
   const day = useSelector(getArabicDate);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const loggedIn = useSelector(getAuthToken);
 
   const {data, isError, isLoading} = useGetSalahCheckListQuery({
     year: day.year,
@@ -31,15 +31,6 @@ const SalahTracker = () => {
       dispatch(setAllSalahInfo(data));
     }
   }, [isLoading, isError, data]);
-
-  useEffect(() => {
-    async function check() {
-      const user = await isAuthenticated();
-      setLoggedIn(user);
-    }
-
-    check();
-  }, [loggedIn]);
 
   if (isLoading) {
     return (
@@ -55,7 +46,7 @@ const SalahTracker = () => {
 
   return (
     <>
-      {!data ? <LoginRequest /> : null}
+      {!loggedIn ? <LoginRequest /> : null}
       <SalahTrackerView data={data} />
     </>
   );
