@@ -2,14 +2,15 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {convert} from '../../assets/dimensions/dimensions';
+import {removeUser} from '../../functions/AuthFunctions';
 
 const LogoutBtn: React.FC = () => {
   return (
     <TouchableOpacity
       style={styles.root}
-      onPress={() => {
+      onPress={async () => {
         // confirmation modal
-        //   delete the access token
+        await removeUser();
       }}>
       <Icon name={'logout'} size={25} color={'white'} />
     </TouchableOpacity>

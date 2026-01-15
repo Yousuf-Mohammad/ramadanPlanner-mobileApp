@@ -15,6 +15,7 @@
     "apk-android-release": "cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/geolocation": "^3.1.0",
     "@react-navigation/material-top-tabs": "^6.6.6",
     "@react-navigation/native": "^6.1.10",
@@ -29,8 +30,6 @@
     "react-native-elements": "^3.4.3",
     "react-native-geocoding": "^0.5.0",
     "react-native-linear-gradient": "^2.8.3",
-    "react-native-mmkv": "^4.1.1",
-    "react-native-nitro-modules": "^0.33.1",
     "react-native-pager-view": "^6.2.3",
     "react-native-paper": "^5.12.3",
     "react-native-progress": "^5.0.1",

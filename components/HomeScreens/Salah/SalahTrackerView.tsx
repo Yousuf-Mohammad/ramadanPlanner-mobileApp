@@ -12,6 +12,7 @@ import {setSalahInfo} from '../../../redux-toolkit/features/salah-checklist/sala
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
 
 import {SalahCheckboxState} from '../../../libs/types/models';
+import {isAuthenticated} from '../../../functions/AuthFunctions';
 
 const SalahTrackerView: React.FC<{data: SalahCheckboxState}> = ({data}) => {
   const dispatch = useDispatch();
@@ -59,19 +60,21 @@ const SalahTrackerView: React.FC<{data: SalahCheckboxState}> = ({data}) => {
   };
 
   //   todo: think of a alternative solution than using 13 useState in a single component
-  const [fajr, setFajr] = useState(data.fardh_fajr);
-  const [fajrSunnah, setFajrSunnah] = useState(data.sunnah_fajr);
-  const [johr, setJohr] = useState(data.fardh_duhr);
-  const [johrSunnah, setJohrSunnah] = useState(data.sunnah_duhr);
-  const [asr, setAsr] = useState(data.fardh_asr);
-  const [asrSunnah, setAsrSunnah] = useState(data.sunnah_asr);
-  const [magrib, setMagrib] = useState(data.fardh_maghrib);
-  const [magribSunnah, setMagribSunnah] = useState(data.sunnah_maghrib);
-  const [esha, setEsha] = useState(data.fardh_isha);
-  const [eshaSunnah, setEshaSunnah] = useState(data.sunnah_isha);
-  const [taraweeh, setTaraweeh] = useState(data.sunnah_taraweeh);
-  const [tahajjut, setTahajjut] = useState(data.sunnah_tahajjud);
-  const [salahDuha, setSalahDuha] = useState(data.sunnah_duha);
+  const [fajr, setFajr] = useState(data?.fardh_fajr || false);
+  const [fajrSunnah, setFajrSunnah] = useState(data?.sunnah_fajr || false);
+  const [johr, setJohr] = useState(data?.fardh_duhr || false);
+  const [johrSunnah, setJohrSunnah] = useState(data?.sunnah_duhr || false);
+  const [asr, setAsr] = useState(data?.fardh_asr || false);
+  const [asrSunnah, setAsrSunnah] = useState(data?.sunnah_asr || false);
+  const [magrib, setMagrib] = useState(data?.fardh_maghrib || false);
+  const [magribSunnah, setMagribSunnah] = useState(
+    data?.sunnah_maghrib || false,
+  );
+  const [esha, setEsha] = useState(data?.fardh_isha || false);
+  const [eshaSunnah, setEshaSunnah] = useState(data?.sunnah_isha || false);
+  const [taraweeh, setTaraweeh] = useState(data?.sunnah_taraweeh || false);
+  const [tahajjut, setTahajjut] = useState(data?.sunnah_tahajjud || false);
+  const [salahDuha, setSalahDuha] = useState(data?.sunnah_duha || false);
 
   // ... (keeping helper functions concise for brevity if possible, but replacing full file so I need them)
   const checkFajr = async () => {
@@ -234,7 +237,10 @@ const SalahTrackerView: React.FC<{data: SalahCheckboxState}> = ({data}) => {
               {i.farj ? (
                 <CheckBox
                   checked={i.checked}
-                  onPress={() => i.farjCheck()}
+                  onPress={async () => {
+                    console.log('logged in? ', await isAuthenticated());
+                    i.farjCheck();
+                  }}
                   checkedColor={colors.dark.CONTRAST}
                   size={FontSize.semiMedium}
                 />
@@ -246,7 +252,10 @@ const SalahTrackerView: React.FC<{data: SalahCheckboxState}> = ({data}) => {
             <View style={styles.smallBox}>
               <CheckBox
                 checked={i.checkedSunnah}
-                onPress={() => i.sunnahCheck()}
+                onPress={async () => {
+                  console.log('logged in? ', await isAuthenticated());
+                  i.sunnahCheck();
+                }}
                 checkedColor={colors.dark.CONTRAST}
                 size={FontSize.semiMedium}
               />

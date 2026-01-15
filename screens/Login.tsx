@@ -9,7 +9,7 @@ import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-sl
 import {loginFormValidation} from '../functions/validations/formValidation';
 // types
 import {LoginScreenNavigationProp} from '../libs/types/navigation';
-import {setLocalCache} from '../functions/Cache/cache';
+import {setCache} from '../functions/Cache/cache';
 
 interface LoginProps {
   navigation: LoginScreenNavigationProp;
@@ -63,7 +63,7 @@ const Login: React.FC<LoginProps> = ({navigation}) => {
         if ((response.data as any).access_token) {
           const authToken = (response.data as any).access_token;
           disptach(setAuthToken(authToken));
-          setLocalCache('authToken', authToken);
+          await setCache('authToken', authToken);
 
           navigation.reset({
             index: 0,

@@ -54,18 +54,24 @@ const SalahTracker = () => {
 
   if (!data) {
     // return null;
-    return (
+    // return (
+    //   <Button
+    //     title={'Login'}
+    //     onPress={() => {
+    //       navigation.navigate('Login');
+    //     }}
+    //   />
+    // );
+  }
+
+  return (
+    <>
       <Button
         title={'Login'}
         onPress={() => {
           navigation.navigate('Login');
         }}
       />
-    );
-  }
-
-  return (
-    <>
       <SalahTrackerView data={data} />
     </>
   );
