@@ -18,7 +18,7 @@ import {getAuthToken} from '../../../redux-toolkit/features/authentication/authT
 const SalahTracker = () => {
   const dispatch = useDispatch();
   const day = useSelector(getArabicDate);
-  const loggedIn = useSelector(getAuthToken);
+  let loggedIn = useSelector(getAuthToken);
 
   const {data, isError, isLoading} = useGetSalahCheckListQuery({
     year: day.year,

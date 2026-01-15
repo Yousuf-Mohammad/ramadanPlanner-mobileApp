@@ -23,12 +23,7 @@ export const salahChecklistSlice = createApi({
     baseUrl: API_URL,
     prepareHeaders: (headers, {getState}) => {
       const authToken = (getState() as RootState).authToken.token;
-
-      //* EXPECTED FORMAT
-      //* {"authorization": `Bearer ${authToken}`}
       headers.set('authorization', `Bearer ${authToken}`);
-
-      // console.log('SALAH SLICE: headers: ', authToken);
 
       return headers;
     },

@@ -1,7 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
 // reducers
 import arabicDateReducer from '../features/arabic-date/arabicDate';
-import authTokenReducer from '../features/authentication/authToken';
+import authTokenReducer, {
+  setAuthToken,
+} from '../features/authentication/authToken';
 import salahInfoReducer from '../features/salah-checklist/salah-info';
 // rtk-slices
 import {authSlice} from '../features/authentication/auth-slice';
@@ -10,6 +12,7 @@ import {salahChecklistSlice} from '../features/salah-checklist/salah-checklist-s
 import {recitationInfoSlice} from '../features/recitation-Info/recitation-info-slice';
 import {dailyTodolistSlice} from '../features/daily-todolist/daily-todolist-slice';
 import {duaSlice} from '../features/dua/dua-slice';
+import {getCache} from '../../functions/Cache/cache';
 
 export const store = configureStore({
   reducer: {
@@ -42,6 +45,24 @@ export const store = configureStore({
     duaSlice.middleware,
   ],
 });
+
+export async function initializeAuth(): Promise<{
+  success: boolean;
+  error?: string;
+}> {
+  try {
+    const token = await getCache('authToken');
+
+    if (token) {
+      store.dispatch(setAuthToken(token));
+    }
+
+    return {success: true};
+  } catch (error) {
+    console.error('Failed to hydrate auth token: ', error);
+    return {success: false, error: String(error)};
+  }
+}
 
 // Export typed hooks
 export type RootState = ReturnType<typeof store.getState>;

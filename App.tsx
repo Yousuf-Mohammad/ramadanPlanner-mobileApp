@@ -7,7 +7,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {View} from 'react-native';
@@ -23,7 +23,7 @@ import OnboardingScreen from './screens/OnboardingScreen';
 // components
 import CustomHeader from './components/CustomHeader/CustomHeader';
 // redux-store
-import {store} from './redux-toolkit/store/store';
+import {initializeAuth, store} from './redux-toolkit/store/store';
 // assets
 import {colors} from './assets/colors/colors';
 // types
@@ -41,6 +41,10 @@ const linking = {
 };
 
 const App: React.FC = () => {
+  useEffect(() => {
+    initializeAuth(); //re-hydrate auth token!
+  }, []);
+
   return (
     <NavigationContainer
       linking={linking}
