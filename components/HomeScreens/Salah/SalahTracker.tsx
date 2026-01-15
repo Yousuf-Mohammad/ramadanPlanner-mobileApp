@@ -12,10 +12,13 @@ import {setAllSalahInfo} from '../../../redux-toolkit/features/salah-checklist/s
 // assets
 import {FontSize} from '../../../assets/fonts/fonts';
 import {colors} from '../../../assets/colors/colors';
+import LoginRequest from '../../AuthScreens/LoginRequest';
+import {getAuthToken} from '../../../redux-toolkit/features/authentication/authToken';
 
 const SalahTracker = () => {
   const dispatch = useDispatch();
   const day = useSelector(getArabicDate);
+  let loggedIn = useSelector(getAuthToken);
 
   const {data, isError, isLoading} = useGetSalahCheckListQuery({
     year: day.year,
@@ -24,13 +27,6 @@ const SalahTracker = () => {
   });
 
   useEffect(() => {
-    // if (isError) {
-    //   console.error('SCREEN:SALAH: get salah checklist error: ', error);
-    //   console.error('SCREEN:SALAH: get salah checklist error: ', error.data);
-    // }
-    console.log('+----------------Salah_Tracker----------------+');
-    console.log('SCREEN:SALAH: get salah checklist data: ', data);
-
     if (!isLoading && data) {
       dispatch(setAllSalahInfo(data));
     }
@@ -48,12 +44,9 @@ const SalahTracker = () => {
     );
   }
 
-  if (!data) {
-    return null;
-  }
-
   return (
     <>
+      {!loggedIn ? <LoginRequest /> : null}
       <SalahTrackerView data={data} />
     </>
   );

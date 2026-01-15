@@ -1,5 +1,11 @@
 // Redux slice state types
-import { HijriDate, SalahCheckboxState, Task, RecitationInfo, Dua } from '../models';
+import {
+  HijriDate,
+  SalahCheckboxState,
+  Task,
+  RecitationInfo,
+  Dua,
+} from '../models';
 
 // Authentication state
 export interface AuthState {

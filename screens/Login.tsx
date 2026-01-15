@@ -9,6 +9,7 @@ import {useLoginMutation} from '../redux-toolkit/features/authentication/auth-sl
 import {loginFormValidation} from '../functions/validations/formValidation';
 // types
 import {LoginScreenNavigationProp} from '../libs/types/navigation';
+import {setCache} from '../functions/Cache/cache';
 
 interface LoginProps {
   navigation: LoginScreenNavigationProp;
@@ -31,12 +32,6 @@ const Login: React.FC<LoginProps> = ({navigation}) => {
   };
 
   useEffect(() => {
-    navigation.addListener('beforeRemove', e => {
-      e.preventDefault();
-    });
-  }, [navigation]);
-
-  useEffect(() => {
     const timeout = setTimeout(() => {
       setErr('');
     }, 3500);
@@ -45,18 +40,12 @@ const Login: React.FC<LoginProps> = ({navigation}) => {
   }, [err]);
 
   const onSubmit = async (input: LoginInput) => {
-    // console.log('screen: login: input ->', input);
-
-    // handle wrong input
     if (!loginFormValidation(input, setErr)) {
-      //! todo: uncomment!
       return;
     } else {
       setErr('');
     }
 
-    //! todo: uncomment!
-    // todo: set to asyncStorage -> clear cache logic on login/out, appstate change
     try {
       loadingHandler();
       const response = await login(input);
@@ -72,8 +61,14 @@ const Login: React.FC<LoginProps> = ({navigation}) => {
 
       if ('data' in response) {
         if ((response.data as any).access_token) {
-          disptach(setAuthToken((response.data as any).access_token));
-          navigation.navigate('Home');
+          const authToken = (response.data as any).access_token;
+          disptach(setAuthToken(authToken));
+          await setCache('authToken', authToken);
+
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'Home'}],
+          });
         }
       }
     } catch (error) {

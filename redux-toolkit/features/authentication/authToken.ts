@@ -22,7 +22,6 @@ export const authTokenSlice = createSlice({
 export const {setAuthToken, resetToken} = authTokenSlice.actions;
 
 export const getAuthToken = (state: RootState): string | null => {
-  // console.log('auth-token-slice: getAuthToken: ', state.authToken.token);
   return state.authToken.token;
 };
 

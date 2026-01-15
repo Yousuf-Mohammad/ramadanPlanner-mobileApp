@@ -12,16 +12,23 @@ import {
 } from '../assets/dimensions/dimensions';
 // types
 import {OnboardingScreenNavigationProp} from '../libs/types/navigation';
+import {CommonActions} from '@react-navigation/native';
 
 interface OnboardingScreenProps {
   navigation: OnboardingScreenNavigationProp;
 }
 
 const OnboardingScreen: React.FC<OnboardingScreenProps> = ({navigation}) => {
+  // navigate & prevent back
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigation.navigate('Login');
-    }, 5000);
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: 'Home'}],
+        }),
+      );
+    }, 3000);
     return () => clearTimeout(timeout);
   }, []);
 

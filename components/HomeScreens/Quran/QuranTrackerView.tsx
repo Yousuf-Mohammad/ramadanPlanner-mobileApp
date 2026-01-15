@@ -16,14 +16,11 @@ import CompletedToday from './CompletedToday';
 import BgBox from './BgBox';
 import LastRead from './LastRead';
 import RegularTarget from './RegularTarget';
-
 import {RecitationInfo} from '../../../libs/types/models';
 
-interface QuranTrackerViewProps {
-  data: RecitationInfo;
-}
-
-const QuranTrackerView: React.FC<QuranTrackerViewProps> = ({data}) => {
+const QuranTrackerView: React.FC<{data: RecitationInfo | undefined}> = ({
+  data,
+}) => {
   const day = useSelector(getArabicDate);
   const [setRecitationInfo] = useSetRecitationInfoMutation();
 
@@ -53,11 +50,11 @@ const QuranTrackerView: React.FC<QuranTrackerViewProps> = ({data}) => {
   }
 
   function regularTargetDDPlaceholer() {
-    return data.unit ? data.unit : 'ayat/page/para';
+    return data?.unit ? data?.unit : 'ayat/page/para';
   }
 
   const regularTargetInputPlaceholer = () => {
-    return data.target_value ? data.target_value.toString() : 'value';
+    return data?.target_value ? data?.target_value.toString() : 'value';
   };
 
   const lastReadDDPlaceholder = () => {
@@ -75,21 +72,23 @@ const QuranTrackerView: React.FC<QuranTrackerViewProps> = ({data}) => {
   };
 
   const lastReadInputPlaceholer = () => {
-    return data.last_read_value ? data.last_read_value.toString() : 'Ayat no.';
+    return data?.last_read_value
+      ? data?.last_read_value.toString()
+      : 'Ayat no.';
   };
 
   function completedTodayInputPlaceholder() {
-    return data.completed_value ? data.completed_value.toString() : 'value';
+    return data?.completed_value ? data?.completed_value.toString() : 'value';
   }
 
   const handleSubmit = async () => {
     const input = {
-      unit: regularTarget.unit ?? data.unit,
-      last_read_surah: parseInt(lastread.unit ?? data.last_read_surah, 10),
+      unit: regularTarget.unit ?? data?.unit,
+      last_read_surah: parseInt(lastread.unit ?? data?.last_read_surah, 10),
       // todo: update last_read_value according to regular target value & completed today value
-      last_read_value: parseInt(lastread.value ?? data.last_read_value, 10),
-      target_value: parseInt(regularTarget.value ?? data.target_value, 10),
-      completed_value: parseInt(today.value ?? data.completed_value, 10),
+      last_read_value: parseInt(lastread.value ?? data?.last_read_value, 10),
+      target_value: parseInt(regularTarget.value ?? data?.target_value, 10),
+      completed_value: parseInt(today.value ?? data?.completed_value, 10),
     };
 
     // console.log('input: ', input);

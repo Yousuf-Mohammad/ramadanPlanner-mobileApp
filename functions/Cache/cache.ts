@@ -1,25 +1,30 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const localCache = async (item: string) => {
+export async function setCache(key: string, value: string): Promise<void> {
   try {
-    // todo: key to env
-    await AsyncStorage.setItem('key', item);
-  } catch (e) {
-    console.log(e);
+    await AsyncStorage.setItem(key, value);
+  } catch (error) {
+    console.error('error setting local cache: ', error);
+    throw error;
   }
+}
 
-  console.log('Done caching.');
-};
-
-export const getLocalCache = async () => {
+export async function getCache(key: string): Promise<string | null> {
   try {
-    await AsyncStorage.getItem('key').then((res: string | null) =>
-      console.log('response from login getLocalCache: ', res),
-    );
+    return await AsyncStorage.getItem(key);
   } catch (e) {
-    // read error
-    console.error('error fetching data: ', e);
+    console.error('error getting local cache: ', e);
+    return null;
   }
+}
 
-  console.log('Done fetching cache.');
-};
+export async function removeCache(key: string): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(key);
+
+    console.log('successfully removed!');
+  } catch (error) {
+    console.error('error removing local cache: ', error);
+    throw error;
+  }
+}

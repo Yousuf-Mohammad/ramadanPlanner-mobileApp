@@ -5,6 +5,7 @@ import Tasks from './Tasks';
 // assets
 import {convert} from '../../../assets/dimensions/dimensions';
 import {TasksContainerProps} from '../../../libs/types/components';
+import {colors} from '../../../assets/colors/colors';
 
 const TasksContainer: React.FC<TasksContainerProps> = ({
   task = [],
@@ -51,5 +52,6 @@ const styles = StyleSheet.create({
   },
   empty: {
     fontFamily: 'Montserrat-SemiBold',
+    color: colors.dark.CONTRAST,
   },
 });

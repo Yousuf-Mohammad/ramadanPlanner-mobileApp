@@ -6,11 +6,11 @@ import {RouteProp} from '@react-navigation/native';
 // Root Stack Navigator params
 export type RootStackParamList = {
   Onboarding: undefined;
+  Home: undefined;
   Login: undefined;
   Register: undefined;
   ReqPassChange: undefined;
   ChangePass: {params: string};
-  Home: undefined;
 };
 
 // Home Tab Navigator params

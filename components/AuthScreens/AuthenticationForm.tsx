@@ -98,8 +98,8 @@ const AuthenticationForm: React.FC<AuthenticationFormProps> = ({
     error: {color: colors.dark.ERROR},
     buttonStyle: {
       backgroundColor: colors.dark.ACCENT,
-      height: convert(110),
       borderRadius: convert(75),
+      height: convert(110),
       width: convert(425),
     },
     btnTitleStyle: {

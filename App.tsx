@@ -7,7 +7,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {View} from 'react-native';
@@ -23,13 +23,13 @@ import OnboardingScreen from './screens/OnboardingScreen';
 // components
 import CustomHeader from './components/CustomHeader/CustomHeader';
 // redux-store
-import {store} from './redux-toolkit/store/store';
+import {initializeAuth, store} from './redux-toolkit/store/store';
 // assets
 import {colors} from './assets/colors/colors';
 // types
 import {RootStackParamList} from './libs/types/navigation/index';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const rootStack = createNativeStackNavigator<RootStackParamList>();
 
 const linking = {
   prefixes: ['https://ramadan-planner-frontend.vercel.app'],
@@ -41,6 +41,10 @@ const linking = {
 };
 
 const App: React.FC = () => {
+  useEffect(() => {
+    initializeAuth(); //re-hydrate auth token!
+  }, []);
+
   return (
     <NavigationContainer
       linking={linking}
@@ -56,33 +60,14 @@ const App: React.FC = () => {
         </View>
       }>
       <Provider store={store}>
-        <Stack.Navigator>
-          <Stack.Screen
+        <rootStack.Navigator>
+          <rootStack.Screen
             options={{headerShown: false}}
             name="Onboarding"
             component={OnboardingScreen}
           />
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Login"
-            component={Login}
-          />
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Register"
-            component={Register}
-          />
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="ReqPassChange"
-            component={RequestNewPassword}
-          />
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="ChangePass"
-            component={ChangePassword}
-          />
-          <Stack.Screen
+
+          <rootStack.Screen
             name="Home"
             component={Home}
             options={{
@@ -93,15 +78,30 @@ const App: React.FC = () => {
               ),
             }}
           />
-        </Stack.Navigator>
+
+          <rootStack.Screen
+            options={{headerShown: false}}
+            name="Login"
+            component={Login}
+          />
+          <rootStack.Screen
+            options={{headerShown: false}}
+            name="Register"
+            component={Register}
+          />
+          <rootStack.Screen
+            options={{headerShown: false}}
+            name="ReqPassChange"
+            component={RequestNewPassword}
+          />
+          <rootStack.Screen
+            options={{headerShown: false}}
+            name="ChangePass"
+            component={ChangePassword}
+          />
+        </rootStack.Navigator>
       </Provider>
     </NavigationContainer>
-
-    // <NavigationContainer>
-    //   <Provider store={store}>
-    //     <ChangePassword />
-    //   </Provider>
-    // </NavigationContainer>
   );
 };
 

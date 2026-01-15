@@ -15,9 +15,12 @@ import {convert} from '../../assets/dimensions/dimensions';
 // components
 import TasksContainer from './DailyTarget/TasksContainer';
 import {TaskItem} from '../../libs/types/components';
+import LoginRequest from '../../components/AuthScreens/LoginRequest';
+import {getAuthToken} from '../../redux-toolkit/features/authentication/authToken';
 
 const Dailytarget = () => {
   const day = useSelector(getArabicDate);
+  const loggedIn = useSelector(getAuthToken);
 
   //* handeling race conditions with queue
   const stateUpdateQueue = useRef<any[]>([]);
@@ -154,6 +157,8 @@ const Dailytarget = () => {
 
   return (
     <View style={styles.root}>
+      {!loggedIn ? <LoginRequest /> : null}
+
       <View style={styles.taskContainer}>
         <TasksContainer
           task={task}
