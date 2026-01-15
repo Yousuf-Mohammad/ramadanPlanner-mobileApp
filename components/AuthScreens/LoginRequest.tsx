@@ -18,7 +18,6 @@ const LoginRequest: React.FC = () => {
       </Text>
 
       <Button
-        style={styles.btn}
         onPress={() => navigation.navigate('Login')}
         title={'Login'}
         buttonStyle={styles.btn}
