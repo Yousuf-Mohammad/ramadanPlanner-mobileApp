@@ -3,6 +3,8 @@ import {surahInfo} from '../../assets/constants/surahInfo';
 import {digitValidation} from './formValidation';
 
 import {RecitationInfo} from '../../libs/types/models';
+import {Toast} from 'toastify-react-native';
+import {colors} from '../../assets/colors/colors';
 
 export const handleRegularTargetErr = (input: Partial<RecitationInfo>) => {
   if (input.unit === '' || input.unit === null || input.unit === undefined) {
@@ -84,22 +86,63 @@ export const handleSetTodayErr = (input: Partial<RecitationInfo>) => {
   return true;
 };
 
-export const inputError = (
-  input: Partial<RecitationInfo>,
-  handleError: (msg: string) => void,
-) => {
+export const inputError = (input: Partial<RecitationInfo>) => {
   if (!handleRegularTargetErr(input)) {
-    handleError('Invalid input in Regular Target Module');
+    // handleError('Invalid input in Regular Target Module');
+    Toast.show({
+      type: 'error',
+      text1: 'Update Error',
+      text2: 'Invalid input in Regular Target Module',
+      position: 'top',
+      visibilityTime: 4000,
+      autoHide: true,
+      backgroundColor: colors.dark.PRIMARY,
+      textColor: colors.dark.WHITE,
+      progressBarColor: colors.dark.ERROR,
+      iconFamily: 'MaterialIcons',
+      icon: 'error',
+      iconColor: colors.dark.ERROR,
+    });
+
     return true;
   }
 
   if (!handleLastReadErr(input)) {
-    handleError('Invalid input in Last Read Module');
+    Toast.show({
+      type: 'error',
+      text1: 'Update Error',
+      text2: 'Invalid input in Last Read Module',
+      position: 'top',
+      visibilityTime: 4000,
+      autoHide: true,
+      backgroundColor: colors.dark.PRIMARY,
+      textColor: colors.dark.WHITE,
+      progressBarColor: colors.dark.ERROR,
+      iconFamily: 'MaterialIcons',
+      icon: 'error',
+      iconColor: colors.dark.ERROR,
+    });
+
     return true;
   }
 
   if (!handleSetTodayErr(input)) {
-    handleError('Invalid input in Comppleted Today Module');
+    // handleError('Invalid input in Comppleted Today Module');
+    Toast.show({
+      type: 'error',
+      text1: 'Update Error',
+      text2: 'Invalid input in Comppleted Today Module',
+      position: 'top',
+      visibilityTime: 4000,
+      autoHide: true,
+      backgroundColor: colors.dark.PRIMARY,
+      textColor: colors.dark.WHITE,
+      progressBarColor: colors.dark.ERROR,
+      iconFamily: 'MaterialIcons',
+      icon: 'error',
+      iconColor: colors.dark.ERROR,
+    });
+
     return true;
   }
 

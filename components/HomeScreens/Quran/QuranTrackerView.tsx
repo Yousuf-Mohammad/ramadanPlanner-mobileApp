@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 // rtk-slices
@@ -17,6 +17,8 @@ import BgBox from './BgBox';
 import LastRead from './LastRead';
 import RegularTarget from './RegularTarget';
 import {RecitationInfo} from '../../../libs/types/models';
+import {Toast} from 'toastify-react-native';
+import {isAuthenticated} from '../../../functions/AuthFunctions';
 
 const QuranTrackerView: React.FC<{data: RecitationInfo | undefined}> = ({
   data,
@@ -112,27 +114,41 @@ const QuranTrackerView: React.FC<{data: RecitationInfo | undefined}> = ({
       // console.log('SCREEN:QURAN: set recitation info: ', response);
 
       if ('error' in response) {
-        handleError('Error updating data');
+        const toastMsg = (await isAuthenticated())
+          ? 'Please check internet connection!'
+          : 'Please Log in to continue';
+
+        Toast.show({
+          type: 'error',
+          text1: 'Error updating data',
+          text2: toastMsg,
+          position: 'top',
+          visibilityTime: 4000,
+          autoHide: true,
+          backgroundColor: colors.dark.PRIMARY,
+          textColor: colors.dark.WHITE,
+          progressBarColor: colors.dark.ERROR,
+          iconFamily: 'MaterialIcons',
+          icon: 'error',
+          iconColor: colors.dark.ERROR,
+        });
+
         return;
       }
 
-      if (response.data && response.data.message === 'Checklist updated') {
-        handleError('Recitation tracker updated!');
-      }
+      Toast.show({
+        type: 'success',
+        text1: 'Update Successful',
+        position: 'top',
+        visibilityTime: 4000,
+        autoHide: true,
+        backgroundColor: colors.dark.PRIMARY,
+        textColor: colors.dark.WHITE,
+      });
     } catch (issue) {
       console.error('SCREEN: QURAN: ERROR: ', issue);
     }
   };
-
-  useEffect(() => {
-    let duration = 3500;
-
-    const timeout = setTimeout(() => {
-      setErr('');
-    }, duration);
-
-    return () => clearTimeout(timeout);
-  }, [err]);
 
   return (
     <View style={styles.root}>
@@ -163,7 +179,7 @@ const QuranTrackerView: React.FC<{data: RecitationInfo | undefined}> = ({
 
       {err !== '' ? (
         <View style={styles.errContainer}>
-          <Text style={styles.errMsg}>{err}</Text>
+          {/* <Text style={styles.errMsg}>{err}</Text> */}
         </View>
       ) : (
         <View style={styles.errContainer} />
