@@ -6,6 +6,7 @@ import {removeUser} from '../../functions/AuthFunctions';
 import {useDispatch} from 'react-redux';
 import {resetToken} from '../../redux-toolkit/features/authentication/authToken';
 import {colors} from '../../assets/colors/colors';
+import {Toast} from 'toastify-react-native';
 
 const LogoutBtn: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,20 @@ const LogoutBtn: React.FC = () => {
       onPress={async () => {
         await removeUser();
         dispatch(resetToken());
+        Toast.show({
+          type: 'success',
+          text1: 'Logout Successful!',
+          text2: 'You can’t measure spiritual growth',
+          position: 'bottom',
+          visibilityTime: 4000,
+          autoHide: true,
+          backgroundColor: colors.dark.PRIMARY,
+          textColor: colors.dark.WHITE,
+          progressBarColor: colors.dark.ACCENT,
+          iconFamily: 'AntDesign',
+          icon: 'warning',
+          iconColor: colors.dark.ACCENT,
+        });
       }}>
       <Text style={styles.txt}>Logout</Text>
       <Icon name={'logout'} size={25} color={'white'} />

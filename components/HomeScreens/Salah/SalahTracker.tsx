@@ -64,6 +64,7 @@ const SalahTracker = () => {
             iconFamily: 'Entypo',
             iconColor: 'red',
             icon: 'circle-with-cross',
+
             // onPress: () => console.log('Toast pressed'),
             // onShow: () => console.log('Toast shown'),
             // onHide: () => console.log('Toast hidden'),
