@@ -2,6 +2,8 @@ import Geocoder from 'react-native-geocoding';
 import {MAPS_API_KEY} from '@env';
 
 import {GeolocationResponse} from '@react-native-community/geolocation';
+import {Toast} from 'toastify-react-native';
+import {colors} from '../assets/colors/colors';
 
 function deriveCityName(compound_code: string) {
   const parts = compound_code.split(' ');
@@ -25,7 +27,21 @@ export function getCityName(position: GeolocationResponse): Promise<string> {
         resolve(cityName);
       })
       .catch(error => {
-        console.warn('Error getting CATCH city name: ', error);
+        // console.warn('Error getting CATCH city name: ', error);
+        Toast.show({
+          type: 'error',
+          text1: 'Location Error',
+          text2: 'Please check device gps & permissions!',
+          position: 'bottom',
+          visibilityTime: 4000,
+          autoHide: true,
+          backgroundColor: colors.dark.PRIMARY,
+          textColor: colors.dark.WHITE,
+          progressBarColor: colors.dark.ERROR,
+          iconFamily: 'MaterialIcons',
+          icon: 'error',
+          iconColor: colors.dark.ERROR,
+        });
         reject(error);
       });
   });

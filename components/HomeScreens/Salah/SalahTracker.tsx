@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {useDispatch, useSelector} from 'react-redux';
 // components
@@ -14,7 +14,6 @@ import {FontSize} from '../../../assets/fonts/fonts';
 import {colors} from '../../../assets/colors/colors';
 import LoginRequest from '../../AuthScreens/LoginRequest';
 import {getAuthToken} from '../../../redux-toolkit/features/authentication/authToken';
-import {Toast} from 'toastify-react-native';
 
 const SalahTracker = () => {
   const dispatch = useDispatch();
@@ -48,29 +47,6 @@ const SalahTracker = () => {
   return (
     <>
       {!loggedIn ? <LoginRequest /> : null}
-      <Button
-        title="Show Error Toast"
-        onPress={() => {
-          Toast.show({
-            type: 'success',
-            text1: 'Main message',
-            text2: 'Secondary message',
-            position: 'top',
-            visibilityTime: 4000,
-            autoHide: true,
-            backgroundColor: colors.dark.PRIMARY,
-            textColor: colors.dark.WHITE,
-            progressBarColor: 'red',
-            iconFamily: 'Entypo',
-            iconColor: 'red',
-            icon: 'circle-with-cross',
-
-            // onPress: () => console.log('Toast pressed'),
-            // onShow: () => console.log('Toast shown'),
-            // onHide: () => console.log('Toast hidden'),
-          });
-        }}
-      />
       <SalahTrackerView data={data} />
     </>
   );

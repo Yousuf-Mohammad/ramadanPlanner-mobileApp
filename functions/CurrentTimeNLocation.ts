@@ -8,6 +8,8 @@ import {
 // functions
 import {getCityName} from './RevGeoCoding';
 import {getTimes} from './PrayerTimes';
+import {Toast} from 'toastify-react-native';
+import {colors} from '../assets/colors/colors';
 
 async function getLocationAndroidNative() {
   try {

@@ -18,7 +18,7 @@ const LogoutBtn: React.FC = () => {
         await removeUser();
         dispatch(resetToken());
         Toast.show({
-          type: 'success',
+          type: 'warn',
           text1: 'Logout Successful!',
           text2: 'You can’t measure spiritual growth',
           position: 'bottom',
