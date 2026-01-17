@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {useSelector} from 'react-redux';
 // rtk-slices
@@ -12,6 +12,7 @@ import QuranTrackerView from './QuranTrackerView';
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
 import LoginRequest from '../../../components/AuthScreens/LoginRequest';
 import {getAuthToken} from '../../../redux-toolkit/features/authentication/authToken';
+import QuranTemplate from './QuranTemplate';
 
 const QuranTracker = () => {
   const day = useSelector(getArabicDate);
@@ -39,6 +40,13 @@ const QuranTracker = () => {
   return (
     <>
       {!loggedIn ? <LoginRequest /> : null}
+
+      <Text style={[styles.mainText]}>Select a target to get started!</Text>
+      <QuranTemplate title="1 Ayat Per Day" />
+      <QuranTemplate title="1 Surah Per Day" />
+
+      {/* 1 ayat/day */}
+
       <QuranTrackerView data={data} />
     </>
   );
@@ -49,4 +57,8 @@ export default QuranTracker;
 const styles = StyleSheet.create({
   loadingRoot: {flex: 1, alignItems: 'center', justifyContent: 'center'},
   loadingTxt: {fontSize: FontSize.secondaryTitle, color: colors.dark.BLACK},
+  mainText: {
+    fontFamily: 'Montserrat-SemiBold',
+    color: colors.dark.CONTRAST,
+  },
 });
