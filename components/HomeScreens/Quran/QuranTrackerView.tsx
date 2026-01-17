@@ -41,11 +41,6 @@ const QuranTrackerView: React.FC<{data: RecitationInfo | undefined}> = ({
     value: '',
   });
 
-  const [err, setErr] = useState('');
-  const handleError = (info: string) => {
-    setErr(info);
-  };
-
   const [loading, setLoading] = useState(false);
   function loadingHandler() {
     setLoading(prev => !prev);
@@ -95,10 +90,10 @@ const QuranTrackerView: React.FC<{data: RecitationInfo | undefined}> = ({
 
     // console.log('input: ', input);
 
-    if (inputError(input, handleError)) {
+    if (inputError(input)) {
       return;
     } else {
-      handleError('');
+      // handleError('');
     }
 
     try {
@@ -177,13 +172,7 @@ const QuranTrackerView: React.FC<{data: RecitationInfo | undefined}> = ({
         />
       </BgBox>
 
-      {err !== '' ? (
-        <View style={styles.errContainer}>
-          {/* <Text style={styles.errMsg}>{err}</Text> */}
-        </View>
-      ) : (
-        <View style={styles.errContainer} />
-      )}
+      <View style={styles.errContainer} />
 
       <Button
         title={'+ ADD TARGET'}
