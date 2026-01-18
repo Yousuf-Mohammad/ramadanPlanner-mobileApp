@@ -6,9 +6,10 @@ import {colors} from '../../../assets/colors/colors';
 
 interface QuranTemplateProps {
   title: string;
+  handleSubmit: (key: string, title: string) => void;
 }
 
-const QuranTemplate: React.FC<QuranTemplateProps> = ({title}) => {
+const QuranTemplate: React.FC<QuranTemplateProps> = ({title, handleSubmit}) => {
   return (
     <View style={styles.root}>
       <View style={styles.title}>
@@ -20,7 +21,7 @@ const QuranTemplate: React.FC<QuranTemplateProps> = ({title}) => {
         accessibilityRole="button"
         activeOpacity={0.7}
         style={styles.button}
-        onPress={() => {}}>
+        onPress={() => handleSubmit('template', title)}>
         <Text style={styles.btnTxt}>START</Text>
       </TouchableOpacity>
     </View>

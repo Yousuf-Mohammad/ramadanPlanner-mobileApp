@@ -28,20 +28,20 @@ export function getCityName(position: GeolocationResponse): Promise<string> {
       })
       .catch(error => {
         // console.warn('Error getting CATCH city name: ', error);
-        Toast.show({
-          type: 'error',
-          text1: 'Location Error',
-          text2: 'Please check device gps & permissions!',
-          position: 'bottom',
-          visibilityTime: 4000,
-          autoHide: true,
-          backgroundColor: colors.dark.PRIMARY,
-          textColor: colors.dark.WHITE,
-          progressBarColor: colors.dark.ERROR,
-          iconFamily: 'MaterialIcons',
-          icon: 'error',
-          iconColor: colors.dark.ERROR,
-        });
+        // Toast.show({
+        //   type: 'error',
+        //   text1: 'Location Error',
+        //   text2: 'Please check device gps & permissions!',
+        //   position: 'bottom',
+        //   visibilityTime: 4000,
+        //   autoHide: true,
+        //   backgroundColor: colors.dark.PRIMARY,
+        //   textColor: colors.dark.WHITE,
+        //   progressBarColor: colors.dark.ERROR,
+        //   iconFamily: 'MaterialIcons',
+        //   icon: 'error',
+        //   iconColor: colors.dark.ERROR,
+        // });
         reject(error);
       });
   });
