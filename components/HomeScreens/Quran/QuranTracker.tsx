@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Modal, StyleSheet, Text, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {useSelector} from 'react-redux';
 // rtk-slices
@@ -16,10 +16,14 @@ import {getCache, setCache} from '../../../functions/Cache/cache';
 import {convert} from '../../../assets/dimensions/dimensions';
 import {Button} from 'react-native-elements';
 import TargetDetails from './TargetDetails';
+import {TargetInputModal} from './TargetInputModal';
 
 const QuranTracker = () => {
   const day = useSelector(getArabicDate);
   const loggedIn = useSelector(getAuthToken);
+
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const toggleModal: () => void = () => setModalVisible(!modalVisible);
 
   // todo:perf: memoize other components, so that useState doesn't affect them all
   const [templateTitle, setTemplateTitle] = useState<string>('');
@@ -70,6 +74,12 @@ const QuranTracker = () => {
           <Text style={styles.mainText}>Select a target to get started!</Text>
           <QuranTemplate title="1 Ayat Per Day" handleSubmit={handleSubmit} />
           <QuranTemplate title="1 Surah Per Day" handleSubmit={handleSubmit} />
+          <Button title="modal" onPress={() => toggleModal()} />
+
+          <TargetInputModal
+            isVisible={modalVisible}
+            toggleModal={toggleModal}
+          />
         </View>
       ) : (
         <TargetDetails
