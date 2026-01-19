@@ -76,6 +76,10 @@ export interface InputRangeProps {
   setAyatValue: (value: any) => void;
 }
 
+export interface DatePickerProps {
+  // title: string;
+}
+
 export interface SurahInfo {
   number: number;
   name: string;

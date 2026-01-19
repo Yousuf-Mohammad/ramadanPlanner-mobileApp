@@ -7,7 +7,11 @@ import DropDownPicker from '../../DropDownPicker/DropDownPicker';
 import {surahInfo} from '../../../assets/constants/surahInfo';
 import {Button} from 'react-native-elements';
 
-import {AyatNumberMappings, InputRangeProps} from '../../../libs/types/models';
+import {
+  AyatNumberMappings,
+  DatePickerProps,
+  InputRangeProps,
+} from '../../../libs/types/models';
 import DatePicker, {RangeOutput} from 'react-native-neat-date-picker';
 
 interface TargetInputModal {
@@ -31,6 +35,7 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
   const [endAyatValue, setEndAyatValue] = useState<string>('');
 
   const [showDatePickerRange, setShowDatePickerRange] = useState(false);
+  const openDatePicker = () => setShowDatePickerRange(true);
 
   const [date, setDate] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -45,8 +50,6 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
     setStartDate(output.startDateString ?? '');
     setEndDate(output.endDateString ?? '');
   };
-
-  console.log('+--------------TARGETINPUT-MODAL----------------+');
 
   function ayatNumberMapper(surahName: string): AyatNumberMappings[] {
     return surahInfo
@@ -114,13 +117,15 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
     </View>
   );
 
-  const renderDatePicker = () => (
-    <View style={styles.datePickerContainer}>
+  const renderDatePicker: React.FC<DatePickerProps> = ({}) => (
+    <View
+      style={[styles.datePickerContainer, {flex: showDatePickerRange ? 1 : 0}]}>
       <DatePicker
         isVisible={showDatePickerRange}
         mode={'range'}
         onCancel={onCancelRange}
         onConfirm={onConfirmRange}
+        withoutModal={false}
       />
     </View>
   );
@@ -158,9 +163,34 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
   );
 
   const renderModalContent = () => (
-    <View style={styles.modalContent}>
+    <View style={[styles.modalContent, {flex: showDatePickerRange ? 1 : 0}]}>
       {renderAyatRangeDropDowns()}
-      {renderDatePicker()}
+      <View style={{height: convert(50)}} />
+      {!showDatePickerRange && !startDate && (
+        <Button
+          title={'Select Date Range'}
+          onPress={openDatePicker}
+          titleStyle={styles.dateBtnTitle}
+          buttonStyle={styles.dateBtn}
+        />
+      )}
+      {!showDatePickerRange && startDate && (
+        <TouchableOpacity
+          onPress={openDatePicker}
+          style={[
+            styles.dateBtn,
+            {
+              backgroundColor: colors.dark.PRIMARY,
+              borderWidth: 2,
+              borderColor: colors.dark.CONTRAST,
+            },
+          ]}>
+          <Text style={[styles.dateBtnTitle, {color: colors.dark.CONTRAST}]}>
+            {startDate}.........{endDate}
+          </Text>
+        </TouchableOpacity>
+      )}
+      {renderDatePicker({})}
       {renderButton('Select', () => toggleModal())}
     </View>
   );
@@ -172,6 +202,7 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
         onBackdropPress={toggleModal}
         style={styles.bottomModal}>
         {renderModalContent()}
+        {/* {renderDatePicker({})} */}
       </Modal>
     </View>
   );
@@ -179,6 +210,7 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
 
 const styles = StyleSheet.create({
   root: {
+    // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -205,6 +237,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: convert(50),
   },
   bottomModal: {
+    flex: 1,
     justifyContent: 'flex-end',
     margin: 0,
   },
@@ -232,9 +265,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   datePickerContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  dateBtnTitle: {
+    fontFamily: 'Montserrat-SemiBold',
+    color: colors.dark.PRIMARY,
+    minHeight: convert(50),
+  },
+  dateBtn: {
+    height: convert(100),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: convert(25),
+    marginHorizontal: convert(7),
+    marginVertical: convert(22),
+    backgroundColor: colors.dark.CONTRAST,
+    paddingHorizontal: convert(100),
   },
 });

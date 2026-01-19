@@ -17,6 +17,7 @@ import {convert} from '../../../assets/dimensions/dimensions';
 import {Button} from 'react-native-elements';
 import TargetDetails from './TargetDetails';
 import {TargetInputModal} from './TargetInputModal';
+import DatePicker, {RangeOutput} from 'react-native-neat-date-picker';
 
 const QuranTracker = () => {
   const day = useSelector(getArabicDate);
@@ -24,6 +25,23 @@ const QuranTracker = () => {
 
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const toggleModal: () => void = () => setModalVisible(!modalVisible);
+
+  const [showDatePickerRange, setShowDatePickerRange] = useState(false);
+  const openDatePicker = () => setShowDatePickerRange(true);
+
+  const [date, setDate] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+
+  const onCancelRange = () => {
+    setShowDatePickerRange(false);
+  };
+
+  const onConfirmRange = (output: RangeOutput) => {
+    setShowDatePickerRange(false);
+    setStartDate(output.startDateString ?? '');
+    setEndDate(output.endDateString ?? '');
+  };
 
   // todo:perf: memoize other components, so that useState doesn't affect them all
   const [templateTitle, setTemplateTitle] = useState<string>('');
@@ -104,5 +122,12 @@ const styles = StyleSheet.create({
     marginVertical: convert(25),
     fontFamily: 'Montserrat-SemiBold',
     color: colors.dark.CONTRAST,
+  },
+  datePickerContainer: {
+    flex: 1,
+    height: convert(100),
+    width: convert(800),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
