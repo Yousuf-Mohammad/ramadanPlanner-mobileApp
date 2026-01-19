@@ -8,27 +8,34 @@ import {DropDownPickerProps} from '../../libs/types/components';
 
 const DropDownPicker: React.FC<DropDownPickerProps> = ({
   isFocus,
+  setIsFocus,
   data,
   value,
   search,
-  setIsFocus,
   setValue,
   placeholder,
   dropdownPosition,
+  disable,
 }) => {
   return (
     <View style={styles.container}>
       <Dropdown
+        disable={disable}
         dropdownPosition={dropdownPosition ? dropdownPosition : 'auto'}
         style={[
           styles.dropdown,
           isFocus && {
             backgroundColor: colors.dark.CONTRAST,
           },
+          disable && {
+            borderWidth: 1,
+            borderColor: colors.dark.DISABLE,
+          },
         ]}
         placeholderStyle={[
           styles.placeholderStyle,
           isFocus && {color: colors.dark.PRIMARY},
+          disable && {color: colors.dark.DISABLE},
         ]}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
@@ -71,9 +78,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     backgroundColor: colors.dark.PRIMARY,
-    // width: convert(300),
     height: 50,
-    // borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: convert(10),
   },

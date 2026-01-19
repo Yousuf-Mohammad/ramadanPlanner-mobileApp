@@ -12,6 +12,7 @@ export interface ColorTheme {
   BLACK: string;
   WHITE: string;
   ERROR: string;
+  DISABLE: string;
 }
 
 export interface Colors {

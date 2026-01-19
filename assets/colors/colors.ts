@@ -8,6 +8,7 @@ export const colors: {light: Partial<ColorTheme>; dark: ColorTheme} = {
     CONTRAST: '#daf1dd',
     ACCENT: '#f1ae17',
     WARNING: '#900',
+    DISABLE: 'grey',
 
     GRADIENT_START: '#FFD500',
     GRADIENT_END: '#FF9900',
