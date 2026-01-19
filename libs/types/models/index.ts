@@ -56,7 +56,7 @@ export interface RecitationInfo {
   completed_value?: number | null;
 }
 
-export type AyatNumberDropDownMappings = {
+export type AyatNumberMappings = {
   label: string;
   value: number;
 };

@@ -2,14 +2,11 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Modal from 'react-native-modal';
 import {colors} from '../../../assets/colors/colors';
 import {convert} from '../../../assets/dimensions/dimensions';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import DropDownPicker from '../../DropDownPicker/DropDownPicker';
 import {surahInfo} from '../../../assets/constants/surahInfo';
 import {Button} from 'react-native-elements';
-import {
-  AyatNumberDropDownMappings as AyatNumberMappings,
-  InputRangeProps,
-} from '../../../libs/types/models';
+import {AyatNumberMappings, InputRangeProps} from '../../../libs/types/models';
 
 interface TargetInputModal {
   isVisible: boolean;
@@ -26,10 +23,10 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
   const [isEndSurahNameFocus, setIsEndSurahNameFocus] =
     useState<boolean>(false);
   const [isEndAyatFocus, setIsEndAyatFocus] = useState<boolean>(false);
-  const [startSurahValue, setStartSurahValue] = useState<any>(null);
-  const [endSurahValue, setEndSurahValue] = useState<any>(null);
-  const [startAyatValue, setStartAyatValue] = useState<any>(null);
-  const [endAyatValue, setEndAyatValue] = useState<any>(null);
+  const [startSurahValue, setStartSurahValue] = useState<string>('');
+  const [endSurahValue, setEndSurahValue] = useState<string>('');
+  const [startAyatValue, setStartAyatValue] = useState<string>('');
+  const [endAyatValue, setEndAyatValue] = useState<string>('');
 
   function ayatNumberMapper(surahName: string): AyatNumberMappings[] {
     return surahInfo
@@ -48,7 +45,7 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
       });
   }
 
-  const _renderButton = (text: string, onPress: () => void) => (
+  const renderButton = (text: string, onPress: () => void) => (
     <Button
       title={text}
       loadingProps={{size: 'small', color: colors.dark.PRIMARY}}
@@ -58,7 +55,7 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
     />
   );
 
-  const _renderDropDown: React.FC<InputRangeProps> = ({
+  const renderDropDown: React.FC<InputRangeProps> = ({
     label,
     isSurahFocus,
     setIsSurahFocus,
@@ -97,10 +94,10 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
     </View>
   );
 
-  const _renderAyatRangeDropDowns = () => (
+  const renderAyatRangeDropDowns = () => (
     <>
       {/* start range */}
-      {_renderDropDown({
+      {renderDropDown({
         label: 'Start Range',
         isSurahFocus: isStartSurahNameFocus,
         setIsSurahFocus: setIsStartSurahNameFocus,
@@ -115,7 +112,7 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
       <View style={styles.divider} />
 
       {/* end range */}
-      {_renderDropDown({
+      {renderDropDown({
         label: 'End Range',
         isSurahFocus: isEndSurahNameFocus,
         setIsSurahFocus: setIsEndSurahNameFocus,
@@ -129,11 +126,11 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
     </>
   );
 
-  const _renderModalContent = () => (
+  const renderModalContent = () => (
     <View style={styles.modalContent}>
-      {_renderAyatRangeDropDowns()}
+      {renderAyatRangeDropDowns()}
 
-      {_renderButton('Select', () => toggleModal())}
+      {renderButton('Select', () => toggleModal())}
     </View>
   );
 
@@ -143,7 +140,7 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
         isVisible={isVisible}
         onBackdropPress={toggleModal}
         style={styles.bottomModal}>
-        {_renderModalContent()}
+        {renderModalContent()}
       </Modal>
     </View>
   );
