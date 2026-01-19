@@ -6,7 +6,9 @@ import React, {useState} from 'react';
 import DropDownPicker from '../../DropDownPicker/DropDownPicker';
 import {surahInfo} from '../../../assets/constants/surahInfo';
 import {Button} from 'react-native-elements';
+
 import {AyatNumberMappings, InputRangeProps} from '../../../libs/types/models';
+import DatePicker, {RangeOutput} from 'react-native-neat-date-picker';
 
 interface TargetInputModal {
   isVisible: boolean;
@@ -27,6 +29,24 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
   const [endSurahValue, setEndSurahValue] = useState<string>('');
   const [startAyatValue, setStartAyatValue] = useState<string>('');
   const [endAyatValue, setEndAyatValue] = useState<string>('');
+
+  const [showDatePickerRange, setShowDatePickerRange] = useState(false);
+
+  const [date, setDate] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+
+  const onCancelRange = () => {
+    setShowDatePickerRange(false);
+  };
+
+  const onConfirmRange = (output: RangeOutput) => {
+    setShowDatePickerRange(false);
+    setStartDate(output.startDateString ?? '');
+    setEndDate(output.endDateString ?? '');
+  };
+
+  console.log('+--------------TARGETINPUT-MODAL----------------+');
 
   function ayatNumberMapper(surahName: string): AyatNumberMappings[] {
     return surahInfo
@@ -94,6 +114,17 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
     </View>
   );
 
+  const renderDatePicker = () => (
+    <View style={styles.datePickerContainer}>
+      <DatePicker
+        isVisible={showDatePickerRange}
+        mode={'range'}
+        onCancel={onCancelRange}
+        onConfirm={onConfirmRange}
+      />
+    </View>
+  );
+
   const renderAyatRangeDropDowns = () => (
     <>
       {/* start range */}
@@ -129,7 +160,7 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
   const renderModalContent = () => (
     <View style={styles.modalContent}>
       {renderAyatRangeDropDowns()}
-
+      {renderDatePicker()}
       {renderButton('Select', () => toggleModal())}
     </View>
   );
@@ -199,5 +230,11 @@ const styles = StyleSheet.create({
   },
   dropdownContainer: {
     flexDirection: 'row',
+  },
+  datePickerContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
