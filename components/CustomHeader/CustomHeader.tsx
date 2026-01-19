@@ -136,7 +136,7 @@ const CustomHeader: React.FC = () => {
       height: interpolate(
         header.value,
         [headerHeight, maxHeaderHeight],
-        [0, 180], 
+        [0, 180],
         Extrapolation.CLAMP,
       ),
       transform: [
@@ -151,8 +151,6 @@ const CustomHeader: React.FC = () => {
       ],
     };
   });
-
-  
 
   return (
     <Animated.View style={[styles.root, rootAnimatedStyle]}>
@@ -208,9 +206,6 @@ const styles = StyleSheet.create({
   root: {
     borderBottomLeftRadius: convert(50),
     borderBottomRightRadius: convert(50),
-
-    borderWidth: 1,
-    borderColor: 'blue',
     overflow: 'hidden',
   },
   gradient: {

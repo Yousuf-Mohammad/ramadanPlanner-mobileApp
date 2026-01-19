@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Modal, StyleSheet, Text, View} from 'react-native';
 import {ActivityIndicator} from 'react-native-paper';
 import {useSelector} from 'react-redux';
 // rtk-slices
@@ -8,21 +8,68 @@ import {useGetRecitationInfoQuery} from '../../../redux-toolkit/features/recitat
 import {colors} from '../../../assets/colors/colors';
 import {FontSize} from '../../../assets/fonts/fonts';
 // components
-import QuranTrackerView from './QuranTrackerView';
 import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicDate';
 import LoginRequest from '../../../components/AuthScreens/LoginRequest';
 import {getAuthToken} from '../../../redux-toolkit/features/authentication/authToken';
+import QuranTemplate from './QuranTemplate';
+import {getCache, setCache} from '../../../functions/Cache/cache';
+import {convert} from '../../../assets/dimensions/dimensions';
+import {Button} from 'react-native-elements';
+import TargetDetails from './TargetDetails';
+import {TargetInputModal} from './TargetInputModal';
+import DatePicker, {RangeOutput} from 'react-native-neat-date-picker';
 
 const QuranTracker = () => {
   const day = useSelector(getArabicDate);
   const loggedIn = useSelector(getAuthToken);
 
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const toggleModal: () => void = () => setModalVisible(!modalVisible);
+
+  const [showDatePickerRange, setShowDatePickerRange] = useState(false);
+  const openDatePicker = () => setShowDatePickerRange(true);
+
+  const [date, setDate] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+
+  const onCancelRange = () => {
+    setShowDatePickerRange(false);
+  };
+
+  const onConfirmRange = (output: RangeOutput) => {
+    setShowDatePickerRange(false);
+    setStartDate(output.startDateString ?? '');
+    setEndDate(output.endDateString ?? '');
+  };
+
   // todo:perf: memoize other components, so that useState doesn't affect them all
+  const [templateTitle, setTemplateTitle] = useState<string>('');
   const {data, isLoading} = useGetRecitationInfoQuery({
     year: day.year,
     month: day.monthNumber,
     day: day.day,
   });
+
+  const viewSelection: boolean = templateTitle === '';
+
+  const handleSubmit = (key: string, title: string) => {
+    setTemplateTitle(title);
+    setCache(key, title);
+  };
+
+  const handleFinish = () => {
+    handleSubmit('template', '');
+  };
+
+  useEffect(() => {
+    (async () => {
+      const template = await getCache('template');
+      if (template) {
+        setTemplateTitle(template);
+      }
+    })();
+  }, []);
 
   if (isLoading) {
     return (
@@ -37,10 +84,28 @@ const QuranTracker = () => {
   }
 
   return (
-    <>
+    <View style={{}}>
       {!loggedIn ? <LoginRequest /> : null}
-      <QuranTrackerView data={data} />
-    </>
+
+      {viewSelection ? (
+        <View style={styles.rootContainer}>
+          <Text style={styles.mainText}>Select a target to get started!</Text>
+          <QuranTemplate title="1 Ayat Per Day" handleSubmit={handleSubmit} />
+          <QuranTemplate title="1 Surah Per Day" handleSubmit={handleSubmit} />
+          <Button title="modal" onPress={() => toggleModal()} />
+
+          <TargetInputModal
+            isVisible={modalVisible}
+            toggleModal={toggleModal}
+          />
+        </View>
+      ) : (
+        <TargetDetails
+          handleFinish={handleFinish}
+          templateTitle={templateTitle}
+        />
+      )}
+    </View>
   );
 };
 
@@ -49,4 +114,20 @@ export default QuranTracker;
 const styles = StyleSheet.create({
   loadingRoot: {flex: 1, alignItems: 'center', justifyContent: 'center'},
   loadingTxt: {fontSize: FontSize.secondaryTitle, color: colors.dark.BLACK},
+  rootContainer: {
+    alignItems: 'center',
+    marginBottom: convert(75),
+  },
+  mainText: {
+    marginVertical: convert(25),
+    fontFamily: 'Montserrat-SemiBold',
+    color: colors.dark.CONTRAST,
+  },
+  datePickerContainer: {
+    flex: 1,
+    height: convert(100),
+    width: convert(800),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

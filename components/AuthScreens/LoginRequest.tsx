@@ -2,7 +2,7 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {convert} from '../../assets/dimensions/dimensions';
 import {colors} from '../../assets/colors/colors';
-import {Button, Text} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from '../../libs/types/navigation/index';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack/lib/typescript/src/types';
@@ -13,10 +13,6 @@ const LoginRequest: React.FC = () => {
 
   return (
     <View style={styles.root}>
-      <Text style={[styles.txt, styles.maintxt]}>
-        Please login to retain data!
-      </Text>
-
       <Button
         onPress={() => navigation.navigate('Login')}
         title={'Login'}
@@ -34,8 +30,7 @@ const styles = StyleSheet.create({
     width: convert(950),
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: convert(25),
-    marginBottom: convert(25),
+    marginVertical: convert(25),
   },
   btn: {
     justifyContent: 'center',
@@ -46,7 +41,6 @@ const styles = StyleSheet.create({
   },
   maintxt: {
     color: colors.dark.CONTRAST,
-    marginBottom: convert(25),
   },
   txt: {
     fontFamily: 'Montserrat-SemiBold',

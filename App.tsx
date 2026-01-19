@@ -28,6 +28,7 @@ import {initializeAuth, store} from './redux-toolkit/store/store';
 import {colors} from './assets/colors/colors';
 // types
 import {RootStackParamList} from './libs/types/navigation/index';
+import ToastManager from 'toastify-react-native';
 
 const rootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -100,6 +101,8 @@ const App: React.FC = () => {
             component={ChangePassword}
           />
         </rootStack.Navigator>
+
+        <ToastManager />
       </Provider>
     </NavigationContainer>
   );

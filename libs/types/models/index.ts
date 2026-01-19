@@ -56,6 +56,30 @@ export interface RecitationInfo {
   completed_value?: number | null;
 }
 
+export type AyatNumberMappings = {
+  label: string;
+  value: number;
+};
+
+export interface InputRangeProps {
+  label: string;
+  placeholder?: string;
+
+  isSurahFocus: boolean;
+  setIsSurahFocus: (focus: boolean) => void;
+  surahValue: any;
+  setSurahValue: (value: any) => void;
+
+  isAyatFocus: boolean;
+  setIsAyatFocus: (focus: boolean) => void;
+  ayatValue: any;
+  setAyatValue: (value: any) => void;
+}
+
+export interface DatePickerProps {
+  // title: string;
+}
+
 export interface SurahInfo {
   number: number;
   name: string;

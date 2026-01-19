@@ -5939,6 +5939,13 @@ react-native-android-location-enabler@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-native-android-location-enabler/-/react-native-android-location-enabler-2.0.1.tgz#d3073d1ddc75c1afa304948156de3347fbf47174"
   integrity sha512-hDNfQL4gImrmc6K6J44kd2iKrpPHc23V4stujNIg3I1LvYLT+kwWmfTGapeY0hl6EXACfaFdm/wBb4ggtNcnPA==
 
+react-native-animatable@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.4.0.tgz#05a259e1566081ce7d3f6fba1e92edc65f5c6160"
+  integrity sha512-DZwaDVWm2NBvBxf7I0wXKXLKb/TxDnkV53sWhCvei1pRyTX3MVFpkvdYBknNBqPrxYuAIlPxEp7gJOidIauUkw==
+  dependencies:
+    prop-types "^15.8.1"
+
 react-native-dotenv@^3.4.10:
   version "3.4.10"
   resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-3.4.10.tgz#b7142f50fa72d1ad5b9ae8064d4e486b774b30f2"
@@ -5976,6 +5983,21 @@ react-native-linear-gradient@^2.8.3:
   version "2.8.3"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.8.3.tgz#9a116649f86d74747304ee13db325e20b21e564f"
   integrity sha512-KflAXZcEg54PXkLyflaSZQ3PJp4uC4whM7nT/Uot9m0e/qxFV3p6uor1983D1YOBJbJN7rrWdqIjq0T42jOJyA==
+
+react-native-modal@14.0.0-rc.1, react-native-modal@^14.0.0-rc.1:
+  version "14.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-14.0.0-rc.1.tgz#d193af884c910ec34a4953508c7656b5fc83d7d4"
+  integrity sha512-v5pvGyx1FlmBzdHyPqBsYQyS2mIJhVmuXyNo5EarIzxicKhuoul6XasXMviGcXboEUT0dTYWs88/VendojPiVw==
+  dependencies:
+    react-native-animatable "1.4.0"
+
+react-native-neat-date-picker@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-neat-date-picker/-/react-native-neat-date-picker-1.6.1.tgz#221cf62930cfea5b35e24d371e19c5efe3162b0f"
+  integrity sha512-13Pyuztly6Yo3+obGk7RW2OmblDax9uhKMjT+8f4WR8tau0+ysuKiwTL1X16fevcqVYpnCXHLdcvJcBMXyBvcw==
+  dependencies:
+    react-native-modal "14.0.0-rc.1"
+    react-native-vector-icons "^10.2.0"
 
 react-native-pager-view@^6.2.3:
   version "6.2.3"
@@ -6039,6 +6061,14 @@ react-native-tab-view@^3.5.2:
   integrity sha512-nE5WqjbeEPsWQx4mtz81QGVvgHRhujTNIIZiMCx3Bj6CBFDafbk7XZp9ocmtzXUQaZ4bhtVS43R4FIiR4LboJw==
   dependencies:
     use-latest-callback "^0.1.5"
+
+react-native-vector-icons@*, react-native-vector-icons@^10.2.0:
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-10.3.0.tgz#de440f2627a2ed1079ce3b99d5b9d4f86894df28"
+  integrity sha512-IFQ0RE57819hOUdFvgK4FowM5aMXg7C7XKsuGLevqXkkIJatc3QopN0wYrb2IrzUgmdpfP+QVIbI3S6h7M0btw==
+  dependencies:
+    prop-types "^15.7.2"
+    yargs "^16.1.1"
 
 react-native-vector-icons@^10.0.3:
   version "10.0.3"
@@ -6814,6 +6844,13 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+toastify-react-native@^7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/toastify-react-native/-/toastify-react-native-7.2.3.tgz#281871a46c5ab98cd1b308e795560b5add707c4d"
+  integrity sha512-ngmpTKlTo0IRddwSsNWK+YKbB2veqotHy7Zpil4eksoLAlq0RPSgdVOk5QDEDUONJQ4r7ljGYeRW68KBztirsg==
+  dependencies:
+    react-native-vector-icons "*"
 
 toidentifier@1.0.1:
   version "1.0.1"

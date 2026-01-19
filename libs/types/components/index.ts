@@ -1,6 +1,6 @@
 // Component prop types
-import { ViewStyle, TextStyle } from 'react-native';
-import { Task, SalahCheckboxState, RecitationInfo } from '../models';
+import {ViewStyle, TextStyle} from 'react-native';
+import {Task, SalahCheckboxState, RecitationInfo} from '../models';
 
 // Button props
 export interface PrimaryButtonProps {
@@ -43,6 +43,7 @@ export interface DropDownPickerProps {
   search?: boolean;
   placeholder?: string;
   dropdownPosition?: 'auto' | 'top' | 'bottom';
+  disable?: boolean;
 }
 
 export interface DropDownItem {

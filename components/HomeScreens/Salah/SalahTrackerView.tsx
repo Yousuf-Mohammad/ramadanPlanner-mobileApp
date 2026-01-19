@@ -13,6 +13,7 @@ import {getArabicDate} from '../../../redux-toolkit/features/arabic-date/arabicD
 
 import {SalahCheckboxState} from '../../../libs/types/models';
 import {isAuthenticated} from '../../../functions/AuthFunctions';
+import {Toast} from 'toastify-react-native';
 
 const SalahTrackerView: React.FC<{data: SalahCheckboxState | undefined}> = ({
   data,
@@ -240,7 +241,26 @@ const SalahTrackerView: React.FC<{data: SalahCheckboxState | undefined}> = ({
                 <CheckBox
                   checked={i.checked}
                   onPress={async () => {
-                    console.log('logged in? ', await isAuthenticated());
+                    const user = await isAuthenticated();
+                    const toastMsg =
+                      user === false ? 'Please Log in to continue' : '';
+
+                    !user &&
+                      Toast.show({
+                        type: 'error',
+                        text1: 'Error updating data',
+                        text2: toastMsg,
+                        position: 'top',
+                        visibilityTime: 4000,
+                        autoHide: true,
+                        backgroundColor: colors.dark.PRIMARY,
+                        textColor: colors.dark.WHITE,
+                        progressBarColor: colors.dark.ERROR,
+                        iconFamily: 'MaterialIcons',
+                        icon: 'error',
+                        iconColor: colors.dark.ERROR,
+                      });
+
                     i.farjCheck();
                   }}
                   checkedColor={colors.dark.CONTRAST}
@@ -255,7 +275,26 @@ const SalahTrackerView: React.FC<{data: SalahCheckboxState | undefined}> = ({
               <CheckBox
                 checked={i.checkedSunnah}
                 onPress={async () => {
-                  console.log('logged in? ', await isAuthenticated());
+                  const user = await isAuthenticated();
+                  const toastMsg =
+                    user === false ? 'Please Log in to continue' : '';
+
+                  !user &&
+                    Toast.show({
+                      type: 'error',
+                      text1: 'Error updating data',
+                      text2: toastMsg,
+                      position: 'top',
+                      visibilityTime: 4000,
+                      autoHide: true,
+                      backgroundColor: colors.dark.PRIMARY,
+                      textColor: colors.dark.WHITE,
+                      progressBarColor: colors.dark.ERROR,
+                      iconFamily: 'MaterialIcons',
+                      icon: 'error',
+                      iconColor: colors.dark.ERROR,
+                    });
+
                   i.sunnahCheck();
                 }}
                 checkedColor={colors.dark.CONTRAST}

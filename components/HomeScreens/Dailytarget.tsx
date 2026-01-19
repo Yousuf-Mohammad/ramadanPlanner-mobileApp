@@ -17,6 +17,8 @@ import TasksContainer from './DailyTarget/TasksContainer';
 import {TaskItem} from '../../libs/types/components';
 import LoginRequest from '../../components/AuthScreens/LoginRequest';
 import {getAuthToken} from '../../redux-toolkit/features/authentication/authToken';
+import {Toast} from 'toastify-react-native';
+import {isAuthenticated} from '../../functions/AuthFunctions';
 
 const Dailytarget = () => {
   const day = useSelector(getArabicDate);
@@ -86,6 +88,30 @@ const Dailytarget = () => {
   const handleSubmit = async () => {
     const newTask = taskRef.current?.value;
 
+    const user = await isAuthenticated();
+    const toastMsg = (await isAuthenticated())
+      ? 'Please check internet connection!'
+      : 'Please Log in to continue';
+
+    if (!user) {
+      Toast.show({
+        type: 'error',
+        text1: 'Error updating data',
+        text2: toastMsg,
+        position: 'top',
+        visibilityTime: 4000,
+        autoHide: true,
+        backgroundColor: colors.dark.PRIMARY,
+        textColor: colors.dark.WHITE,
+        progressBarColor: colors.dark.ERROR,
+        iconFamily: 'MaterialIcons',
+        icon: 'error',
+        iconColor: colors.dark.ERROR,
+      });
+
+      return;
+    }
+
     if (!newTask || newTask === '') {
       // reset input field
       if (taskRef.current) {
@@ -106,7 +132,6 @@ const Dailytarget = () => {
       taskRef.current.clear();
     }
 
-    //! todo: queue and try-catch
     try {
       await addTodo({
         value: newTask,
@@ -114,8 +139,34 @@ const Dailytarget = () => {
         month: String(day.monthNumber),
         day: String(day.day),
       });
+
+      Toast.show({
+        type: 'success',
+        text1: 'Update Successful',
+        text2: '',
+        position: 'top',
+        visibilityTime: 4000,
+        autoHide: true,
+        backgroundColor: colors.dark.PRIMARY,
+        textColor: colors.dark.WHITE,
+      });
     } catch (error) {
       console.error('Error adding todo', error);
+
+      Toast.show({
+        type: 'error',
+        text1: 'Error updating data',
+        text2: toastMsg,
+        position: 'top',
+        visibilityTime: 4000,
+        autoHide: true,
+        backgroundColor: colors.dark.PRIMARY,
+        textColor: colors.dark.WHITE,
+        progressBarColor: colors.dark.ERROR,
+        iconFamily: 'MaterialIcons',
+        icon: 'error',
+        iconColor: colors.dark.ERROR,
+      });
     }
   };
 
