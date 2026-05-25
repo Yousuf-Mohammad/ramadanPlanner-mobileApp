@@ -70,3 +70,7 @@ yarn-error.log
 
 # ai-agents
 .claude
+
+# scribbles
+docker-setup-guide.md
+QURAN_TEMPLATES_PLAN.md
