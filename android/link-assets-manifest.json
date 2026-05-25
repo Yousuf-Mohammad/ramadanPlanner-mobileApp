@@ -2,20 +2,12 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/fonts.ts",
+      "sha1": "4848c2302af540eaadc28d998d8574202644b17e"
+    },
+    {
       "path": "assets/fonts/LTAperto/lte50868.ttf",
       "sha1": "43435b0d0a41fa14493acd1c24aae299e22c67a9"
-    },
-    {
-      "path": "assets/fonts/Nova_Mono/NovaMono-Regular.ttf",
-      "sha1": "4a962d87ef73bb90619055280310622b0294cebc"
-    },
-    {
-      "path": "assets/fonts/Nova_Mono/OFL.txt",
-      "sha1": "3b77810227d6026c1584095a9e9227caecf69969"
-    },
-    {
-      "path": "assets/fonts/fonts.js",
-      "sha1": "af18e123acd5eff9cdea1f4de04fd58ef29da8a3"
     },
     {
       "path": "assets/fonts/montserrat/Montserrat-Italic-VariableFont_wght.ttf",
@@ -24,6 +16,10 @@
     {
       "path": "assets/fonts/montserrat/Montserrat-VariableFont_wght.ttf",
       "sha1": "debd10e57fb07dd24187c41679885129449c1435"
+    },
+    {
+      "path": "assets/fonts/montserrat/OFL.txt",
+      "sha1": "ee06e89d18c443a091644b92d27b2d5aca756bc9"
     },
     {
       "path": "assets/fonts/montserrat/README.txt",
@@ -100,6 +96,14 @@
     {
       "path": "assets/fonts/montserrat/static/Montserrat-ThinItalic.ttf",
       "sha1": "9455ac7542b843c9bf96db3dd59302d7da39fa3c"
+    },
+    {
+      "path": "assets/fonts/Nova_Mono/NovaMono-Regular.ttf",
+      "sha1": "4a962d87ef73bb90619055280310622b0294cebc"
+    },
+    {
+      "path": "assets/fonts/Nova_Mono/OFL.txt",
+      "sha1": "3b77810227d6026c1584095a9e9227caecf69969"
     }
   ]
 }

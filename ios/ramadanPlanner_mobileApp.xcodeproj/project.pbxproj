@@ -8,37 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ramadanPlanner_mobileAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ramadanPlanner_mobileAppTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-ramadanPlanner_mobileApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-ramadanPlanner_mobileApp.a */; };
+		05CC7E9AE45548D3AFF4C78F /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0C779CF121042E9829B4DF4 /* Montserrat-SemiBoldItalic.ttf */; };
+		072F470DB2184547B26E2344 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F867C8EA91694562B163E425 /* Montserrat-Black.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		7699B88040F8A987B510C191 /* libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		D3B813655FF149B9B5147033 /* Montserrat-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7709903E0270454AB02925AE /* Montserrat-Italic-VariableFont_wght.ttf */; };
-		D1A847F28BB0465D9BA0C54E /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BF0FEA91A15442B9FBFA93C /* Montserrat-VariableFont_wght.ttf */; };
-		072F470DB2184547B26E2344 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F867C8EA91694562B163E425 /* Montserrat-Black.ttf */; };
-		2A4D98090BAF427BA7E49442 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47E13B60863C497692BE46AB /* Montserrat-BlackItalic.ttf */; };
-		51FCEE981DA44B5CB5FA6B0F /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 248E7280A65C4973818CA83A /* Montserrat-Bold.ttf */; };
-		CB838235FECF4372B9DE1164 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5772A70C2F14481A1348298 /* Montserrat-BoldItalic.ttf */; };
-		6407506CF9F64382A1EF578C /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 336C4F1ACB1E42EF9027040A /* Montserrat-ExtraBold.ttf */; };
 		152D8B82BE6D4F648BA4A696 /* Montserrat-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66A627E8384A4C95B19B6B80 /* Montserrat-ExtraBoldItalic.ttf */; };
+		1874207DC0DD445DB1BA3AB1 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98535E8A3324FAF9BECD8EC /* Montserrat-Thin.ttf */; };
+		1CC2934ADE404C1FB671CA7E /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E235C49CF7034F5CB376FAA3 /* OFL.txt */; };
+		2A4D98090BAF427BA7E49442 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47E13B60863C497692BE46AB /* Montserrat-BlackItalic.ttf */; };
+		2CCBE547EA1A410C935B3247 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6697F51ACCE45CF847795A4 /* Montserrat-LightItalic.ttf */; };
+		4392836D60C949C18BFB6909 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 682E5E4035204B3D8DB8DA25 /* Montserrat-Light.ttf */; };
+		51FCEE981DA44B5CB5FA6B0F /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 248E7280A65C4973818CA83A /* Montserrat-Bold.ttf */; };
+		6407506CF9F64382A1EF578C /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 336C4F1ACB1E42EF9027040A /* Montserrat-ExtraBold.ttf */; };
+		694DDA81FEE84060A96DCC3F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9DC670720A2A494A800838FC /* README.txt */; };
+		6C829C384F7CB124AB23B70B /* libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F89F60BA1A1B538C1AE2AE /* libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a */; };
+		763CBD9CCF77407EA9B4DBDA /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 398C85D46F6947AA80088FF3 /* Montserrat-Medium.ttf */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8CC6AE5823DAD43DE425E850 /* libPods-ramadanPlanner_mobileApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D397612E745D5F48BBABD9B /* libPods-ramadanPlanner_mobileApp.a */; };
+		8DE613920446441FA9DFB3B5 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E235C49CF7034F5CB376FAA3 /* OFL.txt */; };
+		960BAC6A22DC40D9A6D0D860 /* fonts.ts in Resources */ = {isa = PBXBuildFile; fileRef = 0F6CE8A69C8B40298599F0E1 /* fonts.ts */; };
+		9D8B675C14C4446BBAE95535 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47B9F39C65074DE784BE742E /* Montserrat-Regular.ttf */; };
+		A2E442D2DA1D4F59B8769550 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F327A7888A145E9BAB4B33A /* Montserrat-Italic.ttf */; };
 		A5AB8D16BD6F4AB6B9C7CE55 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7240941188B449BFB998F94C /* Montserrat-ExtraLight.ttf */; };
 		B2CEFE6A45AE4554AE5D85AE /* Montserrat-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65F250BC26F744E6AE3148CA /* Montserrat-ExtraLightItalic.ttf */; };
-		A2E442D2DA1D4F59B8769550 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F327A7888A145E9BAB4B33A /* Montserrat-Italic.ttf */; };
-		4392836D60C949C18BFB6909 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 682E5E4035204B3D8DB8DA25 /* Montserrat-Light.ttf */; };
-		2CCBE547EA1A410C935B3247 /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6697F51ACCE45CF847795A4 /* Montserrat-LightItalic.ttf */; };
-		763CBD9CCF77407EA9B4DBDA /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 398C85D46F6947AA80088FF3 /* Montserrat-Medium.ttf */; };
 		BEC34226B37D4A3C876A46D8 /* Montserrat-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E4944B8C6E741ACA4419B00 /* Montserrat-MediumItalic.ttf */; };
-		9D8B675C14C4446BBAE95535 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47B9F39C65074DE784BE742E /* Montserrat-Regular.ttf */; };
-		E079F54EE1494576A43BE81E /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1613D73CE294796862E9599 /* Montserrat-SemiBold.ttf */; };
-		05CC7E9AE45548D3AFF4C78F /* Montserrat-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0C779CF121042E9829B4DF4 /* Montserrat-SemiBoldItalic.ttf */; };
-		1874207DC0DD445DB1BA3AB1 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98535E8A3324FAF9BECD8EC /* Montserrat-Thin.ttf */; };
-		CEDC1737E3694913BF456F15 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA0ACC92081D441F840C892D /* Montserrat-ThinItalic.ttf */; };
-		694DDA81FEE84060A96DCC3F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9DC670720A2A494A800838FC /* README.txt */; };
+		CB838235FECF4372B9DE1164 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D5772A70C2F14481A1348298 /* Montserrat-BoldItalic.ttf */; };
 		CDF9F574B141488FABF6ECE4 /* lte50868.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50F9B8BC9E31482AB6B07074 /* lte50868.ttf */; };
+		CEDC1737E3694913BF456F15 /* Montserrat-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA0ACC92081D441F840C892D /* Montserrat-ThinItalic.ttf */; };
+		D1A847F28BB0465D9BA0C54E /* Montserrat-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BF0FEA91A15442B9FBFA93C /* Montserrat-VariableFont_wght.ttf */; };
+		D3B813655FF149B9B5147033 /* Montserrat-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7709903E0270454AB02925AE /* Montserrat-Italic-VariableFont_wght.ttf */; };
+		E079F54EE1494576A43BE81E /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1613D73CE294796862E9599 /* Montserrat-SemiBold.ttf */; };
+		F5C5C5E7E8944B73B9F1696D /* fonts.ts in Resources */ = {isa = PBXBuildFile; fileRef = 0F6CE8A69C8B40298599F0E1 /* fonts.ts */; };
 		F91A900F2FA14B9AA10DF45C /* NovaMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9FEBBAF68F1492FA4C70E9C /* NovaMono-Regular.ttf */; };
-		7ADCDB1CAE104EF5891D4852 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03A8BBABD3694198BDB6CC50 /* OFL.txt */; };
-		8A295359BFB54DC7A8348383 /* fonts.js in Resources */ = {isa = PBXBuildFile; fileRef = 8C23B43B21D44BB58D5A04DC /* fonts.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,45 +57,46 @@
 		00E356EE1AD99517003FC87E /* ramadanPlanner_mobileAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ramadanPlanner_mobileAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ramadanPlanner_mobileAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ramadanPlanner_mobileAppTests.m; sourceTree = "<group>"; };
+		069D408A037D55487CD98731 /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.release.xcconfig"; path = "Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		0F6CE8A69C8B40298599F0E1 /* fonts.ts */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = fonts.ts; path = ../assets/fonts/fonts.ts; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ramadanPlanner_mobileApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ramadanPlanner_mobileApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ramadanPlanner_mobileApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ramadanPlanner_mobileApp/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ramadanPlanner_mobileApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ramadanPlanner_mobileApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ramadanPlanner_mobileApp/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B4392A12AC88292D35C810B /* Pods-ramadanPlanner_mobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ramadanPlanner_mobileApp.debug.xcconfig"; path = "Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-ramadanPlanner_mobileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ramadanPlanner_mobileApp.release.xcconfig"; path = "Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-ramadanPlanner_mobileApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ramadanPlanner_mobileApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D397612E745D5F48BBABD9B /* libPods-ramadanPlanner_mobileApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ramadanPlanner_mobileApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		248E7280A65C4973818CA83A /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		2BF0FEA91A15442B9FBFA93C /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-VariableFont_wght.ttf"; path = "../assets/fonts/montserrat/Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		336C4F1ACB1E42EF9027040A /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		398C85D46F6947AA80088FF3 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		3E4944B8C6E741ACA4419B00 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-MediumItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; };
+		47B9F39C65074DE784BE742E /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		47E13B60863C497692BE46AB /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BlackItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
+		4B72FB146CC4DFDD05716DCA /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		50F9B8BC9E31482AB6B07074 /* lte50868.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = lte50868.ttf; path = ../assets/fonts/LTAperto/lte50868.ttf; sourceTree = "<group>"; };
+		5F327A7888A145E9BAB4B33A /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Italic.ttf"; sourceTree = "<group>"; };
+		65F250BC26F744E6AE3148CA /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLightItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		66A627E8384A4C95B19B6B80 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		682E5E4035204B3D8DB8DA25 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		7240941188B449BFB998F94C /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		7709903E0270454AB02925AE /* Montserrat-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Italic-VariableFont_wght.ttf"; path = "../assets/fonts/montserrat/Montserrat-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ramadanPlanner_mobileApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.release.xcconfig"; path = "Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		91F89F60BA1A1B538C1AE2AE /* libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DC670720A2A494A800838FC /* README.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = README.txt; path = ../assets/fonts/montserrat/README.txt; sourceTree = "<group>"; };
+		A0C779CF121042E9829B4DF4 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBoldItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		A44C6E30B3024EF89166559B /* OFL.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OFL.txt; path = ../assets/fonts/montserrat/OFL.txt; sourceTree = "<group>"; };
+		A9FEBBAF68F1492FA4C70E9C /* NovaMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NovaMono-Regular.ttf"; path = "../assets/fonts/Nova_Mono/NovaMono-Regular.ttf"; sourceTree = "<group>"; };
+		B1613D73CE294796862E9599 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		C98535E8A3324FAF9BECD8EC /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
+		CA0ACC92081D441F840C892D /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ThinItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; };
+		D5772A70C2F14481A1348298 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-BoldItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
+		E235C49CF7034F5CB376FAA3 /* OFL.txt */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OFL.txt; path = ../assets/fonts/Nova_Mono/OFL.txt; sourceTree = "<group>"; };
+		E3F38E25255B057317EC4BAB /* Pods-ramadanPlanner_mobileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ramadanPlanner_mobileApp.release.xcconfig"; path = "Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		7709903E0270454AB02925AE /* Montserrat-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Montserrat-Italic-VariableFont_wght.ttf"; path = "../assets/fonts/montserrat/Montserrat-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2BF0FEA91A15442B9FBFA93C /* Montserrat-VariableFont_wght.ttf */ = {isa = PBXFileReference; name = "Montserrat-VariableFont_wght.ttf"; path = "../assets/fonts/montserrat/Montserrat-VariableFont_wght.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F867C8EA91694562B163E425 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; name = "Montserrat-Black.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		47E13B60863C497692BE46AB /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-BlackItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		248E7280A65C4973818CA83A /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D5772A70C2F14481A1348298 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-BoldItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		336C4F1ACB1E42EF9027040A /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		66A627E8384A4C95B19B6B80 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7240941188B449BFB998F94C /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		65F250BC26F744E6AE3148CA /* Montserrat-ExtraLightItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-ExtraLightItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-ExtraLightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5F327A7888A145E9BAB4B33A /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; name = "Montserrat-Italic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		682E5E4035204B3D8DB8DA25 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; name = "Montserrat-Light.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F6697F51ACCE45CF847795A4 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-LightItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		398C85D46F6947AA80088FF3 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3E4944B8C6E741ACA4419B00 /* Montserrat-MediumItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-MediumItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-MediumItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		47B9F39C65074DE784BE742E /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B1613D73CE294796862E9599 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A0C779CF121042E9829B4DF4 /* Montserrat-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-SemiBoldItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C98535E8A3324FAF9BECD8EC /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CA0ACC92081D441F840C892D /* Montserrat-ThinItalic.ttf */ = {isa = PBXFileReference; name = "Montserrat-ThinItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9DC670720A2A494A800838FC /* README.txt */ = {isa = PBXFileReference; name = "README.txt"; path = "../assets/fonts/montserrat/README.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		50F9B8BC9E31482AB6B07074 /* lte50868.ttf */ = {isa = PBXFileReference; name = "lte50868.ttf"; path = "../assets/fonts/LTAperto/lte50868.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A9FEBBAF68F1492FA4C70E9C /* NovaMono-Regular.ttf */ = {isa = PBXFileReference; name = "NovaMono-Regular.ttf"; path = "../assets/fonts/Nova_Mono/NovaMono-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		03A8BBABD3694198BDB6CC50 /* OFL.txt */ = {isa = PBXFileReference; name = "OFL.txt"; path = "../assets/fonts/Nova_Mono/OFL.txt"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8C23B43B21D44BB58D5A04DC /* fonts.js */ = {isa = PBXFileReference; name = "fonts.js"; path = "../assets/fonts/fonts.js"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F268BC27FEFC27D08E1D4DC5 /* Pods-ramadanPlanner_mobileApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ramadanPlanner_mobileApp.debug.xcconfig"; path = "Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F6697F51ACCE45CF847795A4 /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-LightItalic.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
+		F867C8EA91694562B163E425 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.ttf"; path = "../assets/fonts/montserrat/static/Montserrat-Black.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a in Frameworks */,
+				6C829C384F7CB124AB23B70B /* libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-ramadanPlanner_mobileApp.a in Frameworks */,
+				8CC6AE5823DAD43DE425E850 /* libPods-ramadanPlanner_mobileApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,10 +153,43 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-ramadanPlanner_mobileApp.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a */,
+				1D397612E745D5F48BBABD9B /* libPods-ramadanPlanner_mobileApp.a */,
+				91F89F60BA1A1B538C1AE2AE /* libPods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		78518B8E54644422AA2307C3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7709903E0270454AB02925AE /* Montserrat-Italic-VariableFont_wght.ttf */,
+				2BF0FEA91A15442B9FBFA93C /* Montserrat-VariableFont_wght.ttf */,
+				F867C8EA91694562B163E425 /* Montserrat-Black.ttf */,
+				47E13B60863C497692BE46AB /* Montserrat-BlackItalic.ttf */,
+				248E7280A65C4973818CA83A /* Montserrat-Bold.ttf */,
+				D5772A70C2F14481A1348298 /* Montserrat-BoldItalic.ttf */,
+				336C4F1ACB1E42EF9027040A /* Montserrat-ExtraBold.ttf */,
+				66A627E8384A4C95B19B6B80 /* Montserrat-ExtraBoldItalic.ttf */,
+				7240941188B449BFB998F94C /* Montserrat-ExtraLight.ttf */,
+				65F250BC26F744E6AE3148CA /* Montserrat-ExtraLightItalic.ttf */,
+				5F327A7888A145E9BAB4B33A /* Montserrat-Italic.ttf */,
+				682E5E4035204B3D8DB8DA25 /* Montserrat-Light.ttf */,
+				F6697F51ACCE45CF847795A4 /* Montserrat-LightItalic.ttf */,
+				398C85D46F6947AA80088FF3 /* Montserrat-Medium.ttf */,
+				3E4944B8C6E741ACA4419B00 /* Montserrat-MediumItalic.ttf */,
+				47B9F39C65074DE784BE742E /* Montserrat-Regular.ttf */,
+				B1613D73CE294796862E9599 /* Montserrat-SemiBold.ttf */,
+				A0C779CF121042E9829B4DF4 /* Montserrat-SemiBoldItalic.ttf */,
+				C98535E8A3324FAF9BECD8EC /* Montserrat-Thin.ttf */,
+				CA0ACC92081D441F840C892D /* Montserrat-ThinItalic.ttf */,
+				9DC670720A2A494A800838FC /* README.txt */,
+				50F9B8BC9E31482AB6B07074 /* lte50868.ttf */,
+				A9FEBBAF68F1492FA4C70E9C /* NovaMono-Regular.ttf */,
+				0F6CE8A69C8B40298599F0E1 /* fonts.ts */,
+				A44C6E30B3024EF89166559B /* OFL.txt */,
+				E235C49CF7034F5CB376FAA3 /* OFL.txt */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -191,46 +227,13 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-ramadanPlanner_mobileApp.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-ramadanPlanner_mobileApp.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.release.xcconfig */,
+				F268BC27FEFC27D08E1D4DC5 /* Pods-ramadanPlanner_mobileApp.debug.xcconfig */,
+				E3F38E25255B057317EC4BAB /* Pods-ramadanPlanner_mobileApp.release.xcconfig */,
+				4B72FB146CC4DFDD05716DCA /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.debug.xcconfig */,
+				069D408A037D55487CD98731 /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		78518B8E54644422AA2307C3 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				7709903E0270454AB02925AE /* Montserrat-Italic-VariableFont_wght.ttf */,
-				2BF0FEA91A15442B9FBFA93C /* Montserrat-VariableFont_wght.ttf */,
-				F867C8EA91694562B163E425 /* Montserrat-Black.ttf */,
-				47E13B60863C497692BE46AB /* Montserrat-BlackItalic.ttf */,
-				248E7280A65C4973818CA83A /* Montserrat-Bold.ttf */,
-				D5772A70C2F14481A1348298 /* Montserrat-BoldItalic.ttf */,
-				336C4F1ACB1E42EF9027040A /* Montserrat-ExtraBold.ttf */,
-				66A627E8384A4C95B19B6B80 /* Montserrat-ExtraBoldItalic.ttf */,
-				7240941188B449BFB998F94C /* Montserrat-ExtraLight.ttf */,
-				65F250BC26F744E6AE3148CA /* Montserrat-ExtraLightItalic.ttf */,
-				5F327A7888A145E9BAB4B33A /* Montserrat-Italic.ttf */,
-				682E5E4035204B3D8DB8DA25 /* Montserrat-Light.ttf */,
-				F6697F51ACCE45CF847795A4 /* Montserrat-LightItalic.ttf */,
-				398C85D46F6947AA80088FF3 /* Montserrat-Medium.ttf */,
-				3E4944B8C6E741ACA4419B00 /* Montserrat-MediumItalic.ttf */,
-				47B9F39C65074DE784BE742E /* Montserrat-Regular.ttf */,
-				B1613D73CE294796862E9599 /* Montserrat-SemiBold.ttf */,
-				A0C779CF121042E9829B4DF4 /* Montserrat-SemiBoldItalic.ttf */,
-				C98535E8A3324FAF9BECD8EC /* Montserrat-Thin.ttf */,
-				CA0ACC92081D441F840C892D /* Montserrat-ThinItalic.ttf */,
-				9DC670720A2A494A800838FC /* README.txt */,
-				50F9B8BC9E31482AB6B07074 /* lte50868.ttf */,
-				A9FEBBAF68F1492FA4C70E9C /* NovaMono-Regular.ttf */,
-				03A8BBABD3694198BDB6CC50 /* OFL.txt */,
-				8C23B43B21D44BB58D5A04DC /* fonts.js */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -239,12 +242,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ramadanPlanner_mobileAppTests" */;
 			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				5362FCAC8431209AFB03D1F9 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				BE15D0D9C40E30AABDA47C5F /* [CP] Embed Pods Frameworks */,
+				97916CEF08149FF9C658391B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,13 +263,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ramadanPlanner_mobileApp" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				8E9ED2453EEAF95833B17CC7 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				0D2B74134946C53D48CD9505 /* [CP] Embed Pods Frameworks */,
+				18E74A8174A85B5B9EB3DFA1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -283,7 +286,8 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1210;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -318,6 +322,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				960BAC6A22DC40D9A6D0D860 /* fonts.ts in Resources */,
+				1CC2934ADE404C1FB671CA7E /* OFL.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,8 +356,8 @@
 				694DDA81FEE84060A96DCC3F /* README.txt in Resources */,
 				CDF9F574B141488FABF6ECE4 /* lte50868.ttf in Resources */,
 				F91A900F2FA14B9AA10DF45C /* NovaMono-Regular.ttf in Resources */,
-				7ADCDB1CAE104EF5891D4852 /* OFL.txt in Resources */,
-				8A295359BFB54DC7A8348383 /* fonts.js in Resources */,
+				F5C5C5E7E8944B73B9F1696D /* fonts.ts in Resources */,
+				8DE613920446441FA9DFB3B5 /* OFL.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +380,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		0D2B74134946C53D48CD9505 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -391,7 +397,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
+		18E74A8174A85B5B9EB3DFA1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5362FCAC8431209AFB03D1F9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -413,7 +436,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		8E9ED2453EEAF95833B17CC7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -435,41 +458,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp/Pods-ramadanPlanner_mobileApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
+		97916CEF08149FF9C658391B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -484,6 +473,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE15D0D9C40E30AABDA47C5F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests/Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -519,7 +525,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.debug.xcconfig */;
+			baseConfigurationReference = 4B72FB146CC4DFDD05716DCA /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -546,7 +552,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.release.xcconfig */;
+			baseConfigurationReference = 069D408A037D55487CD98731 /* Pods-ramadanPlanner_mobileApp-ramadanPlanner_mobileAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -570,13 +576,14 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-ramadanPlanner_mobileApp.debug.xcconfig */;
+			baseConfigurationReference = F268BC27FEFC27D08E1D4DC5 /* Pods-ramadanPlanner_mobileApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ramadanPlanner_mobileApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -597,12 +604,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-ramadanPlanner_mobileApp.release.xcconfig */;
+			baseConfigurationReference = E3F38E25255B057317EC4BAB /* Pods-ramadanPlanner_mobileApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = ramadanPlanner_mobileApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -653,7 +661,8 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -681,6 +690,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -688,7 +698,14 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -725,7 +742,8 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -745,6 +763,7 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -752,7 +771,14 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
