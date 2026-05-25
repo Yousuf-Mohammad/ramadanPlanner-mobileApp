@@ -67,3 +67,6 @@ yarn-error.log
 
 # env files
 .env
+
+# ai-agents
+.claude

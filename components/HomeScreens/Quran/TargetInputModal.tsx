@@ -37,7 +37,7 @@ export const TargetInputModal: React.FC<TargetInputModal> = ({
   const [showDatePickerRange, setShowDatePickerRange] = useState(false);
   const openDatePicker = () => setShowDatePickerRange(true);
 
-  const [date, setDate] = useState('');
+  // const [date, setDate] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
